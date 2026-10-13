@@ -79,6 +79,7 @@ export class FdDialog {
     const ref = this.dialog.open<R, D, unknown>(component, {
       data: config.data,
       role: config.role ?? 'dialog',
+      ariaModal: true,
       ariaLabelledBy: ids.title,
       ariaDescribedBy: ids.body,
       disableClose: true, // Échap et voile passent par FdDialogRef pour jouer la sortie

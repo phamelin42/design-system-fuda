@@ -38,12 +38,7 @@ export class FdTab {
   selector: 'fd-tabs',
   imports: [NgTemplateOutlet],
   template: `
-    <div
-      class="fd-tabs__list"
-      role="tablist"
-      [attr.aria-label]="label()"
-      (keydown)="onKeydown($event)"
-    >
+    <div class="fd-tabs__list" role="tablist" [attr.aria-label]="label()">
       @for (tab of tabs(); track tab.id()) {
         <button
           #tabButton
@@ -56,6 +51,7 @@ export class FdTab {
           [attr.tabindex]="tab === focusable() ? 0 : -1"
           [disabled]="tab.disabled()"
           (click)="select(tab)"
+          (keydown)="onKeydown($event)"
         >
           {{ tab.label() }}
           @if (tab.count() !== undefined) {
@@ -125,7 +121,10 @@ export class FdTabs {
 
   protected onKeydown(event: KeyboardEvent): void {
     const enabled = this.tabs().filter((tab) => !tab.disabled());
-    const index = enabled.indexOf(this.focusable()!);
+    // On part de l'onglet qui reçoit la touche, pas de l'état : c'est lui qui a le focus.
+    const index = enabled.findIndex(
+      (tab) => this.tabId(tab) === (event.currentTarget as HTMLElement).id,
+    );
     const target = {
       ArrowRight: enabled[(index + 1) % enabled.length],
       ArrowLeft: enabled[(index - 1 + enabled.length) % enabled.length],

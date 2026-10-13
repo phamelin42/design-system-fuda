@@ -12,6 +12,8 @@ export type FdCardSky = 'shu' | 'asagi' | 'tokiwa' | 'fuji' | 'yamabuki' | 'kon'
  * Le disque de l'emblème ne reprend jamais la couleur du ciel.
  */
 @Component({
+  // Composant posé sur un élément natif (sémantique HTML conservée) : le sélecteur n'est pas un élément fd-.
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'a[fdCard], article[fdCard], div[fdCard]',
   imports: [FdEmblem],
   template: `

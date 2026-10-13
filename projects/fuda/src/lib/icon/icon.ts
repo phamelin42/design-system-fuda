@@ -40,6 +40,8 @@ export type FdIconName = keyof typeof ICONS;
 
 /** Icône d'interface décorative : `<svg fdIcon="plus" />`. Le sens passe par le libellé du contrôle qui la porte. */
 @Component({
+  // Composant posé sur un élément natif (sémantique HTML conservée) : le sélecteur n'est pas un élément fd-.
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'svg[fdIcon]',
   template: `
     @for (d of shape().paths; track d) {

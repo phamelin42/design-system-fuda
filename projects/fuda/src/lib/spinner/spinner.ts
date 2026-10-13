@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, computed, input } from '@angular/core';
+import { booleanAttribute, Component, input } from '@angular/core';
 
 const PETALS = [
   [12.0, 5.3],

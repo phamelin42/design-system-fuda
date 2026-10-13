@@ -6,7 +6,8 @@
     "build": "npm run tokens && ng build fuda",
     "test": "ng test fuda",
     "tokens": "node scripts/build-tokens.mjs",
-    "typecheck": "tsc -p projects/fuda/tsconfig.lib.json --noEmit && tsc -p projects/fuda/tsconfig.spec.json --noEmit"
+    "typecheck": "tsc -p projects/fuda/tsconfig.lib.json --noEmit && tsc -p projects/fuda/tsconfig.spec.json --noEmit",
+    "lint": "ng lint"
   },
   "private": true,
   "packageManager": "npm@10.9.4",
@@ -27,10 +28,15 @@
     "@angular/build": "^22.2.2",
     "@angular/cli": "^22.2.2",
     "@angular/compiler-cli": "^22.2.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.5",
+    "angular-eslint": "22.6.0",
+    "eslint": "^10.12.0",
     "jsdom": "^30.0.0",
     "ng-packagr": "^22.2.0",
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",
+    "typescript-eslint": "8.71.0",
     "vitest": "^5.0.0"
   }
 }

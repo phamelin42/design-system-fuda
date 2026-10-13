@@ -17,6 +17,8 @@ export type FdButtonSize = 'sm' | 'md' | 'lg';
  * Un seul `primary` par vue ; `danger` seulement pour confirmer une suppression.
  */
 @Component({
+  // Composant posé sur un élément natif (sémantique HTML conservée) : le sélecteur n'est pas un élément fd-.
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[fdButton], a[fdButton]',
   imports: [FdSpinner],
   template: `
