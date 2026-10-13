@@ -1,5 +1,8 @@
 /* Fuda — composants. Toutes les valeurs viennent des tokens (tokens.css). Préfixe de classe : fd-, méthode BEM. */
 
+/* Les hôtes des composants Angular (éléments personnalisés) sont inline par défaut. */
+.fd-accordion, .fd-accordion__item, .fd-breadcrumb, .fd-dialog, .fd-divider, .fd-tabs { display: block; }
+
 /* ============ Button ============ */
 .fd-button {
   --_bg: var(--surface-raised); --_fg: var(--ink); --_bd: var(--rim); --_bg-hover: var(--surface-sunken);

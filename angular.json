@@ -37,6 +37,22 @@
             "lintFilePatterns": ["projects/fuda/**/*.ts", "projects/fuda/**/*.html"],
             "eslintConfig": "projects/fuda/eslint.config.js"
           }
+        },
+        "storybook": {
+          "builder": "@storybook/angular-vite:start-storybook",
+          "options": {
+            "configDir": "projects/fuda/.storybook",
+            "browserTarget": "fuda:build",
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular-vite:build-storybook",
+          "options": {
+            "configDir": "projects/fuda/.storybook",
+            "browserTarget": "fuda:build",
+            "outputDir": "storybook-static"
+          }
         }
       }
     }

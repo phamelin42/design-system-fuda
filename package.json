@@ -6,8 +6,11 @@
     "build": "npm run tokens && ng build fuda",
     "test": "ng test fuda",
     "tokens": "node scripts/build-tokens.mjs",
-    "typecheck": "tsc -p projects/fuda/tsconfig.lib.json --noEmit && tsc -p projects/fuda/tsconfig.spec.json --noEmit",
-    "lint": "ng lint"
+    "typecheck": "tsc -p projects/fuda/tsconfig.lib.json --noEmit && tsc -p projects/fuda/tsconfig.spec.json --noEmit && tsc -p projects/fuda/.storybook/tsconfig.json --noEmit",
+    "lint": "ng lint",
+    "storybook": "ng run fuda:storybook",
+    "build-storybook": "ng run fuda:build-storybook",
+    "e2e": "playwright test"
   },
   "private": true,
   "packageManager": "npm@10.9.4",
@@ -25,18 +28,31 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@analogjs/vite-plugin-angular": "^2.7.3",
+    "@angular/animations": "^22.2.0",
     "@angular/build": "^22.2.2",
     "@angular/cli": "^22.2.2",
     "@angular/compiler-cli": "^22.2.0",
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.64.0",
+    "@storybook/addon-a11y": "^10.6.2",
+    "@storybook/addon-docs": "^10.6.2",
+    "@storybook/angular-vite": "^10.6.2",
     "@types/node": "^26.6.5",
     "angular-eslint": "22.6.0",
     "eslint": "^10.12.0",
+    "http-server": "^14.1.1",
     "jsdom": "^30.0.0",
     "ng-packagr": "^22.2.0",
     "prettier": "^3.8.1",
+    "storybook": "^10.6.2",
     "typescript": "~6.0.2",
     "typescript-eslint": "8.71.0",
+    "vite": "^8.3.4",
     "vitest": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=22.22.3"
   }
 }
