@@ -1,0 +1,177 @@
+<svg
+  [class]="'fd-mon fd-mon--' + name()"
+  viewBox="0 0 96 96"
+  [style.width]="dimension()"
+  [style.height]="dimension()"
+  [attr.role]="label() ? 'img' : null"
+  [attr.aria-label]="label() || null"
+  [attr.aria-hidden]="label() ? null : 'true'"
+>
+@switch (name()) {
+  @case ('ume') {
+      <circle class="disc" cx="48" cy="48" r="44.0"/>
+      <circle class="a" cx="48" cy="33.5" r="12.5"/>
+      <circle class="a" cx="61.79" cy="43.52" r="12.5"/>
+      <circle class="a" cx="56.52" cy="59.73" r="12.5"/>
+      <circle class="a" cx="39.48" cy="59.73" r="12.5"/>
+      <circle class="a" cx="34.21" cy="43.52" r="12.5"/>
+      <circle class="b" cx="48" cy="48" r="6.5"/>
+      <circle class="disc" cx="54.17" cy="39.51" r="1.9"/>
+      <circle class="disc" cx="57.99" cy="51.24" r="1.9"/>
+      <circle class="disc" cx="48" cy="58.5" r="1.9"/>
+      <circle class="disc" cx="38.01" cy="51.24" r="1.9"/>
+      <circle class="disc" cx="41.83" cy="39.51" r="1.9"/>
+  }
+  @case ('sakura') {
+      <circle class="disc" cx="48" cy="48" r="44.0"/>
+      <path class="a" d="M48 49 C33 44 30 27 41 17 L48 22.5 L55 17 C66 27 63 44 48 49 Z" transform="rotate(0 48 48)"/>
+      <path class="a" d="M48 49 C33 44 30 27 41 17 L48 22.5 L55 17 C66 27 63 44 48 49 Z" transform="rotate(72 48 48)"/>
+      <path class="a" d="M48 49 C33 44 30 27 41 17 L48 22.5 L55 17 C66 27 63 44 48 49 Z" transform="rotate(144 48 48)"/>
+      <path class="a" d="M48 49 C33 44 30 27 41 17 L48 22.5 L55 17 C66 27 63 44 48 49 Z" transform="rotate(216 48 48)"/>
+      <path class="a" d="M48 49 C33 44 30 27 41 17 L48 22.5 L55 17 C66 27 63 44 48 49 Z" transform="rotate(288 48 48)"/>
+      <circle class="b" cx="48" cy="48" r="5"/>
+      <circle class="b" cx="53.58" cy="40.31" r="1.6"/>
+      <circle class="b" cx="57.04" cy="50.94" r="1.6"/>
+      <circle class="b" cx="48" cy="57.5" r="1.6"/>
+      <circle class="b" cx="38.96" cy="50.94" r="1.6"/>
+      <circle class="b" cx="42.42" cy="40.31" r="1.6"/>
+  }
+  @case ('fuji') {
+      <circle class="disc" cx="48" cy="48" r="44.0"/>
+      <path class="c-stroke" d="M14 28 C30 17 64 16 82 27" fill="none" stroke-width="3.2" stroke-linecap="round"/>
+      <ellipse class="c" cx="22" cy="22" rx="7" ry="3" transform="rotate(-30 22 22)"/>
+      <ellipse class="c" cx="38" cy="18" rx="7" ry="3" transform="rotate(-10 38 18)"/>
+      <ellipse class="c" cx="58" cy="18" rx="7" ry="3" transform="rotate(12 58 18)"/>
+      <ellipse class="c" cx="74" cy="22" rx="7" ry="3" transform="rotate(28 74 22)"/>
+      <circle class="a" cx="25.4" cy="30" r="5.4"/>
+      <circle class="a" cx="30.4" cy="37.65" r="4.98"/>
+      <circle class="a" cx="25.8" cy="44.77" r="4.56"/>
+      <circle class="a" cx="29.99" cy="51.38" r="4.14"/>
+      <circle class="a" cx="26.21" cy="57.45" r="3.72"/>
+      <circle class="a" cx="29.59" cy="63" r="3.3"/>
+      <circle class="a" cx="26.61" cy="68.03" r="2.88"/>
+      <circle class="a" cx="29.18" cy="72.53" r="2.46"/>
+      <circle class="a" cx="45.4" cy="30" r="5.4"/>
+      <circle class="a" cx="50.4" cy="37.65" r="4.98"/>
+      <circle class="a" cx="45.8" cy="44.77" r="4.56"/>
+      <circle class="a" cx="49.99" cy="51.38" r="4.14"/>
+      <circle class="a" cx="46.21" cy="57.45" r="3.72"/>
+      <circle class="a" cx="49.59" cy="63" r="3.3"/>
+      <circle class="a" cx="46.61" cy="68.03" r="2.88"/>
+      <circle class="a" cx="49.18" cy="72.53" r="2.46"/>
+      <circle class="a" cx="47.02" cy="76.5" r="2.04"/>
+      <circle class="a" cx="48.82" cy="79.95" r="1.7"/>
+      <circle class="a" cx="65.4" cy="30" r="5.4"/>
+      <circle class="a" cx="70.4" cy="37.65" r="4.98"/>
+      <circle class="a" cx="65.8" cy="44.77" r="4.56"/>
+      <circle class="a" cx="69.99" cy="51.38" r="4.14"/>
+      <circle class="a" cx="66.21" cy="57.45" r="3.72"/>
+      <circle class="a" cx="69.59" cy="63" r="3.3"/>
+      <circle class="a" cx="66.61" cy="68.03" r="2.88"/>
+  }
+  @case ('kiku') {
+      <circle class="disc" cx="48" cy="48" r="44.0"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(0.0 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(22.5 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(45.0 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(67.5 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(90.0 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(112.5 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(135.0 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(157.5 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(180.0 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(202.5 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(225.0 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(247.5 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(270.0 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(292.5 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(315.0 48 48)"/>
+      <ellipse class="a" cx="48" cy="25" rx="4.6" ry="14" transform="rotate(337.5 48 48)"/>
+      <circle class="disc" cx="48" cy="48" r="11"/>
+      <circle class="b" cx="48" cy="48" r="8"/>
+  }
+  @case ('momiji') {
+      <circle class="disc" cx="48" cy="48" r="44.0"/>
+      <circle class="a" cx="48" cy="52" r="10"/>
+      <path class="a" d="M48 54 C35.76 40.1 41.27 24.8 48 18 C54.73 24.8 60.24 40.1 48 54 Z" transform="rotate(0 48 52)"/>
+      <path class="a" d="M48 54 C36.84 41.15 41.86 27.2 48 21 C54.14 27.2 59.16 41.15 48 54 Z" transform="rotate(50 48 52)"/>
+      <path class="a" d="M48 54 C36.84 41.15 41.86 27.2 48 21 C54.14 27.2 59.16 41.15 48 54 Z" transform="rotate(-50 48 52)"/>
+      <path class="a" d="M48 54 C39 43.25 43.05 32 48 27 C52.95 32 57 43.25 48 54 Z" transform="rotate(98 48 52)"/>
+      <path class="a" d="M48 54 C39 43.25 43.05 32 48 27 C52.95 32 57 43.25 48 54 Z" transform="rotate(-98 48 52)"/>
+      <path class="a" d="M48 54 C42.6 46.75 45.03 40 48 37 C50.97 40 53.4 46.75 48 54 Z" transform="rotate(140 48 52)"/>
+      <path class="a" d="M48 54 C42.6 46.75 45.03 40 48 37 C50.97 40 53.4 46.75 48 54 Z" transform="rotate(-140 48 52)"/>
+      <path class="a-stroke" d="M48 58 C48 70 47 78 44 86" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path class="disc-stroke" d="M48 52 L48 27.52" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path class="disc-stroke" d="M48 52 L65.1 37.65" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path class="disc-stroke" d="M48 52 L30.9 37.65" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path class="disc-stroke" d="M48 52 L65.82 54.51" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path class="disc-stroke" d="M48 52 L30.18 54.51" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path class="disc-stroke" d="M48 52 L54.94 60.27" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path class="disc-stroke" d="M48 52 L41.06 60.27" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+  }
+  @case ('cho') {
+      <circle class="disc" cx="48" cy="48" r="44.0"/>
+      <path class="a" d="M50 47 C56 27 80 20 80 36 C80 47 64 52 50 51 Z"/>
+      <path class="a" d="M50 47 C56 27 80 20 80 36 C80 47 64 52 50 51 Z" transform="translate(96 0) scale(-1 1)"/>
+      <path class="a" d="M50 53 C63 52 74 59 69 70 C63 79 54 69 50 57 Z"/>
+      <path class="a" d="M50 53 C63 52 74 59 69 70 C63 79 54 69 50 57 Z" transform="translate(96 0) scale(-1 1)"/>
+      <ellipse class="a" cx="48" cy="52" rx="2.8" ry="14"/>
+      <path class="a-stroke" d="M47 40 C45 32 41 27 37 26" fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <path class="a-stroke" d="M49 40 C51 32 55 27 59 26" fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle class="b" cx="67" cy="37" r="4.6"/>
+      <circle class="b" cx="29" cy="37" r="4.6"/>
+      <circle class="b" cx="61" cy="63" r="2.8"/>
+      <circle class="b" cx="35" cy="63" r="2.8"/>
+  }
+  @case ('usagi') {
+      <circle class="disc" cx="48" cy="48" r="44.0"/>
+      <circle class="b" cx="54" cy="44" r="27"/>
+      <ellipse class="disc" cx="51" cy="59" rx="14" ry="11"/>
+      <circle class="disc" cx="38" cy="48" r="8.5"/>
+      <ellipse class="disc" cx="39.5" cy="31" rx="3.6" ry="11" transform="rotate(-14 39.5 31)"/>
+      <ellipse class="disc" cx="45.5" cy="32" rx="3.4" ry="10.5" transform="rotate(12 45.5 32)"/>
+      <circle class="disc" cx="65" cy="56" r="4.4"/>
+      <ellipse class="disc" cx="40" cy="66" rx="5" ry="3.4"/>
+      <circle class="b" cx="35" cy="46.5" r="1.5"/>
+      <path class="a-stroke" d="M18 88 C26 76 34 70 44 66" fill="none" stroke-width="2.4" stroke-linecap="round"/>
+      <path class="a-stroke" d="M28 90 C34 78 44 72 56 70" fill="none" stroke-width="2.4" stroke-linecap="round"/>
+      <path class="a-stroke" d="M70 90 C72 80 78 72 86 66" fill="none" stroke-width="2.4" stroke-linecap="round"/>
+  }
+  @case ('tsubame') {
+      <circle class="disc" cx="48" cy="48" r="44.0"/>
+      <path class="a" d="M48 21 C52 21 55 25 55 29 C55 33 54.5 35 53.5 37 C62 33 75 29 87 34 C76 37 64 43 54.5 50 C55.5 57 55.5 61 54 64 L63 85 C57 82 52 76 48 70 Z"/>
+      <path class="a" d="M48 21 C52 21 55 25 55 29 C55 33 54.5 35 53.5 37 C62 33 75 29 87 34 C76 37 64 43 54.5 50 C55.5 57 55.5 61 54 64 L63 85 C57 82 52 76 48 70 Z" transform="translate(96 0) scale(-1 1)"/>
+      <ellipse class="b" cx="48" cy="33" rx="4.4" ry="3"/>
+      <circle class="disc" cx="45" cy="26" r="1.3"/>
+      <circle class="disc" cx="51" cy="26" r="1.3"/>
+  }
+  @case ('koi') {
+      <circle class="disc" cx="48" cy="48" r="44.0"/>
+      <g transform="rotate(28 48 50)">
+      <path class="a" d="M48 16 C59 18 61 35 59 50 C57 62 52.5 70 51 74 L61 87 C55 85 51 83 48 81 C45 83 41 85 35 87 L45 74 C43.5 70 39 62 37 50 C35 35 37 18 48 16 Z"/>
+      <path class="a" d="M58 39 C67 38 72 45 69 50 C65 48 61 46 58 46 Z"/>
+      <path class="a" d="M58 39 C67 38 72 45 69 50 C65 48 61 46 58 46 Z" transform="translate(96 0) scale(-1 1)"/>
+      <ellipse class="b" cx="48.5" cy="27" rx="6.5" ry="5.5"/>
+      <ellipse class="b" cx="50" cy="51" rx="5.5" ry="9"/>
+      <circle class="c" cx="43.5" cy="22.5" r="1.6"/>
+      <circle class="c" cx="53" cy="22.5" r="1.6"/>
+      </g>
+  }
+  @case ('inu') {
+      <circle class="disc" cx="48" cy="48" r="44.0"/>
+      <path class="a" d="M33 45 C25 38 21 27 25 18 C34 21 42 29 44 38 Z"/>
+      <path class="a" d="M33 45 C25 38 21 27 25 18 C34 21 42 29 44 38 Z" transform="translate(96 0) scale(-1 1)"/>
+      <ellipse class="a" cx="48" cy="55" rx="23" ry="20"/>
+      <ellipse class="b" cx="48" cy="64" rx="12" ry="9"/>
+      <ellipse class="c" cx="48" cy="58.5" rx="4.4" ry="3.2"/>
+      <path class="c-stroke" d="M48 61.5 L48 65 M48 65 C46 68 43 68 42 66 M48 65 C50 68 53 68 54 66" fill="none" stroke-width="1.7" stroke-linecap="round"/>
+      <circle class="c" cx="39" cy="51" r="2.7"/>
+      <circle class="c" cx="57" cy="51" r="2.7"/>
+      <ellipse class="b" cx="39" cy="44" rx="3" ry="1.6"/>
+      <ellipse class="b" cx="57" cy="44" rx="3" ry="1.6"/>
+  }
+}
+  @if (ring()) {
+    <circle class="fd-mon__ring" cx="48" cy="48" r="45.5" />
+  }
+</svg>
