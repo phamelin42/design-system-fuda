@@ -11,7 +11,9 @@ export const storyIds: string[] = Object.values<{ id: string; type: string }>(in
 export const themes = ['light', 'dark'] as const;
 
 export async function openStory(page: Page, id: string, theme: (typeof themes)[number] = 'light') {
-  await page.goto(`/iframe.html?id=${id}&viewMode=story&globals=theme:${theme}`);
+  // a11y.manual: the Storybook a11y addon would otherwise run its own axe after the render, and
+  // collide with the one of the a11y tests ("Axe is already running").
+  await page.goto(`/iframe.html?id=${id}&viewMode=story&globals=theme:${theme};a11y.manual:!true`);
   await page.locator('#storybook-root > *').first().waitFor();
   await page.evaluate(() => document.fonts.ready);
 }

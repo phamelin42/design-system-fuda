@@ -55,13 +55,13 @@ Une tâche est terminée quand `lint`, `typecheck`, `test` et `build` sont verts
 
 - Focus toujours visible (`--focus-ring`), cibles de 44 px, libellé de champ toujours visible.
 - Texte à 4.5:1 dans les deux thèmes : `contrast.spec.ts` lit la note de chaque token (« sur `surface` »…) et vérifie chaque paire.
-- `e2e/a11y.spec.ts` passe axe sur chaque story dans les deux thèmes ; aucune violation tolérée.
+- `e2e/a11y.spec.ts` passe axe sur chaque story dans les deux thèmes ; aucune violation tolérée. `openStory` passe `a11y.manual` : l'addon a11y de Storybook ne lance pas son propre axe en parallèle (sinon « Axe is already running »).
 
 ## Tests
 
 - Unitaires (Vitest, jsdom) : comportement et ARIA de chaque composant, tokens, contrastes. jsdom n'a pas de mise en page : ce qui en dépend (focus initial d'un dialogue, position d'une infobulle) est couvert par Playwright.
 - Playwright : un test visuel par story et par thème, axe, clavier, mouvement réduit.
-- Les captures de référence viennent de Chromium sous Linux. Après un changement d'apparence voulu : `npm run build-storybook && npm run e2e -- --update-snapshots`, puis relire les images modifiées.
+- Les captures de référence viennent de Chromium sous Linux, dans la version qu'épingle `@playwright/test` (c'est celle de la CI : `npx playwright --version`, puis `npx playwright install --dry-run chromium` donne le numéro). Un autre Chromium rend le texte différemment et fait échouer le visuel en CI : ne pas régénérer les captures avec un Chromium plus ancien ou plus récent. Après un changement d'apparence voulu : `npm run build-storybook && npm run e2e -- --update-snapshots`, puis relire les images modifiées.
 - Lancer Playwright avec un Chromium déjà installé : `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/chemin/chrome npm run e2e`.
 
 ## Écarts assumés par rapport aux planches
