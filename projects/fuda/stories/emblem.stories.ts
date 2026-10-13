@@ -1,5 +1,6 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { EMBLEM_NAMES, FdAvatar, FdAvatarGroup, FdEmblem } from '../src/public-api';
+import { EMBLEMS, bool, choice, count, text } from './controls';
 
 const KANJI: Record<string, string> = {
   ume: '梅 Prunier en fleur',
@@ -54,5 +55,32 @@ export const Avatars: Story = {
           <span class="caption">Joueurs de la partie</span>
         </div>
       </div>`,
+  }),
+};
+
+export const EmblemeControles: Story = {
+  tags: ['playground'],
+  name: 'Emblème (contrôles)',
+  args: { name: 'ume', size: 96, ring: true, label: 'Prunier en fleur' },
+  argTypes: { name: choice(EMBLEMS), size: count(24, 160), ring: bool, label: text },
+  render: (args) => ({
+    props: args,
+    template: `<fd-emblem [name]="name" [size]="size" [ring]="ring" [label]="label" />`,
+  }),
+};
+
+export const AvatarControles: Story = {
+  tags: ['playground'],
+  name: 'Avatar (contrôles)',
+  args: { name: 'Phil Hamelin', emblem: 'auto', size: 'lg', src: '' },
+  argTypes: {
+    name: text,
+    emblem: choice(['auto', 'initials', ...EMBLEMS]),
+    size: choice(['xs', 'sm', 'md', 'lg', 'xl']),
+    src: text,
+  },
+  render: (args) => ({
+    props: args,
+    template: `<fd-avatar [name]="name" [emblem]="emblem" [size]="size" [src]="src || undefined" />`,
   }),
 };

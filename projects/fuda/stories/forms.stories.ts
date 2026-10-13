@@ -1,6 +1,7 @@
 import { signal } from '@angular/core';
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdCheckbox, FdRadioGroup, FdSelect, FdSwitch, FdTextField } from '../src/public-api';
+import { bool, choice, count, text } from './controls';
 
 const meta: Meta = {
   title: 'Formulaires',
@@ -79,5 +80,120 @@ export const Selection: Story = {
           <fd-switch disabled>Synchronisation cellulaire (indisponible)</fd-switch>
         </div>
       </div>`,
+  }),
+};
+
+// Terrain de jeu : le panneau « Controls » pilote ces stories.
+export const ChampControles: Story = {
+  tags: ['playground'],
+  name: 'Champ de saisie (contrôles)',
+  args: {
+    label: 'Nom du carnet',
+    hint: 'Visible par les personnes avec qui tu partages le carnet.',
+    error: '',
+    placeholder: '',
+    optional: false,
+    multiline: false,
+    maxLength: 0,
+    icon: '',
+    type: 'text',
+    disabled: false,
+  },
+  argTypes: {
+    label: text,
+    hint: text,
+    error: text,
+    placeholder: text,
+    optional: bool,
+    multiline: bool,
+    maxLength: count(0, 280),
+    icon: choice(['', 'search', 'pin', 'edit']),
+    type: choice(['text', 'email', 'search', 'tel', 'url', 'password']),
+    disabled: bool,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <fd-text-field style="width: 340px" [label]="label" [hint]="hint" [error]="error || undefined" [placeholder]="placeholder"
+        [optional]="optional" [multiline]="multiline" [maxLength]="maxLength || undefined" [icon]="icon || undefined"
+        [type]="type" [disabled]="disabled" />`,
+  }),
+};
+
+export const SelectControles: Story = {
+  tags: ['playground'],
+  name: 'Select (contrôles)',
+  args: {
+    label: 'Crochet',
+    placeholder: 'Choisir une taille',
+    hint: 'Indiquée sur l’étiquette de la pelote.',
+    error: '',
+    disabled: false,
+  },
+  argTypes: { label: text, placeholder: text, hint: text, error: text, disabled: bool },
+  render: (args) => ({
+    props: {
+      ...args,
+      options: ['2,5 mm', '3 mm', '4 mm', '5 mm', '6 mm'].map((s) => ({ value: s, label: s })),
+    },
+    template: `
+      <fd-select style="width: 300px" [label]="label" [placeholder]="placeholder || undefined" [hint]="hint" [error]="error || undefined"
+        [disabled]="disabled" [options]="options" />`,
+  }),
+};
+
+export const CaseControles: Story = {
+  tags: ['playground'],
+  name: 'Case à cocher (contrôles)',
+  args: {
+    label: 'Afficher les étapes passées',
+    hint: 'Elles restent visibles sur la carte.',
+    checked: true,
+    indeterminate: false,
+    disabled: false,
+  },
+  argTypes: { label: text, hint: text, checked: bool, indeterminate: bool, disabled: bool },
+  render: (args) => ({
+    props: args,
+    template: `<fd-checkbox [checked]="checked" [indeterminate]="indeterminate" [hint]="hint || undefined" [disabled]="disabled">{{ label }}</fd-checkbox>`,
+  }),
+};
+
+export const InterrupteurControles: Story = {
+  tags: ['playground'],
+  name: 'Interrupteur (contrôles)',
+  args: { label: 'Mode hors ligne', checked: true, disabled: false },
+  argTypes: { label: text, checked: bool, disabled: bool },
+  render: (args) => ({
+    props: args,
+    template: `<fd-switch [checked]="checked" [disabled]="disabled">{{ label }}</fd-switch>`,
+  }),
+};
+
+export const RadiosControles: Story = {
+  tags: ['playground'],
+  name: 'Groupe de radios (contrôles)',
+  args: {
+    legend: 'Qui peut voir ce carnet ?',
+    orientation: 'vertical',
+    value: 'me',
+    disabled: false,
+  },
+  argTypes: {
+    legend: text,
+    orientation: choice(['vertical', 'horizontal']),
+    value: choice(['me', 'friends', 'link']),
+    disabled: bool,
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      options: [
+        { value: 'me', label: 'Seulement moi' },
+        { value: 'friends', label: 'Mes amis' },
+        { value: 'link', label: 'Avec le lien' },
+      ],
+    },
+    template: `<fd-radio-group [legend]="legend" [orientation]="orientation" [options]="options" [value]="value" [disabled]="disabled" />`,
   }),
 };

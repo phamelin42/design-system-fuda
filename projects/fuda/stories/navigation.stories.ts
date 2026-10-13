@@ -13,6 +13,7 @@ import {
   FdTab,
   FdTabs,
 } from '../src/public-api';
+import { EMBLEMS, bool, choice, text } from './controls';
 
 const meta: Meta = {
   title: 'Navigation et contenu',
@@ -70,7 +71,7 @@ export const Cartes: Story = {
   render: () => ({
     template: `
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; width: 860px">
-        <a fdCard href="#" sky="shu" emblem="sakura">
+        <a fdCard href="#" sky="sakura" emblem="sakura">
           <fd-badge slot="badge" tone="tokiwa">Publié</fd-badge>
           <span slot="title">Kyoto au printemps</span>
           <span slot="meta">12 étapes, avril 2027</span>
@@ -81,7 +82,7 @@ export const Cartes: Story = {
           <span slot="meta">Crochet 4 mm, 5 pelotes</span>
         </a>
         <article fdCard sky="yamabuki" emblem="koi">
-          <fd-badge slot="badge" tone="shu">En cours</fd-badge>
+          <fd-badge slot="badge" tone="sakura">En cours</fd-badge>
           <span slot="title">Partie du vendredi</span>
           <span slot="meta">4 joueurs, manche 3 sur 5</span>
           Lettre tirée : K. Il reste 40 secondes.
@@ -131,6 +132,119 @@ export const EtatVide: Story = {
   render: () => ({
     template: `
       <fd-empty-state title="Aucun carnet pour l’instant" text="Crée ton premier carnet pour garder tes étapes, tes photos et tes notes au même endroit.">
+        <button fdButton variant="primary"><svg fdIcon="plus"></svg>Créer un carnet</button>
+      </fd-empty-state>`,
+  }),
+};
+
+// Terrain de jeu : le panneau « Controls » pilote ces stories.
+export const OngletsControles: Story = {
+  tags: ['playground'],
+  name: 'Onglets (contrôles)',
+  args: { label: 'Carnet de Kyoto', activation: 'auto' },
+  argTypes: { label: text, activation: choice(['auto', 'manual']) },
+  render: (args) => ({
+    props: args,
+    template: `
+      <fd-tabs style="width: 560px" [label]="label" [activation]="activation">
+        <fd-tab id="steps" label="Étapes" [count]="12">Douze étapes, du Fushimi Inari au pavillon d’Argent.</fd-tab>
+        <fd-tab id="photos" label="Photos" [count]="48">48 photos, triées par jour.</fd-tab>
+        <fd-tab id="map" label="Carte" disabled>La carte des étapes.</fd-tab>
+        <fd-tab id="notes" label="Notes">Tes notes privées.</fd-tab>
+      </fd-tabs>`,
+  }),
+};
+
+export const CarteControles: Story = {
+  tags: ['playground'],
+  name: 'Carte (contrôles)',
+  args: {
+    sky: 'sakura',
+    emblem: 'sakura',
+    title: 'Kyoto au printemps',
+    meta: '12 étapes, avril 2027',
+    body: '',
+    badge: 'Publié',
+    link: true,
+  },
+  argTypes: {
+    sky: choice(['', 'sakura', 'asagi', 'tokiwa', 'fuji', 'yamabuki', 'kon']),
+    emblem: choice(EMBLEMS),
+    title: text,
+    meta: text,
+    body: text,
+    badge: text,
+    link: bool,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <div style="width: 280px">
+        @if (link) {
+          <a fdCard href="#" [sky]="sky || undefined" [emblem]="emblem">
+            <fd-badge slot="badge" tone="tokiwa">{{ badge }}</fd-badge>
+            <span slot="title">{{ title }}</span>
+            <span slot="meta">{{ meta }}</span>
+            {{ body }}
+          </a>
+        } @else {
+          <article fdCard [sky]="sky || undefined" [emblem]="emblem">
+            <fd-badge slot="badge" tone="tokiwa">{{ badge }}</fd-badge>
+            <span slot="title">{{ title }}</span>
+            <span slot="meta">{{ meta }}</span>
+            {{ body }}
+            <div slot="actions"><button fdButton size="sm" variant="primary">Rejoindre</button></div>
+          </article>
+        }
+      </div>`,
+  }),
+};
+
+export const SeparateurControles: Story = {
+  tags: ['playground'],
+  name: 'Séparateur (contrôles)',
+  args: { kasumi: false },
+  argTypes: { kasumi: bool },
+  render: (args) => ({
+    props: args,
+    template: `
+      <div style="width: 420px">
+        <p style="margin: 0">Jour 1 : arrivée à Kyoto.</p>
+        <fd-divider [kasumi]="kasumi" />
+        <p style="margin: 0">Jour 2 : Fushimi Inari à l’aube.</p>
+      </div>`,
+  }),
+};
+
+export const AccordeonControles: Story = {
+  tags: ['playground'],
+  name: 'Accordéon (contrôles)',
+  args: { multiple: true },
+  argTypes: { multiple: bool },
+  render: (args) => ({
+    props: args,
+    template: `
+      <fd-accordion style="width: 520px" [multiple]="multiple">
+        <fd-accordion-item id="who" title="Qui peut voir mon carnet ?">Toi seul par défaut.</fd-accordion-item>
+        <fd-accordion-item id="offline" title="Puis-je écrire hors ligne ?">Oui, tes étapes sont envoyées au retour du réseau.</fd-accordion-item>
+        <fd-accordion-item id="pdf" title="Comment exporter en PDF ?">Depuis le menu du carnet, choisis « Exporter ».</fd-accordion-item>
+      </fd-accordion>`,
+  }),
+};
+
+export const EtatVideControles: Story = {
+  tags: ['playground'],
+  name: 'État vide (contrôles)',
+  args: {
+    emblem: 'tsubame',
+    title: 'Aucun carnet pour l’instant',
+    text: 'Crée ton premier carnet pour garder tes étapes au même endroit.',
+  },
+  argTypes: { emblem: choice(EMBLEMS), title: text, text },
+  render: (args) => ({
+    props: args,
+    template: `
+      <fd-empty-state [emblem]="emblem" [title]="title" [text]="text">
         <button fdButton variant="primary"><svg fdIcon="plus"></svg>Créer un carnet</button>
       </fd-empty-state>`,
   }),

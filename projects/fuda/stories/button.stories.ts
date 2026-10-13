@@ -1,5 +1,6 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdButton, FdIcon, FdIconButton, FdLink, FdSpinner } from '../src/public-api';
+import { ICON_NAMES, bool, choice, text } from './controls';
 
 const meta: Meta = {
   title: 'Actions',
@@ -72,5 +73,78 @@ export const Spinners: Story = {
         <fd-spinner size="md"></fd-spinner>
         <fd-spinner size="lg"></fd-spinner>
       </div>`,
+  }),
+};
+
+// Terrain de jeu : le panneau « Controls » pilote ces stories.
+const playground = { tags: ['playground'] };
+
+export const Bouton: Story = {
+  ...playground,
+  name: 'Bouton (contrôles)',
+  args: {
+    label: 'Créer un carnet',
+    variant: 'primary',
+    size: 'md',
+    loading: false,
+    block: false,
+    disabled: false,
+    icon: true,
+  },
+  argTypes: {
+    label: text,
+    variant: choice(['primary', 'secondary', 'ghost', 'danger']),
+    size: choice(['sm', 'md', 'lg']),
+    loading: bool,
+    block: bool,
+    disabled: bool,
+    icon: bool,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <button fdButton [variant]="variant" [size]="size" [loading]="loading" [block]="block" [disabled]="disabled">
+        @if (icon) { <svg fdIcon="plus"></svg> }
+        {{ label }}
+      </button>`,
+  }),
+};
+
+export const BoutonIconeControles: Story = {
+  ...playground,
+  name: 'Bouton-icône (contrôles)',
+  args: { label: 'Modifier', icon: 'edit', variant: 'ghost', size: 'md', pressed: undefined },
+  argTypes: {
+    label: text,
+    icon: choice(ICON_NAMES),
+    variant: choice(['ghost', 'outlined']),
+    size: choice(['sm', 'md']),
+    pressed: bool,
+  },
+  render: (args) => ({
+    props: args,
+    template: `<button fdIconButton [label]="label" [variant]="variant" [size]="size" [pressed]="pressed"><svg [fdIcon]="icon"></svg></button>`,
+  }),
+};
+
+export const LienControles: Story = {
+  ...playground,
+  name: 'Lien (contrôles)',
+  args: { label: 'Voir le carnet de Kyoto', quiet: false },
+  argTypes: { label: text, quiet: bool },
+  render: (args) => ({
+    props: args,
+    template: `<a fdLink [quiet]="quiet" href="#">{{ label }}</a>`,
+  }),
+};
+
+export const SpinnerControles: Story = {
+  ...playground,
+  name: 'Spinner (contrôles)',
+  args: { size: 'md', color: 'sakura', label: 'Chargement…' },
+  argTypes: { size: choice(['sm', 'md', 'lg']), color: choice(['sakura', 'current']), label: text },
+  render: (args) => ({
+    props: args,
+    template: `<fd-spinner [size]="size" [color]="color" [label]="label"></fd-spinner>`,
   }),
 };
