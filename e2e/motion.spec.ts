@@ -2,8 +2,8 @@ import { expect, test } from '@playwright/test';
 import { openStory } from './stories';
 
 async function showToast(page: import('@playwright/test').Page) {
-  await openStory(page, 'status-toast--success');
-  await page.getByRole('button', { name: 'Show the toast' }).click();
+  await openStory(page, 'status-toast--default');
+  await page.getByRole('button', { name: 'Success toast' }).click();
   return page.locator('.fd-toast').first();
 }
 
@@ -22,7 +22,7 @@ test.describe('prefers-reduced-motion', () => {
   });
 
   test('spinner: opacity pulse instead of the opening petals', async ({ page }) => {
-    await openStory(page, 'actions-spinner--small');
+    await openStory(page, 'actions-spinner--default');
     const petal = page.locator('.fd-spinner__petal').first();
     expect(await petal.evaluate((el) => getComputedStyle(el).animationName)).toBe('fd-pulse');
   });

@@ -5,7 +5,7 @@ import { EMBLEMS, choice, text } from '../controls';
 const meta: Meta = {
   title: 'Identity/Avatar',
   decorators: [moduleMetadata({ imports: [FdAvatar] })],
-  args: { name: 'Phil Hamelin', emblem: 'auto', size: 'lg', src: '' },
+  args: { name: 'Phil Hamelin', emblem: 'auto', src: '' },
   argTypes: {
     name: {
       ...text,
@@ -15,21 +15,18 @@ const meta: Meta = {
       ...choice(['auto', 'initials', ...EMBLEMS]),
       description: '`auto` picks an emblem from the name',
     },
-    size: choice(['xs', 'sm', 'md', 'lg', 'xl']),
     src: { ...text, description: 'Photo URL; the emblem is the fallback if it fails to load' },
   },
   render: (args) => ({
-    props: args,
-    template: `<fd-avatar [name]="name" [emblem]="emblem" [size]="size" [src]="src || undefined" />`,
+    props: { ...args, sizes: ['xs', 'sm', 'md', 'lg', 'xl'] },
+    template: `
+      <div style="display: flex; gap: 20px; align-items: center">
+        @for (size of sizes; track size) {
+          <fd-avatar [name]="name" [emblem]="emblem" [size]="size" [src]="src || undefined" />
+        }
+      </div>`,
   }),
 };
 export default meta;
-type Story = StoryObj;
 
-export const Default: Story = {};
-
-export const Initials: Story = { args: { emblem: 'initials' } };
-
-export const ExtraSmall: Story = { args: { name: 'Mariko', size: 'xs' } };
-
-export const ExtraLarge: Story = { args: { name: 'Leo', size: 'xl' } };
+export const Default: StoryObj = {};

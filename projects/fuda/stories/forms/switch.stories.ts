@@ -1,27 +1,24 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdSwitch } from '../../src/public-api';
-import { bool, text } from '../controls';
+import { text } from '../controls';
 
 const meta: Meta = {
   title: 'Forms/Switch',
   decorators: [moduleMetadata({ imports: [FdSwitch] })],
   parameters: { layout: 'padded' },
-  args: { label: 'Offline mode', checked: false, disabled: false },
-  argTypes: {
-    label: { ...text, description: 'Names the setting, not its state' },
-    checked: bool,
-    disabled: bool,
-  },
+  args: { label: 'Offline mode' },
+  argTypes: { label: { ...text, description: 'Names the setting, not its state' } },
   render: (args) => ({
     props: args,
-    template: `<fd-switch [checked]="checked" [disabled]="disabled">{{ label }}</fd-switch>`,
+    template: `
+      <div style="display: grid; gap: 12px">
+        <fd-switch>{{ label }}</fd-switch>
+        <fd-switch [checked]="true">{{ label }}</fd-switch>
+        <fd-switch disabled>Cellular sync (unavailable)</fd-switch>
+        <fd-switch [checked]="true" disabled>Autosave (required)</fd-switch>
+      </div>`,
   }),
 };
 export default meta;
-type Story = StoryObj;
 
-export const Off: Story = {};
-
-export const On: Story = { args: { checked: true } };
-
-export const Disabled: Story = { args: { label: 'Cellular sync (unavailable)', disabled: true } };
+export const Default: StoryObj = {};

@@ -1,30 +1,30 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdIcon, FdIconButton } from '../../src/public-api';
-import { ICON_NAMES, bool, choice, text } from '../controls';
+import { ICON_NAMES, choice, text } from '../controls';
 
 const meta: Meta = {
   title: 'Actions/Icon button',
   decorators: [moduleMetadata({ imports: [FdIconButton, FdIcon] })],
-  args: { label: 'Edit', icon: 'edit', variant: 'ghost', size: 'md', pressed: undefined },
+  args: { label: 'Edit', icon: 'edit' },
   argTypes: {
     label: { ...text, description: 'Required: accessible name and tooltip text' },
     icon: choice(ICON_NAMES),
-    variant: choice(['ghost', 'outlined']),
-    size: choice(['sm', 'md']),
-    pressed: { ...bool, description: 'Makes it a toggle button (`aria-pressed`)' },
   },
   render: (args) => ({
-    props: args,
-    template: `<button fdIconButton [label]="label" [variant]="variant" [size]="size" [pressed]="pressed"><svg [fdIcon]="icon"></svg></button>`,
+    props: { ...args, variants: ['ghost', 'outlined'], sizes: ['md', 'sm'] },
+    template: `
+      <div style="display: grid; gap: 16px">
+        @for (size of sizes; track size) {
+          <div style="display: flex; gap: 12px; align-items: center">
+            @for (variant of variants; track variant) {
+              <button fdIconButton [label]="label" [variant]="variant" [size]="size"><svg [fdIcon]="icon"></svg></button>
+            }
+            <button fdIconButton label="Add to favorites" [size]="size" [pressed]="true"><svg fdIcon="heart"></svg></button>
+          </div>
+        }
+      </div>`,
   }),
 };
 export default meta;
-type Story = StoryObj;
 
-export const Default: Story = {};
-
-export const Outlined: Story = { args: { label: 'Search', icon: 'search', variant: 'outlined' } };
-
-export const Pressed: Story = { args: { label: 'Add to favorites', icon: 'heart', pressed: true } };
-
-export const Small: Story = { args: { label: 'Close', icon: 'close', size: 'sm' } };
+export const Default: StoryObj = {};

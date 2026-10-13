@@ -18,20 +18,14 @@ const meta: Meta = {
   render: (args) => ({
     props: args,
     template: `
-      <fd-empty-state [emblem]="emblem" [title]="title" [text]="text">
-        <button fdButton variant="primary"><svg fdIcon="plus"></svg>Create a notebook</button>
-      </fd-empty-state>`,
+      <div style="display: grid; grid-template-columns: repeat(2, 420px); gap: 32px">
+        <fd-empty-state [emblem]="emblem" [title]="title" [text]="text">
+          <button fdButton variant="primary"><svg fdIcon="plus"></svg>Create a notebook</button>
+        </fd-empty-state>
+        <fd-empty-state emblem="usagi" title="No stop for &quot;onsen&quot;" text="Remove a filter to see more stops." />
+      </div>`,
   }),
 };
 export default meta;
-type Story = StoryObj;
 
-export const Default: Story = {};
-
-export const NoResults: Story = {
-  args: {
-    emblem: 'usagi',
-    title: 'No stop for "onsen"',
-    text: 'Remove a filter to see more stops.',
-  },
-};
+export const Default: StoryObj = {};

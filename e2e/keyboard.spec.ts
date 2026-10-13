@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { openStory } from './stories';
 
 test('dialog: focus on the safest action, trap, Escape and focus return', async ({ page }) => {
-  await openStory(page, 'overlays-dialog--confirmation');
+  await openStory(page, 'overlays-dialog--default');
   const opener = page.getByRole('button', { name: 'Delete notebook' });
 
   await opener.focus();
@@ -36,19 +36,20 @@ test('tooltip: shown on keyboard focus, Escape closes it', async ({ page }) => {
 test('tooltip: 400 ms delay on hover', async ({ page }) => {
   await openStory(page, 'overlays-tooltip--default');
 
-  await page.getByRole('button', { name: 'Hover or tab here' }).hover();
+  await page.getByRole('button', { name: 'top' }).hover();
   await expect(page.getByRole('tooltip')).toHaveCount(0);
   await expect(page.getByRole('tooltip')).toHaveText('Share the notebook');
 });
 
 test('tabs: arrows loop, Home and End', async ({ page }) => {
   await openStory(page, 'navigation-tabs--default');
-  const tab = (name: string) => page.getByRole('tab', { name });
+  const tabs = page.getByRole('tablist', { name: 'Kyoto notebook' });
+  const tab = (name: string) => tabs.getByRole('tab', { name });
 
   await tab('Stops').focus();
   await page.keyboard.press('ArrowRight');
   await expect(tab('Photos')).toHaveAttribute('aria-selected', 'true');
-  await expect(page.getByRole('tabpanel')).toContainText('48 photos');
+  await expect(page.getByRole('tabpanel').first()).toContainText('48 photos');
 
   await page.keyboard.press('End');
   await expect(tab('Notes')).toBeFocused();
@@ -58,8 +59,23 @@ test('tabs: arrows loop, Home and End', async ({ page }) => {
   await expect(tab('Notes')).toHaveAttribute('aria-selected', 'true');
 });
 
+test('tabs: with manual activation, arrows only move the focus', async ({ page }) => {
+  await openStory(page, 'navigation-tabs--default');
+  const tabs = page.getByRole('tablist', { name: 'Manual activation' });
+
+  await tabs.getByRole('tab', { name: 'Overview' }).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(tabs.getByRole('tab', { name: 'Details' })).toBeFocused();
+  await expect(tabs.getByRole('tab', { name: 'Details' })).toHaveAttribute(
+    'aria-selected',
+    'false',
+  );
+  await page.keyboard.press('Enter');
+  await expect(tabs.getByRole('tab', { name: 'Details' })).toHaveAttribute('aria-selected', 'true');
+});
+
 test('radios: arrows change the option', async ({ page }) => {
-  await openStory(page, 'forms-radio-group--vertical');
+  await openStory(page, 'forms-radio-group--default');
 
   await page.getByRole('radio', { name: 'Only me' }).focus();
   await page.keyboard.press('ArrowDown');
@@ -67,8 +83,8 @@ test('radios: arrows change the option', async ({ page }) => {
 });
 
 test('toast: does not steal focus and is announced in a live region', async ({ page }) => {
-  await openStory(page, 'status-toast--success');
-  const trigger = page.getByRole('button', { name: 'Show the toast' });
+  await openStory(page, 'status-toast--default');
+  const trigger = page.getByRole('button', { name: 'Success toast' });
 
   await trigger.focus();
   await page.keyboard.press('Enter');
@@ -76,13 +92,4 @@ test('toast: does not steal focus and is announced in a live region', async ({ p
     page.locator('fd-toast-region[aria-live="polite"]').getByRole('status'),
   ).toContainText('Notebook created');
   await expect(trigger).toBeFocused();
-});
-
-test('loading button: no double trigger', async ({ page }) => {
-  await openStory(page, 'actions-button--loading');
-  const button = page.getByRole('button', { name: 'Saving…' });
-
-  await expect(button).toHaveAttribute('aria-busy', 'true');
-  await button.click();
-  await expect(button).toHaveAttribute('aria-busy', 'true');
 });

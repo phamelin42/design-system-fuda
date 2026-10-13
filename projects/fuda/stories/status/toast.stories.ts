@@ -1,72 +1,65 @@
 import { Component, inject, input } from '@angular/core';
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdButton, FdToastService } from '../../src/public-api';
-import { bool, choice, count, text } from '../controls';
+import { count } from '../controls';
 
 @Component({
-  selector: 'fd-demo-toast',
+  selector: 'fd-demo-toasts',
   imports: [FdButton],
-  template: `<button fdButton variant="primary" (click)="show()">Show the toast</button>`,
+  template: `
+    <div style="display: grid; gap: 12px; justify-items: start">
+      <button fdButton variant="primary" (click)="success()">Success toast</button>
+      <button fdButton (click)="withAction()">Toast with an action</button>
+      <button fdButton (click)="danger()">Danger toast</button>
+    </div>
+  `,
 })
-class DemoToast {
-  readonly tone = input<'info' | 'success' | 'warning' | 'danger'>('success');
-  readonly title = input('');
-  readonly text = input('');
+class DemoToasts {
   readonly duration = input(5000);
-  readonly withAction = input(false);
-
   private readonly toast = inject(FdToastService);
 
-  show() {
+  success() {
     this.toast.show({
-      tone: this.tone(),
-      title: this.title(),
-      text: this.text() || undefined,
+      tone: 'success',
+      title: 'Notebook created',
+      text: '"Kyoto in spring" is ready.',
       duration: this.duration(),
-      action: this.withAction() ? { label: 'Undo', run: () => undefined } : undefined,
+    });
+  }
+  withAction() {
+    this.toast.show({
+      tone: 'info',
+      title: 'Photo deleted',
+      text: 'Kiyomizu-dera temple, April 3.',
+      action: {
+        label: 'Undo',
+        run: () => this.toast.show({ tone: 'success', title: 'Photo restored' }),
+      },
+      duration: this.duration(),
+    });
+  }
+  danger() {
+    this.toast.show({
+      tone: 'danger',
+      title: 'Import failed',
+      text: 'The file is larger than 20 MB.',
+      duration: this.duration(),
     });
   }
 }
 
 const meta: Meta = {
   title: 'Status/Toast',
-  decorators: [moduleMetadata({ imports: [DemoToast] })],
-  args: {
-    tone: 'success',
-    title: 'Notebook created',
-    text: '"Kyoto in spring" is ready.',
-    duration: 5000,
-    withAction: false,
-  },
+  decorators: [moduleMetadata({ imports: [DemoToasts] })],
+  args: { duration: 5000 },
   argTypes: {
-    tone: choice(['info', 'success', 'warning', 'danger']),
-    title: text,
-    text,
     duration: {
       ...count(1000, 10000),
       description: 'Milliseconds before it leaves (paused on hover and focus)',
     },
-    withAction: { ...bool, description: 'Adds an "Undo" action' },
   },
-  render: (args) => ({
-    props: args,
-    template: `<fd-demo-toast [tone]="tone" [title]="title" [text]="text" [duration]="duration" [withAction]="withAction" />`,
-  }),
+  render: (args) => ({ props: args, template: `<fd-demo-toasts [duration]="duration" />` }),
 };
 export default meta;
-type Story = StoryObj;
 
-export const Success: Story = {};
-
-export const WithAction: Story = {
-  args: {
-    tone: 'info',
-    title: 'Photo deleted',
-    text: 'Kiyomizu-dera temple, April 3.',
-    withAction: true,
-  },
-};
-
-export const Danger: Story = {
-  args: { tone: 'danger', title: 'Import failed', text: 'The file is larger than 20 MB.' },
-};
+export const Default: StoryObj = {};
