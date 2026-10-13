@@ -20,7 +20,7 @@ let nextId = 0;
 /** Un onglet et son panneau : le contenu projeté est le panneau. */
 @Component({
   selector: 'fd-tab',
-  template: '<ng-template><ng-content /></ng-template>',
+  templateUrl: './tab.html',
 })
 export class FdTab {
   readonly id = input.required<string>();
@@ -38,42 +38,7 @@ export class FdTab {
 @Component({
   selector: 'fd-tabs',
   imports: [NgTemplateOutlet],
-  template: `
-    <div class="fd-tabs__list" role="tablist" [attr.aria-label]="label()">
-      @for (tab of tabs(); track tab.id()) {
-        <button
-          #tabButton
-          class="fd-tab"
-          role="tab"
-          type="button"
-          [id]="tabId(tab)"
-          [attr.aria-selected]="tab === current()"
-          [attr.aria-controls]="tab === current() ? panelId(tab) : null"
-          [attr.tabindex]="tab === focusable() ? 0 : -1"
-          [disabled]="tab.disabled()"
-          (click)="select(tab)"
-          (keydown)="onKeydown($event)"
-        >
-          {{ tab.label() }}
-          @if (tab.count() !== undefined) {
-            <span class="fd-tab__count">{{ tab.count() }}</span>
-          }
-        </button>
-      }
-      <span #indicator class="fd-tabs__indicator" aria-hidden="true"></span>
-    </div>
-    @if (current(); as tab) {
-      <div
-        class="fd-tabs__panel"
-        role="tabpanel"
-        tabindex="0"
-        [id]="panelId(tab)"
-        [attr.aria-labelledby]="tabId(tab)"
-      >
-        <ng-container [ngTemplateOutlet]="tab.panel()" />
-      </div>
-    }
-  `,
+  templateUrl: './tabs.html',
   host: { class: 'fd-tabs' },
 })
 export class FdTabs {

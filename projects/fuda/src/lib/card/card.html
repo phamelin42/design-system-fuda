@@ -1,0 +1,14 @@
+@if (sky(); as sky) {
+  <div class="fd-card__sora" [class]="'fd-card__sora--' + sky">
+    <ng-content select="[slot=badge]" />
+    @if (emblem(); as emblem) {
+      <fd-emblem [name]="emblem" size="fill" />
+    }
+  </div>
+}
+<div class="fd-card__body" [class.fd-card__body--flat]="!sky()">
+  <h3 class="fd-card__title"><ng-content select="[slot=title]" /></h3>
+  <p class="fd-card__meta"><ng-content select="[slot=meta]" /></p>
+  <div class="fd-card__text"><ng-content /></div>
+  <div class="fd-card__actions"><ng-content select="[slot=actions]" /></div>
+</div>

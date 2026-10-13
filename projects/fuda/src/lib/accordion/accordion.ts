@@ -4,7 +4,7 @@ import { FdIcon } from '../icon/icon';
 /** Liste de sections repliables : des `fd-accordion-item` en contenu. */
 @Component({
   selector: 'fd-accordion',
-  template: '<ng-content />',
+  templateUrl: './accordion.html',
   host: { class: 'fd-accordion' },
 })
 export class FdAccordion {
@@ -26,31 +26,7 @@ export class FdAccordion {
 @Component({
   selector: 'fd-accordion-item',
   imports: [FdIcon],
-  template: `
-    <h3 class="fd-accordion__heading">
-      <button
-        class="fd-accordion__trigger"
-        type="button"
-        [id]="id() + '-trigger'"
-        [attr.aria-expanded]="open()"
-        [attr.aria-controls]="id() + '-panel'"
-        (click)="accordion.toggle(id())"
-      >
-        {{ title() }}
-        <svg fdIcon="chevron-right"></svg>
-      </button>
-    </h3>
-    <div
-      class="fd-accordion__panel"
-      role="region"
-      [id]="id() + '-panel'"
-      [attr.aria-labelledby]="id() + '-trigger'"
-    >
-      <div>
-        <div class="fd-accordion__body"><ng-content /></div>
-      </div>
-    </div>
-  `,
+  templateUrl: './accordion-item.html',
   host: { class: 'fd-accordion__item', '[attr.data-open]': 'open()' },
 })
 export class FdAccordionItem {

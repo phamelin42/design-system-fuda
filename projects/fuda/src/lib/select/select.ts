@@ -14,41 +14,7 @@ let nextId = 0;
 @Component({
   selector: 'fd-select',
   imports: [FdIcon],
-  template: `
-    <label class="fd-field__label" [for]="id">{{ label() }}</label>
-    <span class="fd-select">
-      <select
-        class="fd-input"
-        [id]="id"
-        [disabled]="disabled()"
-        [attr.aria-invalid]="hasError() || null"
-        [attr.aria-describedby]="describedBy()"
-        (change)="onChange($event)"
-        (blur)="touch.emit()"
-      >
-        @if (placeholder(); as placeholder) {
-          <option value="" disabled [selected]="!value()">{{ placeholder }}</option>
-        }
-        @for (option of options(); track option.value) {
-          <option
-            [value]="option.value"
-            [disabled]="option.disabled"
-            [selected]="option.value === value()"
-          >
-            {{ option.label }}
-          </option>
-        }
-      </select>
-    </span>
-    @if (message(); as message) {
-      <p class="fd-field__error" [id]="id + '-error'">
-        <svg fdIcon="warning"></svg>
-        {{ message }}
-      </p>
-    } @else if (hint()) {
-      <p class="fd-field__help" [id]="id + '-hint'">{{ hint() }}</p>
-    }
-  `,
+  templateUrl: './select.html',
   host: { class: 'fd-field' },
 })
 export class FdSelect implements FormValueControl<string> {

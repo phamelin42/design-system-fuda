@@ -17,31 +17,7 @@ import { FdIcon } from '../icon/icon';
 @Component({
   selector: 'fd-chip',
   imports: [FdIcon],
-  template: `
-    @if (removable()) {
-      <span class="fd-chip fd-chip--input">
-        {{ label() }}
-        <button
-          class="fd-chip__remove"
-          type="button"
-          [attr.aria-label]="'Retirer ' + label()"
-          (click)="remove()"
-        >
-          <svg fdIcon="close"></svg>
-        </button>
-      </span>
-    } @else {
-      <button
-        class="fd-chip"
-        type="button"
-        [attr.aria-pressed]="selected()"
-        (click)="selected.set(!selected())"
-      >
-        <svg class="fd-chip__check" fdIcon="check"></svg>
-        {{ label() }}
-      </button>
-    }
-  `,
+  templateUrl: './chip.html',
   host: { style: 'display: contents' },
 })
 export class FdChip {

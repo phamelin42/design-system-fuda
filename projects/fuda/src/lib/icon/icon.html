@@ -1,0 +1,6 @@
+@for (d of shape().paths; track d) {
+  <svg:path [attr.d]="d" [attr.stroke-width]="shape().strokeWidth" />
+}
+@if (shape().circle; as c) {
+  <svg:circle [attr.cx]="c[0]" [attr.cy]="c[1]" [attr.r]="c[2]" />
+}

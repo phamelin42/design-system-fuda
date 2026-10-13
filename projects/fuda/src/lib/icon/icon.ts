@@ -44,14 +44,7 @@ export type FdIconName = keyof typeof ICONS;
   // Composant posé sur un élément natif (sémantique HTML conservée) : le sélecteur n'est pas un élément fd-.
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'svg[fdIcon]',
-  template: `
-    @for (d of shape().paths; track d) {
-      <svg:path [attr.d]="d" [attr.stroke-width]="shape().strokeWidth" />
-    }
-    @if (shape().circle; as c) {
-      <svg:circle [attr.cx]="c[0]" [attr.cy]="c[1]" [attr.r]="c[2]" />
-    }
-  `,
+  templateUrl: './icon.html',
   host: { class: 'fd-icon', viewBox: '0 0 24 24', 'aria-hidden': 'true' },
 })
 export class FdIcon {

@@ -7,15 +7,7 @@ export type FdAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 @Component({
   selector: 'fd-avatar',
   imports: [FdEmblem],
-  template: `
-    @if (src() && !photoFailed()) {
-      <img class="fd-avatar__photo" [src]="src()" alt="" (error)="photoFailed.set(true)" />
-    } @else if (emblem() === 'initials') {
-      {{ initials() }}
-    } @else {
-      <fd-emblem [name]="emblemName()" size="fill" [ring]="false" />
-    }
-  `,
+  templateUrl: './avatar.html',
   host: {
     class: 'fd-avatar',
     '[class]': '"fd-avatar--" + size()',
@@ -50,16 +42,7 @@ export class FdAvatar {
 @Component({
   selector: 'fd-avatar-group',
   imports: [FdAvatar],
-  template: `
-    @for (person of visible(); track person) {
-      <fd-avatar [name]="person" />
-    }
-    @if (hidden() > 0) {
-      <span class="fd-avatar fd-avatar__more" role="img" [attr.aria-label]="hiddenLabel()"
-        >+{{ hidden() }}</span
-      >
-    }
-  `,
+  templateUrl: './avatar-group.html',
   host: { class: 'fd-avatar-group', role: 'group' },
 })
 export class FdAvatarGroup {

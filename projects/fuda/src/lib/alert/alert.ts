@@ -15,20 +15,7 @@ export const TONE_ICONS: Record<FdTone, FdIconName> = {
 @Component({
   selector: 'fd-alert',
   imports: [FdIcon, FdIconButton],
-  template: `
-    <span class="fd-status" aria-hidden="true"><svg [fdIcon]="icon()"></svg></span>
-    <div>
-      <p class="fd-alert__title">{{ title() }}</p>
-      <div class="fd-alert__text"><ng-content /></div>
-    </div>
-    @if (dismissible()) {
-      <button fdIconButton label="Fermer le message" (click)="dismissed.emit()">
-        <svg fdIcon="close"></svg>
-      </button>
-    } @else {
-      <span></span>
-    }
-  `,
+  templateUrl: './alert.html',
   host: {
     '[class]': '"fd-alert fd-tone-" + tone()',
     '[attr.role]': 'role()',

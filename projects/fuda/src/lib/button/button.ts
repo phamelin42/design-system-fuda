@@ -21,12 +21,7 @@ export type FdButtonSize = 'sm' | 'md' | 'lg';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[fdButton], a[fdButton]',
   imports: [FdSpinner],
-  template: `
-    @if (loading()) {
-      <fd-spinner color="current" decorative />
-    }
-    <ng-content />
-  `,
+  templateUrl: './button.html',
   host: {
     '[class]': 'classes()',
     '[attr.aria-busy]': 'loading() ? "true" : null',

@@ -37,7 +37,7 @@ describe('FdTooltip', () => {
     await vi.advanceTimersByTimeAsync(1);
     fixture.detectChanges();
     expect(panel()!.getAttribute('role')).toBe('tooltip');
-    expect(panel()!.textContent).toBe('Partager le carnet');
+    expect(panel()!.textContent!.trim()).toBe('Partager le carnet');
     expect(button.getAttribute('aria-describedby')).toBe(panel()!.id);
   });
 
@@ -68,7 +68,7 @@ describe('FdTooltip', () => {
 
     iconButton.dispatchEvent(new Event('focus'));
     fixture.detectChanges();
-    expect(panel()!.textContent).toBe("Modifier l'étape");
+    expect(panel()!.textContent!.trim()).toBe("Modifier l'étape");
     expect(iconButton.getAttribute('aria-label')).toBe("Modifier l'étape");
     expect(iconButton.hasAttribute('aria-describedby')).toBe(false);
   });

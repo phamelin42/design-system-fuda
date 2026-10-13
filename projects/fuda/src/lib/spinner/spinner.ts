@@ -11,16 +11,7 @@ const PETALS = [
 /** Fleur à cinq pétales (hanabira) qui s'ouvrent l'un après l'autre. */
 @Component({
   selector: 'fd-spinner',
-  template: `
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      @for (petal of petals; track $index) {
-        <circle class="fd-spinner__petal" [attr.cx]="petal[0]" [attr.cy]="petal[1]" r="3.3" />
-      }
-    </svg>
-    @if (!decorative()) {
-      <span class="fd-sr">{{ label() }}</span>
-    }
-  `,
+  templateUrl: './spinner.html',
   host: {
     class: 'fd-spinner',
     '[class.fd-spinner--md]': 'size() === "md"',

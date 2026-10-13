@@ -5,7 +5,7 @@ export type FdBadgeTone = 'neutral' | 'sakura' | 'asagi' | 'tokiwa' | 'fuji' | '
 /** Étiquette courte en pilule légère, jamais cliquable : pour filtrer, utiliser `fd-chip`. */
 @Component({
   selector: 'fd-badge',
-  template: '<ng-content />',
+  templateUrl: './badge.html',
   host: { '[class]': 'classes()' },
 })
 export class FdBadge {

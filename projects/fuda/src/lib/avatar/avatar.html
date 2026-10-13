@@ -1,0 +1,7 @@
+@if (src() && !photoFailed()) {
+  <img class="fd-avatar__photo" [src]="src()" alt="" (error)="photoFailed.set(true)" />
+} @else if (emblem() === 'initials') {
+  {{ initials() }}
+} @else {
+  <fd-emblem [name]="emblemName()" size="fill" [ring]="false" />
+}

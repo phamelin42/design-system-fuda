@@ -57,7 +57,7 @@ const OPPOSITE: Record<FdTooltipPlacement, FdTooltipPlacement> = {
 /** Bulle d'encre affichée par la directive `fdTooltip`. */
 @Component({
   selector: 'fd-tooltip-panel',
-  template: '{{ text() }}',
+  templateUrl: './tooltip-panel.html',
   host: {
     class: 'fd-tooltip',
     role: 'tooltip',

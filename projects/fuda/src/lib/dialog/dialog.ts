@@ -110,18 +110,7 @@ export class FdDialog {
 @Component({
   selector: 'fd-dialog',
   imports: [FdIcon, FdIconButton],
-  template: `
-    <div class="fd-dialog__head">
-      <h2 class="fd-dialog__title" [id]="ids.title">{{ title() }}</h2>
-      @if (dismissible()) {
-        <button fdIconButton label="Fermer" (click)="ref.close()">
-          <svg fdIcon="close"></svg>
-        </button>
-      }
-    </div>
-    <div class="fd-dialog__body" [id]="ids.body"><ng-content /></div>
-    <div class="fd-dialog__actions"><ng-content select="[slot=actions]" /></div>
-  `,
+  templateUrl: './dialog-frame.html',
   host: { class: 'fd-dialog' },
 })
 export class FdDialogFrame {
