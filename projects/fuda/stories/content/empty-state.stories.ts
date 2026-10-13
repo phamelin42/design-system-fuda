@@ -31,4 +31,5 @@ const meta: Meta = {
 };
 export default meta;
 
-export const Default: StoryObj = {};
+// Same name as the component: Storybook then shows one sidebar entry, with no "Default" child.
+export const Default: StoryObj = { name: 'Empty state' };
