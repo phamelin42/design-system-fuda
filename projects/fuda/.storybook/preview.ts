@@ -2,7 +2,7 @@ import type { Preview } from '@storybook/angular-vite';
 import '../src/styles/fuda.css';
 import '../src/styles/fonts.css';
 
-/** Applique le thème choisi dans la barre d'outils, comme le ferait FdThemeService. */
+/** Applies the theme picked in the toolbar, the way FdThemeService does. */
 function applyTheme(theme: 'light' | 'dark') {
   const root = document.documentElement;
   if (theme === 'dark') root.setAttribute('data-theme', 'dark');
@@ -10,8 +10,8 @@ function applyTheme(theme: 'light' | 'dark') {
 }
 
 /**
- * Simule `prefers-reduced-motion: reduce` : une feuille recopie les règles du bloc @media de base.css,
- * sans condition. (Les tests Playwright utilisent le vrai emulateMedia.)
+ * Simulates `prefers-reduced-motion: reduce`: a stylesheet copies the rules of the @media block of base.css,
+ * unconditionally. (The Playwright tests use the real emulateMedia.)
  */
 function applyReducedMotion(reduced: boolean) {
   const id = 'fd-reduced-motion';
@@ -34,25 +34,25 @@ function applyReducedMotion(reduced: boolean) {
 const preview: Preview = {
   globalTypes: {
     theme: {
-      description: 'Thème',
+      description: 'Theme',
       toolbar: {
-        title: 'Thème',
+        title: 'Theme',
         icon: 'circlehollow',
         items: [
-          { value: 'light', title: 'Jour' },
-          { value: 'dark', title: 'Nuit' },
+          { value: 'light', title: 'Light' },
+          { value: 'dark', title: 'Dark' },
         ],
         dynamicTitle: true,
       },
     },
     motion: {
-      description: 'Mouvement',
+      description: 'Motion',
       toolbar: {
-        title: 'Mouvement',
+        title: 'Motion',
         icon: 'play',
         items: [
-          { value: 'normal', title: 'Mouvement normal' },
-          { value: 'reduced', title: 'Mouvement réduit' },
+          { value: 'normal', title: 'Normal motion' },
+          { value: 'reduced', title: 'Reduced motion' },
         ],
         dynamicTitle: true,
       },

@@ -1,7 +1,7 @@
 import type { ArgTypes } from '@storybook/angular-vite';
 import { EMBLEM_NAMES } from '../src/public-api';
 
-/** Raccourcis pour déclarer les contrôles du panneau « Controls » de Storybook. */
+/** Shortcuts to declare the Storybook "Controls" panel. */
 export const text: ArgTypes[string] = { control: 'text' };
 export const bool: ArgTypes[string] = { control: 'boolean' };
 export const count = (min: number, max: number): ArgTypes[string] => ({

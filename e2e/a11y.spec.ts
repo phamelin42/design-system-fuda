@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 import { openStory, storyIds, themes } from './stories';
 
-// WCAG 2.2 AA : aucune violation axe, contrastes compris, dans les deux thèmes.
+// WCAG 2.2 AA: no axe violation, contrast included, in both themes.
 for (const id of storyIds) {
   for (const theme of themes) {
     test(`${id} (${theme})`, async ({ page }) => {

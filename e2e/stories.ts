@@ -1,18 +1,11 @@
 import { readFileSync } from 'node:fs';
 import type { Page } from '@playwright/test';
 
-/** Les stories du Storybook construit (npm run build-storybook), lues dans son index. */
+/** The stories of the built Storybook (npm run build-storybook), read from its index. */
 const index = JSON.parse(readFileSync('storybook-static/index.json', 'utf8'));
 
-const stories = Object.values<{ id: string; type: string; tags: string[] }>(index.entries).filter(
-  (entry) => entry.type === 'story',
-);
-
-export const storyIds: string[] = stories.map((entry) => entry.id);
-
-/** Les stories « terrain de jeu » (contrôles) ne sont pas photographiées : les galeries le sont déjà. */
-export const visualStoryIds: string[] = stories
-  .filter((entry) => !entry.tags.includes('playground'))
+export const storyIds: string[] = Object.values<{ id: string; type: string }>(index.entries)
+  .filter((entry) => entry.type === 'story')
   .map((entry) => entry.id);
 
 export const themes = ['light', 'dark'] as const;

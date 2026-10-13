@@ -22,7 +22,7 @@ Une tâche est terminée quand `lint`, `typecheck`, `test` et `build` sont verts
 - `projects/fuda/tokens/tokens.json` : tokens. Parti de la source de vérité, il en **diverge** désormais (palette, voir plus bas) : ne pas l'écraser en resynchronisant. Ne jamais éditer `tokens.css` à la main.
 - `projects/fuda/src/styles/` : `tokens.css` (généré), `base.css` (reset, keyframes, mouvement réduit), `components.css` (classes `fd-*`), `fonts.css`, `fuda.css` (point d'entrée).
 - `projects/fuda/src/lib/<composant>/` : un dossier par composant, spec à côté.
-- `projects/fuda/stories/` : une story par famille de composants (hors du paquet publié). Les galeries servent aux captures ; chaque composant a aussi une story « (contrôles) » étiquetée `playground`, pilotée par le panneau Controls (helpers dans `controls.ts`) et exclue des captures visuelles.
+- `projects/fuda/stories/<famille>/<composant>.stories.ts` : une seule `render` par composant, pilotée par les `args` (donc par le panneau Controls) ; chaque story est un préréglage d'`args` (`Primary`, `Loading`, `Disabled`…), jamais une copie à part avec ses propres contrôles. Helpers de contrôles dans `controls.ts`. Tout le texte de Storybook (titres, descriptions, contenu de démonstration) est en **anglais** ; les textes intégrés à la bibliothèque (libellés ARIA comme « Fermer », « Retirer… ») restent en français.
 - `e2e/` : tests Playwright ; `e2e/__screenshots__/` : captures de référence (versionnées).
 
 ## Conventions Angular
