@@ -1,0 +1,408 @@
+/* Fuda — composants. Toutes les valeurs viennent des tokens (tokens.css). Préfixe de classe : fd-, méthode BEM. */
+
+/* ============ Button ============ */
+.fd-button {
+  --_bg: var(--surface-raised); --_fg: var(--ink); --_bd: var(--rim); --_bg-hover: var(--surface-sunken);
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  height: 44px; padding: 0 var(--space-5); border-radius: var(--radius-md);
+  border: var(--border-ink) solid var(--_bd); background: var(--_bg); color: var(--_fg);
+  font: 700 14px/20px var(--font-text); letter-spacing: .01em; white-space: nowrap; text-decoration: none;
+  cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--duration-quick) var(--ease-kaze), transform var(--duration-instant) var(--ease-kaze), box-shadow var(--duration-quick) var(--ease-kaze);
+}
+.fd-button .fd-icon { width: 18px; height: 18px; margin-left: -4px; }
+.fd-button:hover{ background: var(--_bg-hover); }
+.fd-button:active{ background: var(--_bg-hover); transform: translateY(1px); }
+.fd-button:focus-visible{ outline: none; box-shadow: var(--focus-ring); }
+.fd-button--primary { --_bg: var(--shu); --_fg: var(--on-shu); --_bg-hover: var(--shu-press); }
+.fd-button--danger { --_bg: var(--enji); --_fg: var(--on-enji); --_bg-hover: var(--enji-press); }
+.fd-button--ghost { --_bd: transparent; --_bg: transparent; }
+.fd-button--sm { height: 36px; padding: 0 var(--space-4); }
+.fd-button--lg { height: 52px; padding: 0 var(--space-6); font-size: 16px; line-height: 24px; }
+.fd-button--block { display: flex; width: 100%; }
+.fd-button:disabled, .fd-button[aria-disabled="true"] { --_bg: var(--surface-sunken); --_bg-hover: var(--surface-sunken); --_fg: var(--ink-muted); --_bd: var(--line); cursor: not-allowed; transform: none; }
+.fd-button--ghost:disabled { --_bd: transparent; --_bg: transparent; }
+.fd-button[aria-busy="true"] { cursor: progress; }
+.fd-button[aria-busy="true"] .fd-spinner { margin-left: -4px; }
+
+/* ============ Icon button ============ */
+.fd-icon-button {
+  display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0; flex: none;
+  border-radius: var(--radius-md); border: var(--border-ink) solid transparent; background: transparent; color: var(--ink);
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--duration-quick) var(--ease-kaze), transform var(--duration-instant) var(--ease-kaze), box-shadow var(--duration-quick) var(--ease-kaze);
+}
+.fd-icon-button:hover{ background: var(--surface-sunken); }
+.fd-icon-button:active{ background: var(--surface-sunken); transform: translateY(1px); }
+.fd-icon-button:focus-visible{ outline: none; box-shadow: var(--focus-ring); }
+.fd-icon-button--outlined { border-color: var(--rim); background: var(--surface-raised); }
+.fd-icon-button--sm { width: 36px; height: 36px; }
+.fd-icon-button--sm .fd-icon { width: 18px; height: 18px; }
+.fd-icon-button[aria-pressed="true"] { color: var(--shu); }
+.fd-icon-button[aria-pressed="true"] .fd-icon { fill: currentColor; }
+.fd-icon-button:disabled { color: var(--ink-muted); background: transparent; cursor: not-allowed; transform: none; opacity: .6; }
+
+/* ============ Link ============ */
+.fd-link {
+  color: var(--link); font-weight: 700; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px;
+  border-radius: 3px; transition: color var(--duration-quick) var(--ease-kaze), text-decoration-thickness var(--duration-quick) var(--ease-kaze);
+}
+.fd-link:hover{ color: var(--ink); text-decoration-thickness: 2.5px; }
+.fd-link:focus-visible{ outline: none; box-shadow: var(--focus-ring); }
+button.fd-link { appearance: none; background: none; border: 0; padding: 0; font: inherit; font-weight: 700; cursor: pointer; }
+.fd-link--quiet { color: inherit; font-weight: inherit; text-decoration-color: var(--line-strong); }
+
+/* ============ Text field ============ */
+.fd-field { display: grid; align-content: start; gap: var(--space-2); min-width: 0; }
+.fd-field__label { font: 700 14px/20px var(--font-text); color: var(--ink); }
+.fd-field__optional { font-weight: 500; color: var(--ink-muted); }
+.fd-field__help { font: 500 12px/18px var(--font-text); color: var(--ink-muted); margin: 0; }
+.fd-field__foot { display: flex; justify-content: space-between; gap: var(--space-3); }
+.fd-field__count { font: 500 12px/18px var(--font-text); color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.fd-field__error { display: flex; align-items: flex-start; gap: 6px; margin: 0; font: 700 12px/18px var(--font-text); color: var(--enji); }
+.fd-field__error .fd-icon { width: 16px; height: 16px; margin-top: 1px; }
+.fd-input {
+  width: 100%; height: 44px; padding: 0 14px; margin: 0;
+  border: var(--border-control) solid var(--line-strong); border-radius: var(--radius-md);
+  background: var(--surface-raised); color: var(--ink); font: 500 16px/24px var(--font-text);
+  transition: border-color var(--duration-quick) var(--ease-kaze), box-shadow var(--duration-quick) var(--ease-kaze);
+}
+.fd-input::placeholder { color: var(--ink-muted); opacity: 1; }
+.fd-input:hover{ border-color: var(--ink); }
+.fd-input:focus{ outline: none; border-color: var(--ink); box-shadow: var(--focus-ring); }
+.fd-input[aria-invalid="true"] { border-color: var(--enji); border-width: var(--border-ink); }
+.fd-input:disabled { background: var(--surface-sunken); border-color: var(--line); color: var(--ink-muted); cursor: not-allowed; }
+textarea.fd-input { height: auto; min-height: 104px; padding: 10px 14px; resize: vertical; }
+.fd-input-wrap { position: relative; display: block; }
+.fd-input-wrap > .fd-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--ink-muted); pointer-events: none; }
+.fd-input-wrap > .fd-icon + .fd-input { padding-left: 42px; }
+
+/* ============ Select ============ */
+.fd-select { position: relative; display: block; }
+.fd-select > select.fd-input { appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer; }
+.fd-select::after {
+  content: ""; position: absolute; right: 18px; top: 50%; width: 8px; height: 8px; pointer-events: none;
+  border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); border-radius: 0 0 2px 0;
+  transform: translateY(-70%) rotate(45deg);
+}
+
+/* ============ Checkbox ============ */
+.fd-check { position: relative; display: inline-flex; align-items: flex-start; gap: 10px; cursor: pointer; font: 500 16px/24px var(--font-text); color: var(--ink); }
+.fd-check__input { position: absolute; left: 0; top: 1px; width: 22px; height: 22px; margin: 0; opacity: 0; cursor: inherit; }
+.fd-check__box {
+  flex: none; display: grid; place-items: center; width: 22px; height: 22px; margin-top: 1px;
+  border: var(--border-control) solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface-raised);
+  transition: background-color var(--duration-quick) var(--ease-kaze), border-color var(--duration-quick) var(--ease-kaze), box-shadow var(--duration-quick) var(--ease-kaze);
+}
+.fd-check__box svg { width: 16px; height: 16px; fill: none; stroke: var(--on-ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.fd-check__mark { stroke-dasharray: 22; stroke-dashoffset: 22; transition: stroke-dashoffset var(--duration-quick) var(--ease-kaze) 40ms; }
+.fd-check__dash { opacity: 0; }
+.fd-check:hover .fd-check__box{ border-color: var(--ink); }
+.fd-check__input:checked + .fd-check__box, .fd-check__input:indeterminate + .fd-check__box { background: var(--ink); border-color: var(--ink); }
+.fd-check__input:checked + .fd-check__box .fd-check__mark { stroke-dashoffset: 0; }
+.fd-check__input:indeterminate + .fd-check__box .fd-check__mark { opacity: 0; }
+.fd-check__input:indeterminate + .fd-check__box .fd-check__dash { opacity: 1; }
+.fd-check__input:focus-visible + .fd-check__box{ box-shadow: var(--focus-ring); }
+.fd-check__input:disabled + .fd-check__box { background: var(--surface-sunken); border-color: var(--line); }
+.fd-check__input:disabled:checked + .fd-check__box { background: var(--line-strong); border-color: var(--line-strong); }
+.fd-check:has(.fd-check__input:disabled) { cursor: not-allowed; color: var(--ink-muted); }
+.fd-check__hint { display: block; font: 500 12px/18px var(--font-text); color: var(--ink-muted); }
+
+/* ============ Radio ============ */
+.fd-radio { position: relative; display: inline-flex; align-items: flex-start; gap: 10px; cursor: pointer; font: 500 16px/24px var(--font-text); color: var(--ink); }
+.fd-radio__input { position: absolute; left: 0; top: 1px; width: 22px; height: 22px; margin: 0; opacity: 0; cursor: inherit; }
+.fd-radio__dot {
+  flex: none; position: relative; width: 22px; height: 22px; margin-top: 1px; border-radius: var(--radius-full);
+  border: var(--border-control) solid var(--line-strong); background: var(--surface-raised);
+  transition: border-color var(--duration-quick) var(--ease-kaze), box-shadow var(--duration-quick) var(--ease-kaze);
+}
+.fd-radio__dot::after {
+  content: ""; position: absolute; inset: 4.5px; border-radius: var(--radius-full); background: var(--ink);
+  transform: scale(0); transition: transform var(--duration-base) var(--ease-uchi);
+}
+.fd-radio:hover .fd-radio__dot{ border-color: var(--ink); }
+.fd-radio__input:checked + .fd-radio__dot { border-color: var(--ink); border-width: var(--border-ink); }
+.fd-radio__input:checked + .fd-radio__dot::after { transform: scale(1); inset: 4px; }
+.fd-radio__input:focus-visible + .fd-radio__dot { box-shadow: var(--focus-ring); }
+.fd-radio__input:disabled + .fd-radio__dot { background: var(--surface-sunken); border-color: var(--line); }
+.fd-radio:has(.fd-radio__input:disabled) { cursor: not-allowed; color: var(--ink-muted); }
+.fd-radio-group { display: grid; gap: var(--space-3); border: 0; margin: 0; padding: 0; min-width: 0; }
+.fd-radio-group--horizontal { grid-auto-flow: column; justify-content: start; column-gap: var(--space-6); }
+.fd-radio-group > legend { padding: 0; margin-bottom: var(--space-1); font: 700 14px/20px var(--font-text); color: var(--ink); }
+
+/* ============ Switch ============ */
+.fd-switch { position: relative; display: inline-flex; align-items: center; gap: 12px; cursor: pointer; font: 500 16px/24px var(--font-text); color: var(--ink); }
+.fd-switch__input { position: absolute; left: 0; top: 50%; width: 48px; height: 28px; margin: -14px 0 0; opacity: 0; cursor: inherit; }
+.fd-switch__track {
+  flex: none; position: relative; width: 48px; height: 28px; border-radius: var(--radius-full); background: var(--line-strong);
+  transition: background-color var(--duration-base) var(--ease-kaze), box-shadow var(--duration-quick) var(--ease-kaze);
+}
+.fd-switch__thumb {
+  position: absolute; left: 3px; top: 3px; width: 22px; height: 22px;
+  transition: transform var(--duration-base) var(--ease-uchi);
+}
+.fd-switch__thumb svg { display: block; width: 22px; height: 22px; }
+.fd-switch__petal { fill: var(--on-ink); }
+.fd-switch__heart { fill: var(--line-strong); transition: fill var(--duration-base) var(--ease-kaze); }
+.fd-switch__input:checked + .fd-switch__track { background: var(--ink); }
+.fd-switch__input:checked + .fd-switch__track .fd-switch__thumb { transform: translateX(20px) rotate(144deg); }
+.fd-switch__input:checked + .fd-switch__track .fd-switch__heart { fill: var(--yamabuki); }
+.fd-switch__input:focus-visible + .fd-switch__track { box-shadow: var(--focus-ring); }
+.fd-switch__input:disabled + .fd-switch__track { opacity: .45; }
+.fd-switch:has(.fd-switch__input:disabled) { cursor: not-allowed; color: var(--ink-muted); }
+
+/* ============ Badge (tanzaku) ============ */
+.fd-badge {
+  --_bg: var(--line); --_fg: var(--ink);
+  display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 11px;
+  background: var(--_bg); color: var(--_fg); font: 700 12px/16px var(--font-text); letter-spacing: .02em; white-space: nowrap;
+  clip-path: polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
+}
+.fd-badge--shu { --_bg: var(--shu); --_fg: var(--on-shu); }
+.fd-badge--asagi { --_bg: var(--asagi); --_fg: var(--on-asagi); }
+.fd-badge--tokiwa { --_bg: var(--tokiwa); --_fg: var(--on-tokiwa); }
+.fd-badge--fuji { --_bg: var(--fuji); --_fg: var(--on-fuji); }
+.fd-badge--yamabuki { --_bg: var(--yamabuki); --_fg: var(--on-yamabuki); }
+.fd-badge--enji { --_bg: var(--enji); --_fg: var(--on-enji); }
+.fd-badge--soft.fd-badge--shu { --_bg: var(--shu-soft); --_fg: var(--shu); }
+.fd-badge--soft.fd-badge--asagi { --_bg: var(--asagi-soft); --_fg: var(--asagi); }
+.fd-badge--soft.fd-badge--tokiwa { --_bg: var(--tokiwa-soft); --_fg: var(--tokiwa); }
+.fd-badge--soft.fd-badge--fuji { --_bg: var(--fuji-soft); --_fg: var(--fuji); }
+.fd-badge--soft.fd-badge--yamabuki { --_bg: var(--yamabuki-soft); --_fg: var(--yamabuki-text); }
+.fd-badge--soft.fd-badge--enji { --_bg: var(--enji-soft); --_fg: var(--enji); }
+
+/* ============ Chip ============ */
+.fd-chip {
+  display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 16px;
+  border-radius: var(--radius-full); border: var(--border-control) solid var(--line-strong); background: var(--surface-raised); color: var(--ink);
+  font: 700 14px/20px var(--font-text); cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--duration-quick) var(--ease-kaze), border-color var(--duration-quick) var(--ease-kaze), color var(--duration-quick) var(--ease-kaze), box-shadow var(--duration-quick) var(--ease-kaze);
+}
+.fd-chip:hover{ border-color: var(--ink); }
+.fd-chip:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.fd-chip .fd-chip__check { width: 0; height: 16px; margin-left: -6px; overflow: visible; opacity: 0; stroke-width: 3; transition: width var(--duration-base) var(--ease-uchi), margin var(--duration-base) var(--ease-uchi), opacity var(--duration-quick) var(--ease-kaze); }
+.fd-chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
+.fd-chip[aria-pressed="true"] .fd-chip__check { width: 16px; margin-left: -4px; opacity: 1; }
+.fd-chip--input { cursor: default; padding-right: 6px; background: var(--surface-sunken); border-color: transparent; }
+.fd-chip__remove { display: grid; place-items: center; width: 26px; height: 26px; padding: 0; border: 0; border-radius: var(--radius-full); background: transparent; color: var(--ink); cursor: pointer; transition: background-color var(--duration-quick) var(--ease-kaze); }
+.fd-chip__remove:hover { background: var(--line); }
+.fd-chip__remove:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.fd-chip__remove .fd-icon { width: 14px; height: 14px; stroke-width: 2.5; }
+
+/* ============ Status disc (Alert, Toast) ============ */
+.fd-status { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: var(--radius-full); background: var(--_solid); color: var(--_on); }
+.fd-status .fd-icon { width: 16px; height: 16px; stroke-width: 2.6; }
+.fd-tone-info { --_soft: var(--asagi-soft); --_solid: var(--asagi); --_on: var(--on-asagi); }
+.fd-tone-success { --_soft: var(--tokiwa-soft); --_solid: var(--tokiwa); --_on: var(--on-tokiwa); }
+.fd-tone-warning { --_soft: var(--yamabuki-soft); --_solid: var(--yamabuki); --_on: var(--on-yamabuki); }
+.fd-tone-danger { --_soft: var(--enji-soft); --_solid: var(--enji); --_on: var(--on-enji); }
+
+/* ============ Alert ============ */
+.fd-alert { display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3); align-items: start; padding: var(--space-4); border-radius: var(--radius-lg); background: var(--_soft); color: var(--ink); }
+.fd-alert__title { margin: 4px 0 2px; font: 700 14px/20px var(--font-text); }
+.fd-alert__text { margin: 0; font: 500 14px/22px var(--font-text); }
+.fd-alert__actions { display: flex; gap: var(--space-4); margin-top: var(--space-2); }
+.fd-alert .fd-icon-button { width: 32px; height: 32px; margin: -2px -4px 0 0; }
+.fd-alert .fd-icon-button:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); }
+
+/* ============ Toast ============ */
+.fd-toast-region { position: fixed; right: var(--space-6); bottom: var(--space-6); z-index: var(--layer-toast); display: grid; gap: var(--space-3); width: min(380px, calc(100vw - 32px)); }
+.fd-toast {
+  position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3); align-items: start;
+  padding: 14px 10px 16px 14px; overflow: hidden;
+  background: var(--surface-raised); color: var(--ink); border: var(--border-ink) solid var(--rim); border-radius: var(--radius-lg); box-shadow: var(--shadow-float);
+}
+.fd-toast.is-entering { animation: fd-uchi var(--duration-base) var(--ease-uchi) both; }
+.fd-toast.is-leaving { animation: fd-chiru var(--duration-quick) var(--ease-chiru) both; }
+.fd-toast__title { margin: 4px 0 0; font: 700 14px/20px var(--font-text); }
+.fd-toast__text { margin: 2px 0 0; font: 500 14px/22px var(--font-text); color: var(--ink-muted); }
+.fd-toast__action { margin-top: var(--space-2); }
+.fd-toast .fd-icon-button { width: 32px; height: 32px; }
+@media (max-width: 599px) {
+  .fd-toast-region { right: auto; left: 50%; translate: -50% 0; }
+}
+.fd-toast__timer { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--_solid); transform-origin: left; animation: fd-timer var(--_duration, var(--duration-toast)) linear forwards; }
+.fd-toast:hover .fd-toast__timer, .fd-toast:focus-within .fd-toast__timer { animation-play-state: paused; }
+
+/* ============ Progress ============ */
+.fd-progress { display: grid; gap: var(--space-2); }
+.fd-progress__head { display: flex; justify-content: space-between; gap: var(--space-3); font: 700 14px/20px var(--font-text); }
+.fd-progress__value { font: 500 12px/20px var(--font-text); color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.fd-progress__track { position: relative; height: 10px; border-radius: var(--radius-full); background: var(--surface-sunken); overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); }
+.fd-progress__bar { height: 100%; width: var(--value, 0%); border-radius: inherit; background: var(--shu); transition: width var(--duration-slow) var(--ease-kaze); }
+.fd-progress--indeterminate .fd-progress__bar { width: 34%; animation: fd-nagare 1.6s var(--ease-mizu) infinite; }
+.fd-progress--tokiwa .fd-progress__bar { background: var(--tokiwa); }
+
+/* ============ Spinner (hanabira) ============ */
+.fd-spinner { display: inline-grid; place-items: center; width: 20px; height: 20px; color: var(--shu); flex: none; }
+.fd-spinner svg { width: 100%; height: 100%; overflow: visible; }
+.fd-spinner__petal { fill: currentColor; transform-box: fill-box; transform-origin: center; animation: fd-hana 1s var(--ease-mizu) infinite; }
+.fd-spinner__petal:nth-child(2) { animation-delay: .2s; }
+.fd-spinner__petal:nth-child(3) { animation-delay: .4s; }
+.fd-spinner__petal:nth-child(4) { animation-delay: .6s; }
+.fd-spinner__petal:nth-child(5) { animation-delay: .8s; }
+.fd-spinner--md { width: 28px; height: 28px; }
+.fd-spinner--lg { width: 44px; height: 44px; }
+.fd-spinner--current { color: currentColor; }
+
+/* ============ Tabs ============ */
+.fd-tabs__list { position: relative; display: flex; gap: var(--space-1); border-bottom: var(--border-hair) solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.fd-tab {
+  position: relative; appearance: none; border: 0; background: none; margin: 0; padding: 12px 14px 14px; white-space: nowrap;
+  font: 700 14px/20px var(--font-text); color: var(--ink-muted); cursor: pointer; border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: color var(--duration-quick) var(--ease-kaze), background-color var(--duration-quick) var(--ease-kaze);
+}
+.fd-tab:hover{ color: var(--ink); background: var(--surface-sunken); }
+.fd-tab[aria-selected="true"] { color: var(--ink); background: none; }
+.fd-tab:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--focus); }
+.fd-tab__count { margin-left: 6px; font-weight: 500; color: var(--ink-muted); }
+.fd-tabs__indicator {
+  position: absolute; bottom: 0; left: 0; height: 5px; width: 0; background: var(--shu); pointer-events: none;
+  clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+  transition: transform var(--duration-base) var(--ease-kaze), width var(--duration-base) var(--ease-kaze);
+}
+.fd-tabs__indicator:not(.is-ready) { transition: none; }
+.fd-tabs__panel { padding: var(--space-4) 2px; }
+.fd-tabs__panel:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); }
+
+/* ============ Breadcrumb ============ */
+.fd-breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 0; margin: 0; padding: 0; list-style: none; font: 500 14px/20px var(--font-text); }
+.fd-breadcrumb li { display: inline-flex; align-items: center; }
+.fd-breadcrumb li + li::before { content: ""; width: 2px; height: 14px; margin: 0 12px; background: var(--line-strong); border-radius: 1px; transform: rotate(20deg); }
+.fd-breadcrumb a { color: var(--ink-muted); text-decoration: none; border-radius: 3px; transition: color var(--duration-quick) var(--ease-kaze); }
+.fd-breadcrumb a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.fd-breadcrumb a:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.fd-breadcrumb [aria-current="page"] { color: var(--ink); font-weight: 700; }
+
+/* ============ Card (fuda) ============ */
+.fd-card {
+  position: relative; display: flex; flex-direction: column; min-width: 0;
+  background: var(--surface-raised); color: var(--ink); text-decoration: none;
+  border: var(--border-fuda) solid var(--rim); border-radius: var(--radius-lg); overflow: hidden;
+}
+.fd-card__sora { --_sky: var(--shu); --_on-sky: var(--on-shu); position: relative; height: 96px; flex: none; padding: 12px 14px; background: var(--_sky); color: var(--_on-sky); }
+.fd-card__sora::before, .fd-card__sora::after { content: ""; position: absolute; height: 14px; border-radius: var(--radius-full); background: var(--surface-raised); }
+.fd-card__sora::before { left: -14px; bottom: 16px; width: 54%; }
+.fd-card__sora::after { right: -14px; bottom: -7px; width: 66%; }
+.fd-card__sora .fd-mon { position: absolute; right: 16px; top: 10px; width: 56px; height: 56px; }
+.fd-card__sora .fd-badge { position: relative; z-index: 1; }
+.fd-card__sora--asagi { --_sky: var(--asagi); --_on-sky: var(--on-asagi); }
+.fd-card__sora--tokiwa { --_sky: var(--tokiwa); --_on-sky: var(--on-tokiwa); }
+.fd-card__sora--fuji { --_sky: var(--fuji); --_on-sky: var(--on-fuji); }
+.fd-card__sora--yamabuki { --_sky: var(--yamabuki); --_on-sky: var(--on-yamabuki); }
+.fd-card__sora--kon { --_sky: var(--kon); --_on-sky: var(--paper); }
+.fd-card__body--flat { padding-top: var(--space-5); }
+.fd-card__meta:empty, .fd-card__text:empty, .fd-card__actions:empty { display: none; }
+.fd-card__body { display: grid; gap: var(--space-1); padding: var(--space-3) var(--space-5) var(--space-5); }
+.fd-card__title { margin: 0; font: 700 18px/26px var(--font-text); }
+.fd-card__meta { margin: 0; font: 500 12px/18px var(--font-text); color: var(--ink-muted); }
+.fd-card__text { margin: var(--space-1) 0 0; font: 500 14px/22px var(--font-text); color: var(--ink); }
+.fd-card__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+.fd-card--link { cursor: pointer; transition: transform var(--duration-base) var(--ease-kaze), box-shadow var(--duration-base) var(--ease-kaze); }
+.fd-card--link:hover{ transform: translateY(-3px) rotate(-0.6deg); box-shadow: var(--shadow-lift); }
+.fd-card--link:active{ transform: translateY(0) scale(.985); box-shadow: none; transition-duration: var(--duration-instant); }
+.fd-card--link:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+/* ============ Avatar (mon) ============ */
+.fd-avatar {
+  --_size: 40px; position: relative; display: inline-grid; place-items: center; flex: none;
+  width: var(--_size); height: var(--_size); border-radius: var(--radius-full); overflow: hidden;
+  background: var(--sakura-soft); color: var(--ink); box-shadow: 0 0 0 2px var(--rim);
+  font: 400 calc(var(--_size) * .38)/1 var(--font-display);
+}
+.fd-avatar .fd-mon, .fd-avatar__photo { width: 100%; height: 100%; display: block; }
+.fd-avatar__photo { object-fit: cover; }
+.fd-avatar--xs { --_size: 24px; box-shadow: 0 0 0 1.5px var(--rim); }
+.fd-avatar--sm { --_size: 32px; }
+.fd-avatar--lg { --_size: 56px; }
+.fd-avatar--xl { --_size: 80px; box-shadow: 0 0 0 3px var(--rim); }
+.fd-avatar-group { display: inline-flex; padding-left: 8px; }
+.fd-avatar-group > .fd-avatar { margin-left: -8px; box-shadow: 0 0 0 2px var(--rim), 0 0 0 4px var(--surface); }
+.fd-avatar__more { background: var(--surface-sunken); font: 700 13px/1 var(--font-text); }
+
+/* ============ Divider (kasumi) ============ */
+.fd-divider { height: var(--border-hair); margin: var(--space-6) 0; border: 0; background: var(--line); }
+.fd-divider--kasumi { position: relative; height: 24px; background: none; }
+.fd-divider--kasumi::before, .fd-divider--kasumi::after { content: ""; position: absolute; height: 8px; border-radius: var(--radius-full); background: var(--line); }
+.fd-divider--kasumi::before { left: 0; top: 3px; width: 44%; }
+.fd-divider--kasumi::after { left: 28%; top: 13px; width: 58%; }
+
+/* ============ Accordion ============ */
+.fd-accordion { border-top: var(--border-hair) solid var(--line); }
+.fd-accordion__item { border-bottom: var(--border-hair) solid var(--line); }
+.fd-accordion__heading { margin: 0; }
+.fd-accordion__trigger {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); width: 100%;
+  padding: 16px 6px; border: 0; background: none; color: var(--ink); text-align: left; cursor: pointer;
+  font: 700 16px/24px var(--font-text); border-radius: var(--radius-sm);
+  transition: background-color var(--duration-quick) var(--ease-kaze);
+}
+.fd-accordion__trigger:hover { background: var(--surface-sunken); }
+.fd-accordion__trigger:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.fd-accordion__trigger .fd-icon { transition: transform var(--duration-base) var(--ease-kaze); }
+.fd-accordion__trigger[aria-expanded="true"] .fd-icon { transform: rotate(180deg); }
+.fd-accordion__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--duration-base) var(--ease-kaze), visibility 0s linear var(--duration-base); visibility: hidden; }
+.fd-accordion__panel > div { overflow: hidden; }
+.fd-accordion__body { margin: 0 6px 18px; color: var(--ink-muted); }
+.fd-accordion__body > :first-child { margin-top: 0; }
+.fd-accordion__body > :last-child { margin-bottom: 0; }
+.fd-accordion__item[data-open="true"] > .fd-accordion__panel { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows var(--duration-base) var(--ease-kaze), visibility 0s; }
+
+/* ============ Tooltip ============ */
+.fd-tooltip {
+  --_shift: 0 4px;
+  position: relative; max-width: 240px; padding: 6px 10px; border-radius: var(--radius-sm); background: var(--ink); color: var(--on-ink);
+  font: 700 12px/18px var(--font-text);
+  opacity: 0; translate: var(--_shift);
+  transition: opacity var(--duration-quick) var(--ease-chiru), translate var(--duration-quick) var(--ease-chiru);
+}
+.fd-tooltip[data-placement="bottom"] { --_shift: 0 -4px; }
+.fd-tooltip[data-placement="left"] { --_shift: 4px 0; }
+.fd-tooltip[data-placement="right"] { --_shift: -4px 0; }
+.fd-tooltip[data-open="true"] { opacity: 1; translate: 0 0; transition-timing-function: var(--ease-kaze); }
+.fd-tooltip::after { content: ""; position: absolute; width: 8px; height: 8px; background: inherit; border-radius: 1px; rotate: 45deg; }
+.fd-tooltip[data-placement="top"]::after { left: calc(50% - 4px); bottom: -4px; }
+.fd-tooltip[data-placement="bottom"]::after { left: calc(50% - 4px); top: -4px; }
+.fd-tooltip[data-placement="left"]::after { top: calc(50% - 4px); right: -4px; }
+.fd-tooltip[data-placement="right"]::after { top: calc(50% - 4px); left: -4px; }
+
+/* Les superpositions CDK (infobulles, dialogues) se rangent dans l'échelle des tokens. */
+.cdk-overlay-container { z-index: var(--layer-dialog); }
+
+/* ============ Dialog ============ */
+.fd-dialog {
+  width: min(440px, calc(100vw - 32px)); color: var(--ink);
+  background: var(--surface-raised); border: var(--border-fuda) solid var(--rim); border-radius: var(--radius-lg); box-shadow: var(--shadow-float);
+  animation: fd-uchi var(--duration-base) var(--ease-uchi);
+}
+.fd-dialog.is-leaving { animation: fd-chiru var(--duration-quick) var(--ease-chiru) forwards; }
+.cdk-overlay-backdrop.fd-dialog-backdrop { background: var(--scrim); transition-duration: var(--duration-base); transition-timing-function: var(--ease-kaze); }
+.cdk-overlay-backdrop.fd-dialog-backdrop.is-leaving { opacity: 0; transition-duration: var(--duration-quick); }
+.cdk-dialog-container { outline: none; }
+.fd-dialog__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); padding: var(--space-6) var(--space-4) 0 var(--space-6); }
+.fd-dialog__title { margin: 6px 0 0; font: 400 24px/30px var(--font-display); }
+.fd-dialog__body { padding: var(--space-3) var(--space-6) 0; }
+.fd-dialog__body > p { margin: 0; }
+.fd-dialog__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-3); padding: var(--space-6); }
+
+/* ============ Empty state ============ */
+.fd-empty { display: grid; justify-items: center; gap: var(--space-3); max-width: 420px; margin: 0 auto; padding: var(--space-8) var(--space-5); text-align: center; }
+.fd-empty > .fd-mon { width: 96px; height: 96px; margin-bottom: var(--space-2); }
+.fd-empty__title { margin: 0; font: 400 24px/30px var(--font-display); }
+.fd-empty__text { margin: 0 0 var(--space-2); color: var(--ink-muted); }
+
+/* ============ Emblem (mon) ============ */
+.fd-mon { display: block; }
+.fd-mon__ring { fill: none; stroke: var(--rim); stroke-width: 3; }
+
+/* Couleurs des emblèmes liées aux tokens */
+.fd-mon--ume .disc{fill:var(--shu)} .fd-mon--ume .disc-stroke{stroke:var(--shu)} .fd-mon--ume .a{fill:var(--paper)} .fd-mon--ume .a-stroke{stroke:var(--paper)} .fd-mon--ume .b{fill:var(--yamabuki)} .fd-mon--ume .b-stroke{stroke:var(--yamabuki)} .fd-mon--ume .c{fill:var(--kon)} .fd-mon--ume .c-stroke{stroke:var(--kon)}
+.fd-mon--sakura .disc{fill:var(--kon)} .fd-mon--sakura .disc-stroke{stroke:var(--kon)} .fd-mon--sakura .a{fill:var(--sakura)} .fd-mon--sakura .a-stroke{stroke:var(--sakura)} .fd-mon--sakura .b{fill:var(--shu)} .fd-mon--sakura .b-stroke{stroke:var(--shu)} .fd-mon--sakura .c{fill:var(--kon)} .fd-mon--sakura .c-stroke{stroke:var(--kon)}
+.fd-mon--fuji .disc{fill:var(--yamabuki)} .fd-mon--fuji .disc-stroke{stroke:var(--yamabuki)} .fd-mon--fuji .a{fill:var(--fuji)} .fd-mon--fuji .a-stroke{stroke:var(--fuji)} .fd-mon--fuji .b{fill:var(--kon)} .fd-mon--fuji .b-stroke{stroke:var(--kon)} .fd-mon--fuji .c{fill:var(--tokiwa)} .fd-mon--fuji .c-stroke{stroke:var(--tokiwa)}
+.fd-mon--kiku .disc{fill:var(--fuji)} .fd-mon--kiku .disc-stroke{stroke:var(--fuji)} .fd-mon--kiku .a{fill:var(--yamabuki)} .fd-mon--kiku .a-stroke{stroke:var(--yamabuki)} .fd-mon--kiku .b{fill:var(--shu)} .fd-mon--kiku .b-stroke{stroke:var(--shu)} .fd-mon--kiku .c{fill:var(--kon)} .fd-mon--kiku .c-stroke{stroke:var(--kon)}
+.fd-mon--momiji .disc{fill:var(--tokiwa)} .fd-mon--momiji .disc-stroke{stroke:var(--tokiwa)} .fd-mon--momiji .a{fill:var(--shu)} .fd-mon--momiji .a-stroke{stroke:var(--shu)} .fd-mon--momiji .b{fill:var(--yamabuki)} .fd-mon--momiji .b-stroke{stroke:var(--yamabuki)} .fd-mon--momiji .c{fill:var(--kon)} .fd-mon--momiji .c-stroke{stroke:var(--kon)}
+.fd-mon--cho .disc{fill:var(--sakura)} .fd-mon--cho .disc-stroke{stroke:var(--sakura)} .fd-mon--cho .a{fill:var(--kon)} .fd-mon--cho .a-stroke{stroke:var(--kon)} .fd-mon--cho .b{fill:var(--yamabuki)} .fd-mon--cho .b-stroke{stroke:var(--yamabuki)} .fd-mon--cho .c{fill:var(--kon)} .fd-mon--cho .c-stroke{stroke:var(--kon)}
+.fd-mon--usagi .disc{fill:var(--kon)} .fd-mon--usagi .disc-stroke{stroke:var(--kon)} .fd-mon--usagi .a{fill:var(--paper)} .fd-mon--usagi .a-stroke{stroke:var(--paper)} .fd-mon--usagi .b{fill:var(--yamabuki)} .fd-mon--usagi .b-stroke{stroke:var(--yamabuki)} .fd-mon--usagi .c{fill:var(--kon)} .fd-mon--usagi .c-stroke{stroke:var(--kon)}
+.fd-mon--tsubame .disc{fill:var(--paper)} .fd-mon--tsubame .disc-stroke{stroke:var(--paper)} .fd-mon--tsubame .a{fill:var(--kon)} .fd-mon--tsubame .a-stroke{stroke:var(--kon)} .fd-mon--tsubame .b{fill:var(--shu)} .fd-mon--tsubame .b-stroke{stroke:var(--shu)} .fd-mon--tsubame .c{fill:var(--kon)} .fd-mon--tsubame .c-stroke{stroke:var(--kon)}
+.fd-mon--koi .disc{fill:var(--asagi)} .fd-mon--koi .disc-stroke{stroke:var(--asagi)} .fd-mon--koi .a{fill:var(--paper)} .fd-mon--koi .a-stroke{stroke:var(--paper)} .fd-mon--koi .b{fill:var(--shu)} .fd-mon--koi .b-stroke{stroke:var(--shu)} .fd-mon--koi .c{fill:var(--kon)} .fd-mon--koi .c-stroke{stroke:var(--kon)}
+.fd-mon--inu .disc{fill:var(--tokiwa)} .fd-mon--inu .disc-stroke{stroke:var(--tokiwa)} .fd-mon--inu .a{fill:var(--yamabuki)} .fd-mon--inu .a-stroke{stroke:var(--yamabuki)} .fd-mon--inu .b{fill:var(--paper)} .fd-mon--inu .b-stroke{stroke:var(--paper)} .fd-mon--inu .c{fill:var(--kon)} .fd-mon--inu .c-stroke{stroke:var(--kon)}

@@ -1,0 +1,31 @@
+/* Fuda — fondations : reset minimal, corps de page, utilitaires, keyframes du mouvement et mouvement réduit.
+   Les valeurs viennent de tokens.css. */
+
+/* ============ Base ============ */
+*, *::before, *::after { box-sizing: border-box; }
+:root { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; }
+body { margin: 0; font-family: var(--font-text); font-size: 16px; line-height: 26px; font-weight: 500; color: var(--ink); background: var(--surface); -webkit-font-smoothing: antialiased; }
+.fd-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.fd-icon { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ============ Motion : keyframes partagées ============ */
+@keyframes fd-uchi { from { opacity: 0; transform: translateY(-10px) rotate(-1.5deg) scale(1.03); } to { opacity: 1; transform: none; } }
+@keyframes fd-chiru { to { opacity: 0; transform: translateX(16px) rotate(1deg); } }
+@keyframes fd-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fd-fade-out { to { opacity: 0; } }
+@keyframes fd-hana { 0%, 100% { opacity: .25; transform: scale(.82); } 40% { opacity: 1; transform: scale(1); } }
+@keyframes fd-nagare { from { transform: translateX(-110%); } to { transform: translateX(310%); } }
+@keyframes fd-timer { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+@keyframes fd-pulse { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+
+/* ============ Reduced motion ============ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; transition-delay: 0s !important; }
+  .fd-spinner__petal { animation: fd-pulse 2s var(--ease-mizu) infinite !important; animation-delay: 0s !important; }
+  .fd-progress--indeterminate .fd-progress__bar { width: 100%; transform: none; animation: fd-pulse 2s var(--ease-mizu) infinite !important; }
+  .fd-toast__timer { animation-duration: var(--_duration, var(--duration-toast)) !important; }
+  .fd-toast.is-entering, .fd-dialog { animation: fd-fade var(--duration-quick) linear both !important; }
+  .fd-toast.is-leaving, .fd-dialog.is-leaving { animation: fd-fade-out var(--duration-quick) linear both !important; }
+  .fd-card--link:hover { transform: none; }
+}
