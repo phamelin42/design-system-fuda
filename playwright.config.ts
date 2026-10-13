@@ -9,7 +9,11 @@ export default defineConfig({
     baseURL: 'http://localhost:6006',
     viewport: { width: 960, height: 640 },
     // Pour utiliser un Chromium déjà installé : PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/chemin/vers/chrome
-    launchOptions: { executablePath: process.env['PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH'] },
+    launchOptions: {
+      executablePath: process.env['PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH'],
+      // Text hinting follows the fontconfig of the machine; without hinting the captures do not depend on it.
+      args: ['--font-render-hinting=none'],
+    },
   },
   expect: { toHaveScreenshot: { maxDiffPixelRatio: 0.001, animations: 'disabled' } },
   webServer: {
