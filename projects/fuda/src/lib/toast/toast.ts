@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import {
   ApplicationRef,
   Component,
@@ -40,6 +41,7 @@ const LEAVE_DURATION = 400; // marge au-dessus de duration-quick, pour laisser j
 export class FdToastService {
   private readonly injector = inject(EnvironmentInjector);
   private readonly appRef = inject(ApplicationRef);
+  private readonly document = inject(DOCUMENT);
   private region?: ComponentRef<FdToastRegion>;
   private nextId = 0;
 
@@ -75,7 +77,7 @@ export class FdToastService {
     if (this.region) return;
     this.region = createComponent(FdToastRegion, { environmentInjector: this.injector });
     this.appRef.attachView(this.region.hostView);
-    document.body.appendChild(this.region.location.nativeElement);
+    this.document.body.appendChild(this.region.location.nativeElement);
   }
 }
 

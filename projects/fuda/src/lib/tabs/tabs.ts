@@ -5,6 +5,7 @@ import {
   TemplateRef,
   booleanAttribute,
   afterEveryRender,
+  afterNextRender,
   computed,
   contentChildren,
   input,
@@ -103,7 +104,8 @@ export class FdTabs {
 
   constructor() {
     afterEveryRender(() => this.placeIndicator());
-    document.fonts?.ready.then(() => this.placeIndicator());
+    // Les polices changent la largeur des onglets : on replace l'indicateur quand elles sont chargées.
+    afterNextRender(() => document.fonts?.ready.then(() => this.placeIndicator()));
   }
 
   protected tabId(tab: FdTab): string {
