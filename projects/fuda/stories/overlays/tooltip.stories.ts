@@ -1,20 +1,29 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdButton, FdIcon, FdIconButton, FdTooltip } from '../../src/public-api';
-import { text } from '../controls';
+import { all, pick, text } from '../controls';
+
+const PLACEMENTS = ['top', 'right', 'bottom', 'left'] as const;
 
 const meta: Meta = {
   title: 'Overlays/Tooltip',
   decorators: [moduleMetadata({ imports: [FdTooltip, FdButton, FdIconButton, FdIcon] })],
-  args: { text: 'Share the notebook' },
+  args: { text: 'Share the notebook', placement: 'all' },
   argTypes: {
-    text: { ...text, description: 'Shown after 400 ms on hover, immediately on keyboard focus' },
+    text: {
+      ...text,
+      description: '`fdTooltip`: shown after 400 ms on hover, immediately on keyboard focus',
+    },
+    placement: {
+      ...all(PLACEMENTS),
+      description: 'Flips automatically when it would leave the screen',
+    },
   },
   render: (args) => ({
-    props: { ...args, placements: ['top', 'right', 'bottom', 'left'] },
+    props: { ...args, placements: pick(args['placement'], PLACEMENTS) },
     template: `
       <div style="display: flex; gap: 16px; align-items: center; padding: 64px 96px">
-        @for (placement of placements; track placement) {
-          <button fdButton [fdTooltip]="text" [placement]="placement">{{ placement }}</button>
+        @for (p of placements; track p) {
+          <button fdButton [fdTooltip]="text" [placement]="p">{{ p }}</button>
         }
         <button fdIconButton label="Icon buttons use their label as tooltip"><svg fdIcon="info"></svg></button>
       </div>`,

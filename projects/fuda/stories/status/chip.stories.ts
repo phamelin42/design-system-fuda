@@ -1,25 +1,32 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdChip } from '../../src/public-api';
-import { text } from '../controls';
+import { both, states, text } from '../controls';
 
 const meta: Meta = {
   title: 'Status/Chip',
   decorators: [moduleMetadata({ imports: [FdChip] })],
   parameters: { layout: 'padded' },
-  args: { label: 'Temples' },
-  argTypes: { label: text },
+  args: { label: 'Temples', selected: 'both', removable: 'both' },
+  argTypes: {
+    label: text,
+    selected: { ...both, description: 'Filter chip: toggled state (`model`)' },
+    removable: { ...both, description: 'Input chip: shows a remove button' },
+  },
   render: (args) => ({
-    props: args,
+    props: {
+      ...args,
+      selectedStates: states(args['selected']),
+      removableStates: states(args['removable']),
+    },
     template: `
       <div style="display: grid; gap: 16px">
-        <div role="group" aria-label="Filter chips" style="display: flex; flex-wrap: wrap; gap: 12px">
-          <fd-chip [label]="label" />
-          <fd-chip [label]="label" [selected]="true" />
-        </div>
-        <div role="group" aria-label="Input chips" style="display: flex; flex-wrap: wrap; gap: 12px">
-          <fd-chip label="Merino wool" removable />
-          <fd-chip label="4 mm hook" removable />
-        </div>
+        @for (r of removableStates; track r) {
+          <div role="group" [attr.aria-label]="r ? 'Input chips' : 'Filter chips'" style="display: flex; flex-wrap: wrap; gap: 12px">
+            @for (s of selectedStates; track s) {
+              <fd-chip [label]="label" [selected]="s" [removable]="r" />
+            }
+          </div>
+        }
       </div>`,
   }),
 };

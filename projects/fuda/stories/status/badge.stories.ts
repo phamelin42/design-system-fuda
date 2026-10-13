@@ -1,21 +1,27 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdBadge } from '../../src/public-api';
-import { text } from '../controls';
+import { all, both, pick, states, text } from '../controls';
+
+const TONES = ['neutral', 'sakura', 'asagi', 'tokiwa', 'fuji', 'yamabuki', 'enji'] as const;
 
 const meta: Meta = {
   title: 'Status/Badge',
   decorators: [moduleMetadata({ imports: [FdBadge] })],
   parameters: { layout: 'padded' },
-  args: { label: 'Badge' },
-  argTypes: { label: text },
+  args: { label: 'Badge', tone: 'all', soft: 'both' },
+  argTypes: {
+    label: { ...text, description: 'Projected content, not an input' },
+    tone: all(TONES),
+    soft: { ...both, description: 'Tinted `*-soft` background with colored text' },
+  },
   render: (args) => ({
-    props: { ...args, tones: ['neutral', 'sakura', 'asagi', 'tokiwa', 'fuji', 'yamabuki', 'enji'] },
+    props: { ...args, tones: pick(args['tone'], TONES), softStates: states(args['soft']) },
     template: `
       <div style="display: grid; gap: 16px">
-        @for (soft of [false, true]; track soft) {
+        @for (s of softStates; track s) {
           <div style="display: flex; flex-wrap: wrap; gap: 12px">
-            @for (tone of tones; track tone) {
-              <fd-badge [tone]="tone" [soft]="soft">{{ label }}</fd-badge>
+            @for (t of tones; track t) {
+              <fd-badge [tone]="t" [soft]="s">{{ label }}</fd-badge>
             }
           </div>
         }

@@ -1,25 +1,48 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdIcon, FdIconButton } from '../../src/public-api';
-import { ICON_NAMES, choice, text } from '../controls';
+import { ICON_NAMES, all, choice, pick, text } from '../controls';
+
+const VARIANTS = ['ghost', 'outlined'] as const;
+const SIZES = ['md', 'sm'] as const;
+
+/** `mixed` shows the button without `aria-pressed` and pressed; the others force one state. */
+const PRESSED: Record<string, (boolean | undefined)[]> = {
+  mixed: [undefined, true],
+  unset: [undefined],
+  on: [true],
+  off: [false],
+};
 
 const meta: Meta = {
   title: 'Actions/Icon button',
   decorators: [moduleMetadata({ imports: [FdIconButton, FdIcon] })],
-  args: { label: 'Edit', icon: 'edit' },
+  args: { label: 'Add to favorites', icon: 'heart', variant: 'all', size: 'all', pressed: 'mixed' },
   argTypes: {
     label: { ...text, description: 'Required: accessible name and tooltip text' },
-    icon: choice(ICON_NAMES),
+    icon: { ...choice(ICON_NAMES), description: 'Projected icon, not an input' },
+    variant: all(VARIANTS),
+    size: { ...all(SIZES), description: '44 / 36 px' },
+    pressed: {
+      ...choice(['mixed', 'unset', 'on', 'off']),
+      description: 'Toggle button state (`aria-pressed`); `unset` means a plain button',
+    },
   },
   render: (args) => ({
-    props: { ...args, variants: ['ghost', 'outlined'], sizes: ['md', 'sm'] },
+    props: {
+      ...args,
+      variants: pick(args['variant'], VARIANTS),
+      sizes: pick(args['size'], SIZES),
+      pressedStates: PRESSED[args['pressed']],
+    },
     template: `
       <div style="display: grid; gap: 16px">
-        @for (size of sizes; track size) {
+        @for (s of sizes; track s) {
           <div style="display: flex; gap: 12px; align-items: center">
-            @for (variant of variants; track variant) {
-              <button fdIconButton [label]="label" [variant]="variant" [size]="size"><svg [fdIcon]="icon"></svg></button>
+            @for (v of variants; track v) {
+              @for (p of pressedStates; track $index) {
+                <button fdIconButton [label]="label" [variant]="v" [size]="s" [pressed]="p"><svg [fdIcon]="icon"></svg></button>
+              }
             }
-            <button fdIconButton label="Add to favorites" [size]="size" [pressed]="true"><svg fdIcon="heart"></svg></button>
           </div>
         }
       </div>`,

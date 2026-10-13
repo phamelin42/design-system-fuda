@@ -1,18 +1,22 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdLink } from '../../src/public-api';
-import { text } from '../controls';
+import { both, states, text } from '../controls';
 
 const meta: Meta = {
   title: 'Actions/Link',
   decorators: [moduleMetadata({ imports: [FdLink] })],
-  args: { label: 'View the Kyoto notebook' },
-  argTypes: { label: text },
+  args: { label: 'View the Kyoto notebook', quiet: 'both' },
+  argTypes: {
+    label: text,
+    quiet: { ...both, description: '`quiet` inherits the parent text color, for dense link lists' },
+  },
   render: (args) => ({
-    props: args,
+    props: { ...args, quietStates: states(args['quiet']) },
     template: `
       <div style="display: grid; gap: 12px">
-        <a fdLink href="#">{{ label }}</a>
-        <a fdLink quiet href="#">{{ label }} (quiet: inherits the text color)</a>
+        @for (q of quietStates; track q) {
+          <a fdLink [quiet]="q" href="#">{{ label }}</a>
+        }
       </div>`,
   }),
 };

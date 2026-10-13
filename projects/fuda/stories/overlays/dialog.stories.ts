@@ -2,7 +2,10 @@ import { DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, inject, input, signal } from '@angular/core';
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdButton, FdDialog, FdDialogFrame, FdDialogRef } from '../../src/public-api';
-import { bool } from '../controls';
+import { all, bool, pick, text } from '../controls';
+
+type Role = 'dialog' | 'alertdialog';
+const ROLES: readonly Role[] = ['dialog', 'alertdialog'];
 
 interface DialogData {
   title: string;
@@ -18,13 +21,7 @@ interface DialogData {
       <p>{{ data.body }}</p>
       <div slot="actions">
         <button fdButton cdkFocusInitial (click)="ref.close(false)">Cancel</button>
-        <button
-          fdButton
-          [variant]="data.confirm === 'Delete notebook' ? 'danger' : 'primary'"
-          (click)="ref.close(true)"
-        >
-          {{ data.confirm }}
-        </button>
+        <button fdButton variant="danger" (click)="ref.close(true)">{{ data.confirm }}</button>
       </div>
     </fd-dialog>
   `,
@@ -39,8 +36,9 @@ class DemoDialogContent {
   imports: [FdButton],
   template: `
     <div style="display: flex; gap: 12px">
-      <button fdButton (click)="confirmDeletion()">Delete notebook</button>
-      <button fdButton (click)="rename()">Rename notebook</button>
+      @for (r of roles(); track r) {
+        <button fdButton (click)="open(r)">Open {{ r }}</button>
+      }
     </div>
     @if (result() !== undefined) {
       <p class="caption" style="margin: 12px 0 0">
@@ -50,33 +48,26 @@ class DemoDialogContent {
   `,
 })
 class DemoDialogs {
+  readonly roles = input<readonly Role[]>(ROLES);
+  readonly title = input('');
+  readonly body = input('');
+  readonly confirm = input('');
   readonly dismissible = input(true);
 
   private readonly dialog = inject(FdDialog);
   protected readonly result = signal<boolean | undefined>(undefined);
 
-  confirmDeletion() {
-    this.open('alertdialog', {
-      title: 'Delete this notebook?',
-      body: '"Kyoto in spring" and its 48 photos will be deleted for good. Your friends will lose access.',
-      confirm: 'Delete notebook',
-    });
-  }
-
-  rename() {
-    this.open('dialog', {
-      title: 'Rename the notebook?',
-      body: 'The new name is visible to everyone you share it with.',
-      confirm: 'Rename',
-    });
-  }
-
-  private open(role: 'dialog' | 'alertdialog', content: Omit<DialogData, 'dismissible'>) {
+  open(role: Role) {
     this.dialog
       .open<boolean, DialogData>(DemoDialogContent, {
         role,
         dismissible: this.dismissible(),
-        data: { ...content, dismissible: this.dismissible() },
+        data: {
+          title: this.title(),
+          body: this.body(),
+          confirm: this.confirm(),
+          dismissible: this.dismissible(),
+        },
       })
       .closed.subscribe((confirmed) => this.result.set(!!confirmed));
   }
@@ -85,11 +76,24 @@ class DemoDialogs {
 const meta: Meta = {
   title: 'Overlays/Dialog',
   decorators: [moduleMetadata({ imports: [DemoDialogs] })],
-  args: { dismissible: true },
-  argTypes: {
-    dismissible: { ...bool, description: 'Escape, click on the scrim and the close button' },
+  args: {
+    role: 'all',
+    dismissible: true,
+    title: 'Delete this notebook?',
+    body: '"Kyoto in spring" and its 48 photos will be deleted for good. Your friends will lose access.',
+    confirm: 'Delete notebook',
   },
-  render: (args) => ({ props: args, template: `<fd-demo-dialogs [dismissible]="dismissible" />` }),
+  argTypes: {
+    role: { ...all(ROLES), description: '`alertdialog` for destructive confirmations' },
+    dismissible: { ...bool, description: 'Escape, click on the scrim and the close button' },
+    title: { ...text, description: '`fd-dialog` title: a question or an action' },
+    body: { ...text, description: 'Projected content: the precise consequence' },
+    confirm: { ...text, description: 'Label of the confirm button' },
+  },
+  render: (args) => ({
+    props: { ...args, roles: pick(args['role'], ROLES) },
+    template: `<fd-demo-dialogs [roles]="roles" [dismissible]="dismissible" [title]="title" [body]="body" [confirm]="confirm" />`,
+  }),
 };
 export default meta;
 

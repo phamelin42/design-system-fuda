@@ -3,7 +3,7 @@ import { openStory } from './stories';
 
 test('dialog: focus on the safest action, trap, Escape and focus return', async ({ page }) => {
   await openStory(page, 'overlays-dialog--default');
-  const opener = page.getByRole('button', { name: 'Delete notebook' });
+  const opener = page.getByRole('button', { name: 'Open alertdialog' });
 
   await opener.focus();
   await page.keyboard.press('Enter');
@@ -43,7 +43,7 @@ test('tooltip: 400 ms delay on hover', async ({ page }) => {
 
 test('tabs: arrows loop, Home and End', async ({ page }) => {
   await openStory(page, 'navigation-tabs--default');
-  const tabs = page.getByRole('tablist', { name: 'Kyoto notebook' });
+  const tabs = page.getByRole('tablist', { name: 'Kyoto notebook (auto activation)' });
   const tab = (name: string) => tabs.getByRole('tab', { name });
 
   await tab('Stops').focus();
@@ -61,17 +61,14 @@ test('tabs: arrows loop, Home and End', async ({ page }) => {
 
 test('tabs: with manual activation, arrows only move the focus', async ({ page }) => {
   await openStory(page, 'navigation-tabs--default');
-  const tabs = page.getByRole('tablist', { name: 'Manual activation' });
+  const tabs = page.getByRole('tablist', { name: 'Kyoto notebook (manual activation)' });
 
-  await tabs.getByRole('tab', { name: 'Overview' }).focus();
+  await tabs.getByRole('tab', { name: 'Stops' }).focus();
   await page.keyboard.press('ArrowRight');
-  await expect(tabs.getByRole('tab', { name: 'Details' })).toBeFocused();
-  await expect(tabs.getByRole('tab', { name: 'Details' })).toHaveAttribute(
-    'aria-selected',
-    'false',
-  );
+  await expect(tabs.getByRole('tab', { name: /Photos/ })).toBeFocused();
+  await expect(tabs.getByRole('tab', { name: /Photos/ })).toHaveAttribute('aria-selected', 'false');
   await page.keyboard.press('Enter');
-  await expect(tabs.getByRole('tab', { name: 'Details' })).toHaveAttribute('aria-selected', 'true');
+  await expect(tabs.getByRole('tab', { name: /Photos/ })).toHaveAttribute('aria-selected', 'true');
 });
 
 test('radios: arrows change the option', async ({ page }) => {
@@ -84,7 +81,7 @@ test('radios: arrows change the option', async ({ page }) => {
 
 test('toast: does not steal focus and is announced in a live region', async ({ page }) => {
   await openStory(page, 'status-toast--default');
-  const trigger = page.getByRole('button', { name: 'Success toast' });
+  const trigger = page.getByRole('button', { name: 'Show success toast' });
 
   await trigger.focus();
   await page.keyboard.press('Enter');

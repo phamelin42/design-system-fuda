@@ -22,7 +22,14 @@ Une tâche est terminée quand `lint`, `typecheck`, `test` et `build` sont verts
 - `projects/fuda/tokens/tokens.json` : tokens. Parti de la source de vérité, il en **diverge** désormais (palette, voir plus bas) : ne pas l'écraser en resynchronisant. Ne jamais éditer `tokens.css` à la main.
 - `projects/fuda/src/styles/` : `tokens.css` (généré), `base.css` (reset, keyframes, mouvement réduit), `components.css` (classes `fd-*`), `fonts.css`, `fuda.css` (point d'entrée).
 - `projects/fuda/src/lib/<composant>/` : un dossier par composant, spec à côté.
-- `projects/fuda/stories/<famille>/<composant>.stories.ts` : **une seule story par composant**, qui affiche toutes ses variantes (tous les tons d'un badge, toutes les variantes et tailles d'un bouton…) ; le panneau Controls règle le reste (libellé, icône, chargement, désactivé…). Pas de story par variante, pas de copie « avec contrôles ». Helpers de contrôles dans `controls.ts`. Tout le texte de Storybook (titres, descriptions, contenu de démonstration) est en **anglais** ; les textes intégrés à la bibliothèque (libellés ARIA comme « Fermer », « Retirer… ») restent en français.
+- `projects/fuda/stories/<famille>/<composant>.stories.ts` : **une seule story par composant**, qui affiche toutes ses variantes, et **chaque `input` du composant a son contrôle** dans le panneau Controls. Règles :
+  - une entrée qui définit des variantes (variante/taille/ton d'un bouton, taille d'un spinner…) a l'option `all` par défaut (`all(...)` + `pick(...)` dans `controls.ts`), ou une valeur précise pour n'en montrer qu'une ;
+  - un booléen qui définit des variantes (`soft`, `quiet`, `kasumi`, `multiple`…) est un contrôle `both | on | off` (`both` + `states(...)`) ;
+  - les autres entrées (libellé, `loading`, `disabled`, `maxLength`…) s'appliquent à tous les exemples ;
+  - pour les composants dont les états sont des combinaisons d'entrées (champ, select, case, interrupteur, radios, carte, état vide), le **premier exemple** reçoit tous les contrôles et les suivants sont des états de référence fixes ;
+  - les entrées objet (`options`, `tabs`, `items`, `names`) passent par un contrôle `object`.
+
+  Pas de story par variante, pas de copie « avec contrôles ». Tout le texte de Storybook (titres, descriptions, contenu de démonstration) est en **anglais** ; les textes intégrés à la bibliothèque (libellés ARIA comme « Fermer », « Retirer… ») restent en français.
 - `e2e/` : tests Playwright ; `e2e/__screenshots__/` : captures de référence (versionnées).
 
 ## Conventions Angular

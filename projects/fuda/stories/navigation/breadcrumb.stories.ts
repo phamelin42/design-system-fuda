@@ -1,5 +1,6 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdBreadcrumb } from '../../src/public-api';
+import { json } from '../controls';
 
 const meta: Meta = {
   title: 'Navigation/Breadcrumb',
@@ -14,10 +15,7 @@ const meta: Meta = {
     ],
   },
   argTypes: {
-    items: {
-      control: 'object',
-      description: '`{ label, link? }[]`: the last item is the current page',
-    },
+    items: { ...json, description: '`{ label, link? }[]`: the last item is the current page' },
   },
   render: (args) => ({ props: args, template: `<fd-breadcrumb [items]="items" />` }),
 };

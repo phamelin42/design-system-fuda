@@ -3,7 +3,7 @@ import { openStory } from './stories';
 
 async function showToast(page: import('@playwright/test').Page) {
   await openStory(page, 'status-toast--default');
-  await page.getByRole('button', { name: 'Success toast' }).click();
+  await page.getByRole('button', { name: 'Show success toast' }).click();
   return page.locator('.fd-toast').first();
 }
 

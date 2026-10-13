@@ -1,22 +1,16 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vite';
 import { FdAvatarGroup } from '../../src/public-api';
-import { count } from '../controls';
-
-const NAMES = ['Phil', 'Mariko', 'Leo', 'Yuki', 'Aya', 'Ren', 'Sora'];
+import { count, json } from '../controls';
 
 const meta: Meta = {
   title: 'Identity/Avatar group',
   decorators: [moduleMetadata({ imports: [FdAvatarGroup] })],
-  args: { max: 4 },
-  argTypes: { max: { ...count(1, 8), description: 'Avatars shown before the "+n" badge' } },
-  render: (args) => ({
-    props: { ...args, names: NAMES, fewNames: NAMES.slice(0, 3) },
-    template: `
-      <div style="display: grid; gap: 24px">
-        <fd-avatar-group [names]="names" [max]="max" />
-        <fd-avatar-group [names]="fewNames" [max]="max" />
-      </div>`,
-  }),
+  args: { names: ['Phil', 'Mariko', 'Leo', 'Yuki', 'Aya', 'Ren', 'Sora'], max: 4 },
+  argTypes: {
+    names: { ...json, description: 'People of the group' },
+    max: { ...count(1, 8), description: 'Avatars shown before the "+n" badge' },
+  },
+  render: (args) => ({ props: args, template: `<fd-avatar-group [names]="names" [max]="max" />` }),
 };
 export default meta;
 
