@@ -19,10 +19,10 @@ Une tâche est terminée quand `lint`, `typecheck`, `test` et `build` sont verts
 
 ## Structure
 
-- `projects/fuda/tokens/tokens.json` : tokens, copiés de la source de vérité. Ne jamais éditer `tokens.css` à la main.
+- `projects/fuda/tokens/tokens.json` : tokens. Parti de la source de vérité, il en **diverge** désormais (palette, voir plus bas) : ne pas l'écraser en resynchronisant. Ne jamais éditer `tokens.css` à la main.
 - `projects/fuda/src/styles/` : `tokens.css` (généré), `base.css` (reset, keyframes, mouvement réduit), `components.css` (classes `fd-*`), `fonts.css`, `fuda.css` (point d'entrée).
 - `projects/fuda/src/lib/<composant>/` : un dossier par composant, spec à côté.
-- `projects/fuda/stories/` : une story par famille de composants (hors du paquet publié).
+- `projects/fuda/stories/` : une story par famille de composants (hors du paquet publié). Les galeries servent aux captures ; chaque composant a aussi une story « (contrôles) » étiquetée `playground`, pilotée par le panneau Controls (helpers dans `controls.ts`) et exclue des captures visuelles.
 - `e2e/` : tests Playwright ; `e2e/__screenshots__/` : captures de référence (versionnées).
 
 ## Conventions Angular
@@ -58,6 +58,13 @@ Une tâche est terminée quand `lint`, `typecheck`, `test` et `build` sont verts
 
 ## Écarts assumés par rapport aux planches
 
+- **Palette plus claire et plus rose** (demande explicite) : la couleur principale est `sakura` (rose cerisier, texte `on-sakura` foncé) à la place de `shu`, qui ne reste qu'un accent d'illustration des emblèmes. `ink`, `rim`, `kon` et les neutres sont éclaircis, les surfaces tirent vers le rose. `sakura-press` (survol), `sakura-deep` (texte rose, bords, indicateur d'onglet) et `mizu` (bleu clair de la progression) sont nouveaux.
+- **Sélection** (case, radio, interrupteur, chip actif) : fond `sakura`, bord `sakura-deep`, au lieu d'un remplissage `ink`. L'interrupteur éteint est une piste claire cernée de `line-strong`.
+- **Badge et indicateur d'onglet** : pilule arrondie à la place du tanzaku (parallélogramme).
+- **Progression** : barre `mizu` cernée d'`asagi` (3:1 avec la piste), plus de rouge qui ressemble à une erreur.
+- **Accordéon** : chevron vers la droite fermé, vers le bas ouvert.
+- **Select** : liste déroulante personnalisée (`appearance: base-select`, Chrome 135+) avec coins arrondis et survol `sakura-soft` ; les autres navigateurs gardent leur liste native.
+- **Ciels de carte** `asagi`, `tokiwa`, `fuji`, `kon` : couleur mêlée à moitié à `surface-raised`, pour rester pastel.
 - **Icônes** : un petit composant `svg[fdIcon]` avec les tracés des planches, au lieu de Lucide. Aucun écart visuel ; pour ajouter une icône, ajouter son tracé dans `icon.ts`.
 - **Tabs** : l'API est `<fd-tabs><fd-tab id label>panneau</fd-tab></fd-tabs>` plutôt qu'un tableau `tabs`, pour que le panneau soit du contenu projeté.
 - **Accordion** : `<fd-accordion-item id title>` en contenu plutôt qu'un tableau `items`.

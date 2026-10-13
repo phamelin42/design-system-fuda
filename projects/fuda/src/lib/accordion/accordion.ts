@@ -37,7 +37,7 @@ export class FdAccordion {
         (click)="accordion.toggle(id())"
       >
         {{ title() }}
-        <svg fdIcon="chevron-down"></svg>
+        <svg fdIcon="chevron-right"></svg>
       </button>
     </h3>
     <div

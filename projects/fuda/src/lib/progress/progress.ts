@@ -35,7 +35,7 @@ export class FdProgress {
   /** Texte lisible, par exemple « 16 photos sur 25 ». */
   readonly valueText = input<string>();
   /** `tokiwa` pour un objectif atteint progressivement (pelotes utilisées, étapes visitées). */
-  readonly tone = input<'shu' | 'tokiwa'>('shu');
+  readonly tone = input<'mizu' | 'tokiwa'>('mizu');
 
   protected readonly id = `fd-progress-${nextId++}`;
 }

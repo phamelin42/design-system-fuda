@@ -33,7 +33,7 @@ export class FdTab {
 
 /**
  * Onglets WAI-ARIA : flèches (en boucle), Début et Fin, tabindex itinérant.
- * L'onglet actif est souligné d'un tanzaku vermillon qui glisse.
+ * L'onglet actif est souligné d'un trait rose qui glisse.
  */
 @Component({
   selector: 'fd-tabs',

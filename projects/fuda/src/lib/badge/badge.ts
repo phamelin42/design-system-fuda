@@ -1,8 +1,8 @@
 import { booleanAttribute, Component, computed, input } from '@angular/core';
 
-export type FdBadgeTone = 'neutral' | 'shu' | 'asagi' | 'tokiwa' | 'fuji' | 'yamabuki' | 'enji';
+export type FdBadgeTone = 'neutral' | 'sakura' | 'asagi' | 'tokiwa' | 'fuji' | 'yamabuki' | 'enji';
 
-/** Étiquette courte en tanzaku (parallélogramme), jamais cliquable : pour filtrer, utiliser `fd-chip`. */
+/** Étiquette courte en pilule légère, jamais cliquable : pour filtrer, utiliser `fd-chip`. */
 @Component({
   selector: 'fd-badge',
   template: '<ng-content />',

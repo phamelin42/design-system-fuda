@@ -1,7 +1,7 @@
 import { Component, ElementRef, computed, inject, input } from '@angular/core';
 import { FdEmblem, FdEmblemName } from '../emblem/emblem';
 
-export type FdCardSky = 'shu' | 'asagi' | 'tokiwa' | 'fuji' | 'yamabuki' | 'kon';
+export type FdCardSky = 'sakura' | 'asagi' | 'tokiwa' | 'fuji' | 'yamabuki' | 'kon';
 
 /**
  * La fuda : une carte au liseré d'encre, avec en option un ciel coloré et un emblème.

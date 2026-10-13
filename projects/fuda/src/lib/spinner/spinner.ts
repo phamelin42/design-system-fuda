@@ -35,7 +35,7 @@ export class FdSpinner {
   /** Texte pour les lecteurs d'écran. */
   readonly label = input('Chargement…');
   /** `current` hérite de la couleur du texte (dans un bouton). */
-  readonly color = input<'shu' | 'current'>('shu');
+  readonly color = input<'sakura' | 'current'>('sakura');
   /** Masqué aux lecteurs d'écran, quand le parent (un bouton `aria-busy`) porte déjà l'information. */
   readonly decorative = input(false, { transform: booleanAttribute });
 
