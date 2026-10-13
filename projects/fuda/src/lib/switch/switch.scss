@@ -1,0 +1,80 @@
+.fd-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font: 500 16px/24px var(--font-text);
+  color: var(--ink);
+}
+.fd-switch__input {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 48px;
+  height: 28px;
+  margin: -14px 0 0;
+  opacity: 0;
+  cursor: inherit;
+}
+.fd-switch__track {
+  flex: none;
+  position: relative;
+  width: 48px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--surface-sunken);
+  box-shadow: inset 0 0 0 var(--border-control) var(--line-strong);
+  transition:
+    background-color var(--duration-base) var(--ease-kaze),
+    box-shadow var(--duration-quick) var(--ease-kaze);
+}
+.fd-switch__thumb {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 22px;
+  height: 22px;
+  transition: transform var(--duration-base) var(--ease-uchi);
+}
+.fd-switch__thumb svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+.fd-switch__petal {
+  fill: var(--line-strong);
+  transition: fill var(--duration-base) var(--ease-kaze);
+}
+.fd-switch__heart {
+  fill: var(--surface-sunken);
+  transition: fill var(--duration-base) var(--ease-kaze);
+}
+.fd-switch__input:checked + .fd-switch__track {
+  background: var(--sakura);
+  box-shadow: inset 0 0 0 var(--border-control) var(--sakura-deep);
+}
+.fd-switch__input:checked + .fd-switch__track .fd-switch__petal {
+  fill: var(--on-sakura);
+}
+.fd-switch__input:checked:focus-visible + .fd-switch__track {
+  box-shadow:
+    inset 0 0 0 var(--border-control) var(--sakura-deep),
+    var(--focus-ring);
+}
+.fd-switch__input:checked + .fd-switch__track .fd-switch__thumb {
+  transform: translateX(20px) rotate(144deg);
+}
+.fd-switch__input:checked + .fd-switch__track .fd-switch__heart {
+  fill: var(--yamabuki);
+}
+.fd-switch__input:focus-visible + .fd-switch__track {
+  box-shadow: var(--focus-ring);
+}
+.fd-switch__input:disabled + .fd-switch__track {
+  opacity: 0.5;
+}
+.fd-switch:has(.fd-switch__input:disabled) {
+  cursor: not-allowed;
+  color: var(--ink-muted);
+}

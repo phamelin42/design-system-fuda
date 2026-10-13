@@ -1,0 +1,8 @@
+/* Polices auto-hébergées via @fontsource (sous-ensembles latin et japonais, font-display: swap).
+   À importer en plus de fuda.css, ou à remplacer par Google Fonts. */
+@import '@fontsource/dela-gothic-one/latin-400.css';
+@import '@fontsource/dela-gothic-one/japanese-400.css';
+@import '@fontsource/zen-maru-gothic/latin-500.css';
+@import '@fontsource/zen-maru-gothic/latin-700.css';
+@import '@fontsource/zen-maru-gothic/japanese-500.css';
+@import '@fontsource/zen-maru-gothic/japanese-700.css';

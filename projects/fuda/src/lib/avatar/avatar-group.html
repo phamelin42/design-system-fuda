@@ -1,0 +1,8 @@
+@for (person of visible(); track person) {
+  <fd-avatar [name]="person" />
+}
+@if (hidden() > 0) {
+  <span class="fd-avatar fd-avatar__more" role="img" [attr.aria-label]="hiddenLabel()"
+    >+{{ hidden() }}</span
+  >
+}

@@ -1,0 +1,33 @@
+.fd-link {
+  color: var(--link);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  border-radius: 3px;
+  transition:
+    color var(--duration-quick) var(--ease-kaze),
+    text-decoration-thickness var(--duration-quick) var(--ease-kaze);
+}
+.fd-link:hover {
+  color: var(--ink);
+  text-decoration-thickness: 2.5px;
+}
+.fd-link:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+button.fd-link {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.fd-link--quiet {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration-color: var(--line-strong);
+}

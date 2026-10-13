@@ -1,0 +1,33 @@
+@use '../shared/status';
+
+.fd-alert {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-3);
+  align-items: start;
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--_soft);
+  color: var(--ink);
+}
+.fd-alert__title {
+  margin: 4px 0 2px;
+  font: 700 14px/20px var(--font-text);
+}
+.fd-alert__text {
+  margin: 0;
+  font: 500 14px/22px var(--font-text);
+}
+.fd-alert__actions {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+.fd-alert .fd-icon-button {
+  width: 32px;
+  height: 32px;
+  margin: -2px -4px 0 0;
+}
+.fd-alert .fd-icon-button:hover {
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}

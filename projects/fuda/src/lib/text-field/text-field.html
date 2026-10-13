@@ -1,0 +1,54 @@
+<label class="fd-field__label" [for]="id">
+  {{ label() }}
+  @if (optional()) {
+    <span class="fd-field__optional">(facultatif)</span>
+  }
+</label>
+
+<span class="fd-input-wrap">
+  @if (icon(); as icon) {
+    <svg [fdIcon]="icon"></svg>
+  }
+  @if (multiline()) {
+    <textarea
+      class="fd-input"
+      [id]="id"
+      [value]="value()"
+      [attr.maxlength]="maxLength()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [attr.aria-invalid]="hasError() || null"
+      [attr.aria-describedby]="describedBy()"
+      (input)="onInput($event)"
+      (blur)="touch.emit()"
+    ></textarea>
+  } @else {
+    <input
+      class="fd-input"
+      [id]="id"
+      [type]="type()"
+      [value]="value()"
+      [attr.maxlength]="maxLength()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [attr.aria-invalid]="hasError() || null"
+      [attr.aria-describedby]="describedBy()"
+      (input)="onInput($event)"
+      (blur)="touch.emit()"
+    />
+  }
+</span>
+
+<div class="fd-field__foot">
+  @if (message(); as message) {
+    <p class="fd-field__error" [id]="id + '-error'">
+      <svg fdIcon="warning"></svg>
+      {{ message }}
+    </p>
+  } @else if (hint()) {
+    <p class="fd-field__help" [id]="id + '-hint'">{{ hint() }}</p>
+  }
+  @if (maxLength(); as max) {
+    <span class="fd-field__count" [id]="id + '-count'">{{ value().length }} / {{ max }}</span>
+  }
+</div>

@@ -1,0 +1,90 @@
+.fd-button {
+  --_bg: var(--surface-raised);
+  --_fg: var(--ink);
+  --_bd: var(--rim);
+  --_bg-hover: var(--surface-sunken);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 44px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-md);
+  border: var(--border-ink) solid var(--_bd);
+  background: var(--_bg);
+  color: var(--_fg);
+  font: 700 14px/20px var(--font-text);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--duration-quick) var(--ease-kaze),
+    transform var(--duration-instant) var(--ease-kaze),
+    box-shadow var(--duration-quick) var(--ease-kaze);
+}
+.fd-button .fd-icon {
+  width: 18px;
+  height: 18px;
+  margin-left: -4px;
+}
+.fd-button:hover {
+  background: var(--_bg-hover);
+}
+.fd-button:active {
+  background: var(--_bg-hover);
+  transform: translateY(1px);
+}
+.fd-button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.fd-button--primary {
+  --_bg: var(--sakura);
+  --_fg: var(--on-sakura);
+  --_bg-hover: var(--sakura-press);
+}
+.fd-button--danger {
+  --_bg: var(--enji);
+  --_fg: var(--on-enji);
+  --_bg-hover: var(--enji-press);
+}
+.fd-button--ghost {
+  --_bd: transparent;
+  --_bg: transparent;
+}
+.fd-button--sm {
+  height: 36px;
+  padding: 0 var(--space-4);
+}
+.fd-button--lg {
+  height: 52px;
+  padding: 0 var(--space-6);
+  font-size: 16px;
+  line-height: 24px;
+}
+.fd-button--block {
+  display: flex;
+  width: 100%;
+}
+.fd-button:disabled,
+.fd-button[aria-disabled='true'] {
+  --_bg: var(--surface-sunken);
+  --_bg-hover: var(--surface-sunken);
+  --_fg: var(--ink-muted);
+  --_bd: var(--line);
+  cursor: not-allowed;
+  transform: none;
+}
+.fd-button--ghost:disabled {
+  --_bd: transparent;
+  --_bg: transparent;
+}
+.fd-button[aria-busy='true'] {
+  cursor: progress;
+}
+.fd-button[aria-busy='true'] .fd-spinner {
+  margin-left: -4px;
+}

@@ -1,0 +1,56 @@
+@use '../shared/overlay';
+
+.fd-tooltip {
+  --_shift: 0 4px;
+  position: relative;
+  max-width: 240px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--on-ink);
+  font: 700 12px/18px var(--font-text);
+  opacity: 0;
+  translate: var(--_shift);
+  transition:
+    opacity var(--duration-quick) var(--ease-chiru),
+    translate var(--duration-quick) var(--ease-chiru);
+}
+.fd-tooltip[data-placement='bottom'] {
+  --_shift: 0 -4px;
+}
+.fd-tooltip[data-placement='left'] {
+  --_shift: 4px 0;
+}
+.fd-tooltip[data-placement='right'] {
+  --_shift: -4px 0;
+}
+.fd-tooltip[data-open='true'] {
+  opacity: 1;
+  translate: 0 0;
+  transition-timing-function: var(--ease-kaze);
+}
+.fd-tooltip::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+  border-radius: 1px;
+  rotate: 45deg;
+}
+.fd-tooltip[data-placement='top']::after {
+  left: calc(50% - 4px);
+  bottom: -4px;
+}
+.fd-tooltip[data-placement='bottom']::after {
+  left: calc(50% - 4px);
+  top: -4px;
+}
+.fd-tooltip[data-placement='left']::after {
+  top: calc(50% - 4px);
+  right: -4px;
+}
+.fd-tooltip[data-placement='right']::after {
+  top: calc(50% - 4px);
+  left: -4px;
+}

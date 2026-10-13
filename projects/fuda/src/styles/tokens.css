@@ -1,0 +1,135 @@
+/* Fuda — généré depuis tokens/tokens.json par scripts/build-tokens.mjs. Ne pas modifier à la main. */
+
+:root,
+[data-theme="light"] {
+  --surface: #FDF8F8;
+  --surface-raised: #FFFFFF;
+  --surface-sunken: #F6EBEE;
+  --line: #EBDCE1;
+  --line-strong: #8F8499;
+  --ink: #4A4470;
+  --ink-muted: #6E6788;
+  --on-ink: #FFFFFF;
+  --rim: #5B5486;
+  --scrim: #4A447080;
+  --kon: #5B5486;
+  --paper: #FFFFFF;
+  --shu: #E66B72;
+  --yamabuki: #F6BC45;
+  --on-yamabuki: #3A3358;
+  --yamabuki-soft: #FDF2D6;
+  --yamabuki-text: #8A5300;
+  --tokiwa: #237753;
+  --on-tokiwa: #FFFFFF;
+  --tokiwa-soft: #E2F3EA;
+  --asagi: #19709A;
+  --on-asagi: #FFFFFF;
+  --asagi-soft: #E9F4F9;
+  --mizu: #9BD0F2;
+  --fuji: #7152AB;
+  --on-fuji: #FFFFFF;
+  --fuji-soft: #EFE9F8;
+  --sakura: #F5B1C5;
+  --sakura-press: #F09BB5;
+  --sakura-deep: #B03F65;
+  --on-sakura: #3A3358;
+  --sakura-soft: #FDE9EF;
+  --enji: #B8355A;
+  --enji-press: #9C2A4B;
+  --on-enji: #FFFFFF;
+  --enji-soft: #FBE4EA;
+  --link: var(--asagi);
+  --focus: var(--asagi);
+  --shadow-lift: 0 8px 18px -8px #4a447059;
+  --shadow-float: 0 14px 32px -10px #4a447066, 0 2px 6px #4a44701f;
+  --focus-ring: 0 0 0 2px #ffffff, 0 0 0 4px #19709a;
+}
+
+/* Le thème Nuit ne s'active que par data-theme="dark" sur <html>, jamais par prefers-color-scheme. */
+[data-theme="dark"] {
+  --surface: #1F1B36;
+  --surface-raised: #2B2649;
+  --surface-sunken: #171428;
+  --line: #3D3860;
+  --line-strong: #8D86B5;
+  --ink: #F6F1FA;
+  --ink-muted: #BDB6D6;
+  --on-ink: #1F1B36;
+  --rim: #9A93C8;
+  --scrim: #0D0A1EB3;
+  --kon: #3B3566;
+  --paper: #FFFFFF;
+  --shu: #FF8A8E;
+  --yamabuki: #F6BC45;
+  --on-yamabuki: #1F1B36;
+  --yamabuki-soft: #433413;
+  --yamabuki-text: #F6C964;
+  --tokiwa: #5FCF9C;
+  --on-tokiwa: #1F1B36;
+  --tokiwa-soft: #173F36;
+  --asagi: #6CC4E4;
+  --on-asagi: #1F1B36;
+  --asagi-soft: #1E3C50;
+  --mizu: #6DB6E8;
+  --fuji: #BBA5EE;
+  --on-fuji: #1F1B36;
+  --fuji-soft: #35295E;
+  --sakura: #F5B1C5;
+  --sakura-press: #F8C3D2;
+  --sakura-deep: #F8BCCD;
+  --on-sakura: #2E1B33;
+  --sakura-soft: #4A2A43;
+  --enji: #FF93A8;
+  --enji-press: #FFB0C0;
+  --on-enji: #1F1B36;
+  --enji-soft: #512338;
+  --link: var(--asagi);
+  --focus: var(--asagi);
+  --shadow-lift: 0 10px 22px -8px #00000099;
+  --shadow-float: 0 16px 36px -8px #000000b3, 0 2px 6px #00000066;
+  --focus-ring: 0 0 0 2px #1f1b36, 0 0 0 4px #6cc4e4;
+}
+
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --border-hair: 1px;
+  --border-control: 1.5px;
+  --border-ink: 2px;
+  --border-fuda: 3px;
+  --duration-instant: 80ms;
+  --duration-quick: 140ms;
+  --duration-base: 220ms;
+  --duration-slow: 360ms;
+  --duration-toast: 5000ms;
+  --ease-kaze: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-uchi: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-chiru: cubic-bezier(0.4, 0, 1, 1);
+  --ease-mizu: cubic-bezier(0.45, 0, 0.55, 1);
+  --layer-sticky: 10;
+  --layer-dialog: 200;
+  --layer-toast: 300;
+  --layer-tooltip: 400;
+  --font-display: "Dela Gothic One", "Zen Maru Gothic", sans-serif;
+  --font-text: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", ui-rounded, system-ui, sans-serif;
+}
+
+.display { font-family: var(--font-display); font-size: 48px; line-height: 52px; font-weight: 400; letter-spacing: -0.01em; }
+.title-1 { font-family: var(--font-display); font-size: 36px; line-height: 42px; font-weight: 400; letter-spacing: -0.005em; }
+.title-2 { font-family: var(--font-display); font-size: 24px; line-height: 30px; font-weight: 400; }
+.title-3 { font-family: var(--font-text); font-size: 18px; line-height: 26px; font-weight: 700; }
+.body-lg { font-family: var(--font-text); font-size: 18px; line-height: 30px; font-weight: 500; }
+.body { font-family: var(--font-text); font-size: 16px; line-height: 26px; font-weight: 500; }
+.label { font-family: var(--font-text); font-size: 14px; line-height: 20px; font-weight: 700; letter-spacing: 0.01em; }
+.caption { font-family: var(--font-text); font-size: 12px; line-height: 18px; font-weight: 500; letter-spacing: 0.01em; }

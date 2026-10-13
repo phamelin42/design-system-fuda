@@ -1,0 +1,54 @@
+.fd-icon-button {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  flex: none;
+  border-radius: var(--radius-md);
+  border: var(--border-ink) solid transparent;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--duration-quick) var(--ease-kaze),
+    transform var(--duration-instant) var(--ease-kaze),
+    box-shadow var(--duration-quick) var(--ease-kaze);
+}
+.fd-icon-button:hover {
+  background: var(--surface-sunken);
+}
+.fd-icon-button:active {
+  background: var(--surface-sunken);
+  transform: translateY(1px);
+}
+.fd-icon-button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.fd-icon-button--outlined {
+  border-color: var(--rim);
+  background: var(--surface-raised);
+}
+.fd-icon-button--sm {
+  width: 36px;
+  height: 36px;
+}
+.fd-icon-button--sm .fd-icon {
+  width: 18px;
+  height: 18px;
+}
+.fd-icon-button[aria-pressed='true'] {
+  color: var(--sakura-deep);
+}
+.fd-icon-button[aria-pressed='true'] .fd-icon {
+  fill: currentColor;
+}
+.fd-icon-button:disabled {
+  color: var(--ink-muted);
+  background: transparent;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.6;
+}
