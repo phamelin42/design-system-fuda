@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, input } from '@angular/core';
+import { booleanAttribute, Component, input, ViewEncapsulation } from '@angular/core';
 
 const PETALS = [
   [12.0, 5.3],
@@ -12,6 +12,8 @@ const PETALS = [
 @Component({
   selector: 'fd-spinner',
   templateUrl: './spinner.html',
+  styleUrl: './spinner.scss',
+  encapsulation: ViewEncapsulation.None,
   host: {
     class: 'fd-spinner',
     '[class.fd-spinner--md]': 'size() === "md"',

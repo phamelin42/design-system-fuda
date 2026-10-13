@@ -20,8 +20,8 @@ Une tâche est terminée quand `lint`, `typecheck`, `test` et `build` sont verts
 ## Structure
 
 - `projects/fuda/tokens/tokens.json` : tokens. Parti de la source de vérité, il en **diverge** désormais (palette, voir plus bas) : ne pas l'écraser en resynchronisant. Ne jamais éditer `tokens.css` à la main.
-- `projects/fuda/src/styles/` : `tokens.css` (généré), `base.css` (reset, keyframes, mouvement réduit), `components.css` (classes `fd-*`), `fonts.css`, `fuda.css` (point d'entrée).
-- `projects/fuda/src/lib/<composant>/` : un dossier par composant, spec à côté.
+- `projects/fuda/src/styles/` : `tokens.css` (généré), `base.css` (reset, keyframes, mouvement réduit), `fonts.css`, `fuda.css` (point d'entrée).
+- `projects/fuda/src/lib/<composant>/` : un dossier par composant, avec `<composant>.ts`, `<composant>.html` (template), `<composant>.scss` (styles) et la spec à côté. `lib/shared/` : partiels SCSS partagés par plusieurs composants (`_field`, `_status`, `_hint`, `_overlay`), importés par `@use '../shared/…'`.
 - `projects/fuda/stories/<famille>/<composant>.stories.ts` : **une seule story par composant**, qui affiche toutes ses variantes, et **chaque `input` du composant a son contrôle** dans le panneau Controls. Règles :
   - une entrée qui définit des variantes (variante/taille/ton d'un bouton, taille d'un spinner…) a l'option `all` par défaut (`all(...)` + `pick(...)` dans `controls.ts`), ou une valeur précise pour n'en montrer qu'une ;
   - un booléen qui définit des variantes (`soft`, `quiet`, `kasumi`, `multiple`…) est un contrôle `both | on | off` (`both` + `states(...)`) ;
@@ -44,9 +44,10 @@ Une tâche est terminée quand `lint`, `typecheck`, `test` et `build` sont verts
 
 ## Conventions de style
 
-- Uniquement des custom properties issues des tokens, aucune valeur en dur (couleur, espacement, durée, courbe). Classes BEM `fd-` comme dans `components.css`.
-- **Feuille globale plutôt qu'encapsulation par composant** : les composants gardent `ViewEncapsulation.Emulated` sans styles propres, et leurs classes `fd-*` vivent dans `components.css`. Raisons : les classes sont partagées entre composants (tons, disque de statut, emblème dans le ciel d'une carte, icône dans un bouton), les consommateurs peuvent les surcharger, et la feuille de référence du design system est reprise telle quelle, ce qui rend les écarts faciles à repérer.
-- Les hôtes de composants sont des éléments personnalisés, donc `inline` par défaut : un hôte qui porte une bordure ou une hauteur reçoit `display` explicite dans `components.css`.
+- Uniquement des custom properties issues des tokens, aucune valeur en dur (couleur, espacement, durée, courbe). Classes BEM `fd-`.
+- **Template et styles dans des fichiers séparés** : `templateUrl` (`.html`) et `styleUrl` (`.scss`), jamais de `template:` ni de `styles:` inline (seul le template vide d'un composant sans contenu, comme `fd-divider`, reste inline). Un composant qui porte plusieurs classes dans un même `.ts` a un fichier par composant (`accordion.html`, `accordion-item.html`…).
+- **`ViewEncapsulation.None` avec un `.scss` par composant** : les classes `fd-*` sont posées sur les hôtes et partagées entre composants (tons, disque de statut, emblème dans le ciel d'une carte, icône dans un bouton) et les consommateurs doivent pouvoir les surcharger, donc pas d'encapsulation émulée. Les styles d'un composant sont embarqués avec lui (pas de feuille globale des composants). Ce qui sert à plusieurs composants va dans un partiel de `lib/shared/`. Un composant n'a que ses propres règles, plus celles de ses enfants quand il les stylise (`.fd-button .fd-icon`). Les composants posés sur un élément natif (`button[fdButton]`, `a[fdLink]`…) sont des `@Component` à template `<ng-content />`, car une directive ne peut pas porter de styles.
+- Les hôtes de composants sont des éléments personnalisés, donc `inline` par défaut : un hôte qui porte une bordure ou une hauteur reçoit `display` explicite dans son `.scss`.
 - Thème Jour par défaut. Thème Nuit **uniquement** par `data-theme="dark"` sur `<html>`, posé par `FdThemeService` sur choix de l'utilisateur. Jamais de `prefers-color-scheme` pour les couleurs.
 - Mouvement : durées et courbes des tokens, animation de `transform` et `opacity` seulement, bloc `prefers-reduced-motion` de `base.css` respecté (fondu seul pour toast et dialogue, pulsation pour les chargements).
 
@@ -82,6 +83,6 @@ Une tâche est terminée quand `lint`, `typecheck`, `test` et `build` sont verts
 ## Pour ajouter un composant
 
 1. Lire son `README.md` et sa `preview.html` dans la source de vérité.
-2. Ajouter ses classes à `components.css` (valeurs de tokens uniquement) ou réutiliser celles de la planche.
-3. Écrire le composant et sa spec dans `src/lib/<nom>/`, l'exporter dans `src/public-api.ts`.
+2. Écrire ses styles dans `<nom>.scss` (valeurs de tokens uniquement, classes de la planche si elles existent) et son template dans `<nom>.html`.
+3. Écrire le composant (`@Component` avec `templateUrl`, `styleUrl` et `ViewEncapsulation.None`) et sa spec dans `src/lib/<nom>/`, l'exporter dans `src/public-api.ts`.
 4. Ajouter une story (textes de la planche) ; `npm run e2e -- --update-snapshots` pour la capture, puis la relire.

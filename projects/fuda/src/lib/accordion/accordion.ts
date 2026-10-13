@@ -1,10 +1,20 @@
-import { booleanAttribute, Component, computed, inject, input, model } from '@angular/core';
+import {
+  booleanAttribute,
+  Component,
+  computed,
+  inject,
+  input,
+  model,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FdIcon } from '../icon/icon';
 
 /** Liste de sections repliables : des `fd-accordion-item` en contenu. */
 @Component({
   selector: 'fd-accordion',
   templateUrl: './accordion.html',
+  styleUrl: './accordion.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { class: 'fd-accordion' },
 })
 export class FdAccordion {
@@ -27,6 +37,8 @@ export class FdAccordion {
   selector: 'fd-accordion-item',
   imports: [FdIcon],
   templateUrl: './accordion-item.html',
+  styleUrl: './accordion-item.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { class: 'fd-accordion__item', '[attr.data-open]': 'open()' },
 })
 export class FdAccordionItem {

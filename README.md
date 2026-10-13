@@ -21,7 +21,7 @@ Dans `angular.json` (ou dans votre feuille de styles globale) :
 ]
 ```
 
-`fuda.css` contient les tokens, les fondations et les composants. `fonts.css` charge Dela Gothic One et Zen Maru Gothic (sous-ensembles latin et japonais) via @fontsource ; on peut le remplacer par Google Fonts.
+`fuda.css` contient les tokens et les fondations ; le style de chaque composant (`.scss`) est embarqué avec lui. `fonts.css` charge Dela Gothic One et Zen Maru Gothic (sous-ensembles latin et japonais) via @fontsource ; on peut le remplacer par Google Fonts.
 
 ## Utilisation
 

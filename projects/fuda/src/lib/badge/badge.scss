@@ -1,0 +1,63 @@
+.fd-badge {
+  --_bg: var(--line);
+  --_fg: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 12px;
+  border-radius: var(--radius-full);
+  background: var(--_bg);
+  color: var(--_fg);
+  font: 700 12px/16px var(--font-text);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.fd-badge--sakura {
+  --_bg: var(--sakura);
+  --_fg: var(--on-sakura);
+}
+.fd-badge--asagi {
+  --_bg: var(--asagi);
+  --_fg: var(--on-asagi);
+}
+.fd-badge--tokiwa {
+  --_bg: var(--tokiwa);
+  --_fg: var(--on-tokiwa);
+}
+.fd-badge--fuji {
+  --_bg: var(--fuji);
+  --_fg: var(--on-fuji);
+}
+.fd-badge--yamabuki {
+  --_bg: var(--yamabuki);
+  --_fg: var(--on-yamabuki);
+}
+.fd-badge--enji {
+  --_bg: var(--enji);
+  --_fg: var(--on-enji);
+}
+.fd-badge--soft.fd-badge--sakura {
+  --_bg: var(--sakura-soft);
+  --_fg: var(--sakura-deep);
+}
+.fd-badge--soft.fd-badge--asagi {
+  --_bg: var(--asagi-soft);
+  --_fg: var(--asagi);
+}
+.fd-badge--soft.fd-badge--tokiwa {
+  --_bg: var(--tokiwa-soft);
+  --_fg: var(--tokiwa);
+}
+.fd-badge--soft.fd-badge--fuji {
+  --_bg: var(--fuji-soft);
+  --_fg: var(--fuji);
+}
+.fd-badge--soft.fd-badge--yamabuki {
+  --_bg: var(--yamabuki-soft);
+  --_fg: var(--yamabuki-text);
+}
+.fd-badge--soft.fd-badge--enji {
+  --_bg: var(--enji-soft);
+  --_fg: var(--enji);
+}

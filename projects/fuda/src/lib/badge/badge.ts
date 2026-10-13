@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, computed, input } from '@angular/core';
+import { booleanAttribute, Component, computed, input, ViewEncapsulation } from '@angular/core';
 
 export type FdBadgeTone = 'neutral' | 'sakura' | 'asagi' | 'tokiwa' | 'fuji' | 'yamabuki' | 'enji';
 
@@ -6,6 +6,8 @@ export type FdBadgeTone = 'neutral' | 'sakura' | 'asagi' | 'tokiwa' | 'fuji' | '
 @Component({
   selector: 'fd-badge',
   templateUrl: './badge.html',
+  styleUrl: './badge.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { '[class]': 'classes()' },
 })
 export class FdBadge {

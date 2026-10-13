@@ -1,0 +1,88 @@
+@use '../shared/hint';
+
+.fd-check {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font: 500 16px/24px var(--font-text);
+  color: var(--ink);
+}
+.fd-check__input {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+.fd-check__box {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border: var(--border-control) solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  transition:
+    background-color var(--duration-quick) var(--ease-kaze),
+    border-color var(--duration-quick) var(--ease-kaze),
+    box-shadow var(--duration-quick) var(--ease-kaze);
+}
+.fd-check__box svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--on-sakura);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.fd-check__mark {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
+  transition: stroke-dashoffset var(--duration-quick) var(--ease-kaze) 40ms;
+}
+.fd-check__dash {
+  opacity: 0;
+}
+.fd-check:hover .fd-check__box {
+  border-color: var(--ink);
+}
+.fd-check__input:checked + .fd-check__box,
+.fd-check__input:indeterminate + .fd-check__box {
+  background: var(--sakura);
+  border-color: var(--sakura-deep);
+}
+.fd-check__input:checked + .fd-check__box .fd-check__mark {
+  stroke-dashoffset: 0;
+}
+.fd-check__input:indeterminate + .fd-check__box .fd-check__mark {
+  opacity: 0;
+}
+.fd-check__input:indeterminate + .fd-check__box .fd-check__dash {
+  opacity: 1;
+}
+.fd-check__input:focus-visible + .fd-check__box {
+  box-shadow: var(--focus-ring);
+}
+.fd-check__input:disabled + .fd-check__box {
+  background: var(--surface-sunken);
+  border-color: var(--line);
+}
+.fd-check__input:disabled:checked + .fd-check__box {
+  background: var(--line);
+  border-color: var(--line);
+}
+.fd-check__input:disabled:checked + .fd-check__box svg {
+  stroke: var(--ink-muted);
+}
+.fd-check:has(.fd-check__input:disabled) {
+  cursor: not-allowed;
+  color: var(--ink-muted);
+}

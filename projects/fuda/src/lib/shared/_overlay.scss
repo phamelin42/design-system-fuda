@@ -1,0 +1,4 @@
+/* Les superpositions CDK (infobulles, dialogues) se rangent dans l'échelle des tokens. */
+.cdk-overlay-container {
+  z-index: var(--layer-dialog);
+}

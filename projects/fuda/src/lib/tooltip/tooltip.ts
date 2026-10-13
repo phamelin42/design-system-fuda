@@ -9,6 +9,7 @@ import {
   inject,
   input,
   signal,
+  ViewEncapsulation,
 } from '@angular/core';
 
 export type FdTooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
@@ -58,6 +59,8 @@ const OPPOSITE: Record<FdTooltipPlacement, FdTooltipPlacement> = {
 @Component({
   selector: 'fd-tooltip-panel',
   templateUrl: './tooltip-panel.html',
+  styleUrl: './tooltip-panel.scss',
+  encapsulation: ViewEncapsulation.None,
   host: {
     class: 'fd-tooltip',
     role: 'tooltip',

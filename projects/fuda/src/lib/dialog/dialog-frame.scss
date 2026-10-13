@@ -1,0 +1,62 @@
+@use '../shared/overlay';
+
+.fd-dialog {
+  display: block;
+}
+.fd-dialog {
+  width: min(440px, calc(100vw - 32px));
+  color: var(--ink);
+  background: var(--surface-raised);
+  border: var(--border-fuda) solid var(--rim);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-float);
+  animation: fd-uchi var(--duration-base) var(--ease-uchi);
+}
+.fd-dialog.is-leaving {
+  animation: fd-chiru var(--duration-quick) var(--ease-chiru) forwards;
+}
+.cdk-overlay-backdrop.fd-dialog-backdrop {
+  background: var(--scrim);
+  transition-duration: var(--duration-base);
+  transition-timing-function: var(--ease-kaze);
+}
+.cdk-overlay-backdrop.fd-dialog-backdrop.is-leaving {
+  opacity: 0;
+  transition-duration: var(--duration-quick);
+}
+.cdk-dialog-container {
+  outline: none;
+}
+.fd-dialog__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-4) 0 var(--space-6);
+}
+.fd-dialog__title {
+  margin: 6px 0 0;
+  font: 400 24px/30px var(--font-display);
+}
+.fd-dialog__body {
+  padding: var(--space-3) var(--space-6) 0;
+}
+.fd-dialog__body > p {
+  margin: 0;
+}
+.fd-dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding: var(--space-6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fd-dialog {
+    animation: fd-fade var(--duration-quick) linear both !important;
+  }
+  .fd-dialog.is-leaving {
+    animation: fd-fade-out var(--duration-quick) linear both !important;
+  }
+}

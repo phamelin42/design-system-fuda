@@ -6,6 +6,7 @@ import {
   ElementRef,
   inject,
   input,
+  ViewEncapsulation,
 } from '@angular/core';
 import { FdSpinner } from '../spinner/spinner';
 
@@ -22,6 +23,8 @@ export type FdButtonSize = 'sm' | 'md' | 'lg';
   selector: 'button[fdButton], a[fdButton]',
   imports: [FdSpinner],
   templateUrl: './button.html',
+  styleUrl: './button.scss',
+  encapsulation: ViewEncapsulation.None,
   host: {
     '[class]': 'classes()',
     '[attr.aria-busy]': 'loading() ? "true" : null',

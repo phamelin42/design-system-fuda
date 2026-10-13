@@ -6,6 +6,7 @@ import {
   input,
   model,
   output,
+  ViewEncapsulation,
 } from '@angular/core';
 import { FdIcon } from '../icon/icon';
 
@@ -18,6 +19,8 @@ import { FdIcon } from '../icon/icon';
   selector: 'fd-chip',
   imports: [FdIcon],
   templateUrl: './chip.html',
+  styleUrl: './chip.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { style: 'display: contents' },
 })
 export class FdChip {

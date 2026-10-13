@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ViewEncapsulation } from '@angular/core';
 import { FdEmblem, FdEmblemName } from '../emblem/emblem';
 
 /** Écran vide qui invite à agir : un emblème, une phrase, un seul bouton (contenu projeté). */
@@ -6,6 +6,8 @@ import { FdEmblem, FdEmblemName } from '../emblem/emblem';
   selector: 'fd-empty-state',
   imports: [FdEmblem],
   templateUrl: './empty-state.html',
+  styleUrl: './empty-state.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { class: 'fd-empty' },
 })
 export class FdEmptyState {

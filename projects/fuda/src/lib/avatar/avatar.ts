@@ -1,4 +1,4 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, input, signal, ViewEncapsulation } from '@angular/core';
 import { FdEmblem, FdEmblemName, emblemFor } from '../emblem/emblem';
 
 export type FdAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -8,6 +8,8 @@ export type FdAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   selector: 'fd-avatar',
   imports: [FdEmblem],
   templateUrl: './avatar.html',
+  styleUrl: './avatar.scss',
+  encapsulation: ViewEncapsulation.None,
   host: {
     class: 'fd-avatar',
     '[class]': '"fd-avatar--" + size()',
@@ -43,6 +45,8 @@ export class FdAvatar {
   selector: 'fd-avatar-group',
   imports: [FdAvatar],
   templateUrl: './avatar-group.html',
+  styleUrl: './avatar-group.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { class: 'fd-avatar-group', role: 'group' },
 })
 export class FdAvatarGroup {

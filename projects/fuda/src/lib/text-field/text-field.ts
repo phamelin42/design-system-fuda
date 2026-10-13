@@ -1,4 +1,12 @@
-import { booleanAttribute, Component, computed, input, model, output } from '@angular/core';
+import {
+  booleanAttribute,
+  Component,
+  computed,
+  input,
+  model,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormValueControl, ValidationError } from '@angular/forms/signals';
 import { FdIcon, FdIconName } from '../icon/icon';
 
@@ -12,6 +20,8 @@ let nextId = 0;
   selector: 'fd-text-field',
   imports: [FdIcon],
   templateUrl: './text-field.html',
+  styleUrl: './text-field.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { class: 'fd-field' },
 })
 export class FdTextField implements FormValueControl<string> {

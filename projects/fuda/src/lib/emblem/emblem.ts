@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, computed, input } from '@angular/core';
+import { booleanAttribute, Component, computed, input, ViewEncapsulation } from '@angular/core';
 
 export const EMBLEM_NAMES = [
   'ume',
@@ -28,6 +28,8 @@ export function emblemFor(id: string): FdEmblemName {
 @Component({
   selector: 'fd-emblem',
   templateUrl: './emblem.html',
+  styleUrl: './emblem.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { style: 'display: contents' },
 })
 export class FdEmblem {

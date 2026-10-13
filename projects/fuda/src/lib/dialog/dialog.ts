@@ -7,6 +7,7 @@ import {
   Injectable,
   InjectionToken,
   input,
+  ViewEncapsulation,
 } from '@angular/core';
 import { Observable, filter } from 'rxjs';
 import { FdIconButton } from '../button/icon-button';
@@ -111,6 +112,8 @@ export class FdDialog {
   selector: 'fd-dialog',
   imports: [FdIcon, FdIconButton],
   templateUrl: './dialog-frame.html',
+  styleUrl: './dialog-frame.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { class: 'fd-dialog' },
 })
 export class FdDialogFrame {

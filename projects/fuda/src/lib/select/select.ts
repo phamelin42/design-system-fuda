@@ -1,4 +1,12 @@
-import { booleanAttribute, Component, computed, input, model, output } from '@angular/core';
+import {
+  booleanAttribute,
+  Component,
+  computed,
+  input,
+  model,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormValueControl, ValidationError } from '@angular/forms/signals';
 import { FdIcon } from '../icon/icon';
 
@@ -15,6 +23,8 @@ let nextId = 0;
   selector: 'fd-select',
   imports: [FdIcon],
   templateUrl: './select.html',
+  styleUrl: './select.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { class: 'fd-field' },
 })
 export class FdSelect implements FormValueControl<string> {

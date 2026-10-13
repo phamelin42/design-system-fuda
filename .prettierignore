@@ -3,3 +3,4 @@ node_modules
 *.css
 projects/fuda/src/lib/emblem/emblem.html
 package-lock.json
+projects/fuda/src/lib/emblem/emblem.scss

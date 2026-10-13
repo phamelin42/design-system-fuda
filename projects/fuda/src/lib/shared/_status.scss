@@ -1,0 +1,35 @@
+.fd-status {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--_solid);
+  color: var(--_on);
+}
+.fd-status .fd-icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.6;
+}
+.fd-tone-info {
+  --_soft: var(--asagi-soft);
+  --_solid: var(--asagi);
+  --_on: var(--on-asagi);
+}
+.fd-tone-success {
+  --_soft: var(--tokiwa-soft);
+  --_solid: var(--tokiwa);
+  --_on: var(--on-tokiwa);
+}
+.fd-tone-warning {
+  --_soft: var(--yamabuki-soft);
+  --_solid: var(--yamabuki);
+  --_on: var(--on-yamabuki);
+}
+.fd-tone-danger {
+  --_soft: var(--enji-soft);
+  --_solid: var(--enji);
+  --_on: var(--on-enji);
+}

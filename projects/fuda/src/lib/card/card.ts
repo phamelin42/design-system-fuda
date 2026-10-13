@@ -1,4 +1,4 @@
-import { Component, ElementRef, computed, inject, input } from '@angular/core';
+import { Component, computed, ElementRef, inject, input, ViewEncapsulation } from '@angular/core';
 import { FdEmblem, FdEmblemName } from '../emblem/emblem';
 
 export type FdCardSky = 'sakura' | 'asagi' | 'tokiwa' | 'fuji' | 'yamabuki' | 'kon';
@@ -17,6 +17,8 @@ export type FdCardSky = 'sakura' | 'asagi' | 'tokiwa' | 'fuji' | 'yamabuki' | 'k
   selector: 'a[fdCard], article[fdCard], div[fdCard]',
   imports: [FdEmblem],
   templateUrl: './card.html',
+  styleUrl: './card.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { '[class]': 'classes()' },
 })
 export class FdCard {

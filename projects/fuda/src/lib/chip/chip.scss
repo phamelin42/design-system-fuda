@@ -1,0 +1,79 @@
+.fd-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: var(--radius-full);
+  border: var(--border-control) solid var(--line-strong);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font: 700 14px/20px var(--font-text);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--duration-quick) var(--ease-kaze),
+    border-color var(--duration-quick) var(--ease-kaze),
+    color var(--duration-quick) var(--ease-kaze),
+    box-shadow var(--duration-quick) var(--ease-kaze);
+}
+.fd-chip:hover {
+  border-color: var(--ink);
+}
+.fd-chip:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.fd-chip .fd-chip__check {
+  width: 0;
+  height: 16px;
+  margin-left: -6px;
+  overflow: visible;
+  opacity: 0;
+  stroke-width: 3;
+  transition:
+    width var(--duration-base) var(--ease-uchi),
+    margin var(--duration-base) var(--ease-uchi),
+    opacity var(--duration-quick) var(--ease-kaze);
+}
+.fd-chip[aria-pressed='true'] {
+  background: var(--sakura);
+  border-color: var(--sakura-deep);
+  color: var(--on-sakura);
+}
+.fd-chip[aria-pressed='true'] .fd-chip__check {
+  width: 16px;
+  margin-left: -4px;
+  opacity: 1;
+}
+.fd-chip--input {
+  cursor: default;
+  padding-right: 6px;
+  background: var(--surface-sunken);
+  border-color: transparent;
+}
+.fd-chip__remove {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color var(--duration-quick) var(--ease-kaze);
+}
+.fd-chip__remove:hover {
+  background: var(--line);
+}
+.fd-chip__remove:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.fd-chip__remove .fd-icon {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.5;
+}

@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, ViewEncapsulation } from '@angular/core';
 
 interface IconShape {
   paths: string[];
@@ -45,6 +45,8 @@ export type FdIconName = keyof typeof ICONS;
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'svg[fdIcon]',
   templateUrl: './icon.html',
+  styleUrl: './icon.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { class: 'fd-icon', viewBox: '0 0 24 24', 'aria-hidden': 'true' },
 })
 export class FdIcon {

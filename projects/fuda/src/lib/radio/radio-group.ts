@@ -1,4 +1,11 @@
-import { booleanAttribute, Component, input, model, output } from '@angular/core';
+import {
+  booleanAttribute,
+  Component,
+  input,
+  model,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormValueControl } from '@angular/forms/signals';
 
 export interface FdRadioOption {
@@ -14,6 +21,8 @@ let nextId = 0;
 @Component({
   selector: 'fd-radio-group',
   templateUrl: './radio-group.html',
+  styleUrl: './radio-group.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class FdRadioGroup implements FormValueControl<string> {
   readonly value = model('');

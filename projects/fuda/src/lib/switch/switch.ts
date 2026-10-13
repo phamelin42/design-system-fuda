@@ -1,4 +1,11 @@
-import { booleanAttribute, Component, input, model, output } from '@angular/core';
+import {
+  booleanAttribute,
+  Component,
+  input,
+  model,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormCheckboxControl } from '@angular/forms/signals';
 
 const PETALS = [
@@ -13,6 +20,8 @@ const PETALS = [
 @Component({
   selector: 'fd-switch',
   templateUrl: './switch.html',
+  styleUrl: './switch.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class FdSwitch implements FormCheckboxControl {
   readonly checked = model(false);

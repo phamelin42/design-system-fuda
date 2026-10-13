@@ -1,5 +1,4 @@
-/* Point d'entrée : tokens, fondations et composants de Fuda. */
+/* Point d'entrée : tokens et fondations de Fuda. Les styles de chaque composant (.scss) sont embarqués avec lui. */
 @import '@angular/cdk/overlay-prebuilt.css';
 @import './tokens.css';
 @import './base.css';
-@import './components.css';

@@ -1,4 +1,11 @@
-import { booleanAttribute, Component, computed, input, output } from '@angular/core';
+import {
+  booleanAttribute,
+  Component,
+  computed,
+  input,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FdIconButton } from '../button/icon-button';
 import { FdIcon, FdIconName } from '../icon/icon';
 
@@ -16,6 +23,8 @@ export const TONE_ICONS: Record<FdTone, FdIconName> = {
   selector: 'fd-alert',
   imports: [FdIcon, FdIconButton],
   templateUrl: './alert.html',
+  styleUrl: './alert.scss',
+  encapsulation: ViewEncapsulation.None,
   host: {
     '[class]': '"fd-alert fd-tone-" + tone()',
     '[attr.role]': 'role()',

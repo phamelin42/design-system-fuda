@@ -1,0 +1,17 @@
+@use '../shared/field';
+
+.fd-input-wrap {
+  position: relative;
+  display: block;
+}
+.fd-input-wrap > .fd-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-muted);
+  pointer-events: none;
+}
+.fd-input-wrap > .fd-icon + .fd-input {
+  padding-left: 42px;
+}

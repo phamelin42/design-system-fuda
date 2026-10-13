@@ -1,12 +1,17 @@
-import { Directive, computed, input } from '@angular/core';
+import { Component, computed, input, ViewEncapsulation } from '@angular/core';
 import { FdTooltip } from '../tooltip/tooltip';
 
 /**
  * Bouton carré qui ne montre qu'une icône : `<button fdIconButton label="Modifier"><svg fdIcon="edit" /></button>`.
  * Le `label` est obligatoire : il devient le nom accessible et le texte de l'infobulle.
  */
-@Directive({
+@Component({
+  // Composant posé sur un élément natif (sémantique HTML conservée) : le sélecteur n'est pas un élément fd-.
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[fdIconButton], a[fdIconButton]',
+  templateUrl: './icon-button.html',
+  styleUrl: './icon-button.scss',
+  encapsulation: ViewEncapsulation.None,
   hostDirectives: [{ directive: FdTooltip, inputs: ['fdTooltip: label'] }],
   host: {
     '[class]': 'classes()',

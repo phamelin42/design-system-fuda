@@ -1,0 +1,75 @@
+@use '../shared/field';
+
+.fd-select {
+  position: relative;
+  display: block;
+}
+.fd-select > select.fd-input {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 44px;
+  cursor: pointer;
+}
+.fd-select::after {
+  content: '';
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  border-radius: 0 0 2px 0;
+  transform: translateY(-70%) rotate(45deg);
+}
+
+/* Liste déroulante personnalisable (Chrome 135+) : coins arrondis, couleurs du thème.
+   Ailleurs, le navigateur garde sa liste native. */
+@supports (appearance: base-select) {
+  .fd-select > select.fd-input,
+  .fd-select > select.fd-input::picker(select) {
+    appearance: base-select;
+  }
+  .fd-select > select.fd-input {
+    display: flex;
+    align-items: center;
+  }
+  .fd-select > select.fd-input::picker-icon {
+    display: none;
+  }
+  .fd-select > select.fd-input::picker(select) {
+    margin-top: var(--space-1);
+    padding: var(--space-1);
+    background: var(--surface-raised);
+    color: var(--ink);
+    border: var(--border-control) solid var(--line-strong);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-float);
+  }
+  .fd-select option {
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    font: 500 16px/24px var(--font-text);
+    cursor: pointer;
+  }
+  .fd-select option::checkmark {
+    display: none;
+  }
+  .fd-select option:hover,
+  .fd-select option:focus-visible {
+    background: var(--sakura-soft);
+  }
+  .fd-select option:checked {
+    background: var(--sakura);
+    color: var(--on-sakura);
+  }
+  .fd-select option:checked:hover {
+    background: var(--sakura-press);
+  }
+  .fd-select option:disabled {
+    color: var(--ink-muted);
+    cursor: not-allowed;
+    background: none;
+  }
+}

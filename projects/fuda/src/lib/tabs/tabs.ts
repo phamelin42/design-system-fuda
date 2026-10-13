@@ -1,18 +1,19 @@
 import { NgTemplateOutlet } from '@angular/common';
 import {
-  Component,
-  ElementRef,
-  TemplateRef,
-  booleanAttribute,
   afterEveryRender,
   afterNextRender,
+  booleanAttribute,
+  Component,
   computed,
   contentChildren,
+  ElementRef,
   input,
   model,
   signal,
+  TemplateRef,
   viewChild,
   viewChildren,
+  ViewEncapsulation,
 } from '@angular/core';
 
 let nextId = 0;
@@ -39,6 +40,8 @@ export class FdTab {
   selector: 'fd-tabs',
   imports: [NgTemplateOutlet],
   templateUrl: './tabs.html',
+  styleUrl: './tabs.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { class: 'fd-tabs' },
 })
 export class FdTabs {

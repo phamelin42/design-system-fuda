@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ViewEncapsulation } from '@angular/core';
 
 export interface FdBreadcrumbItem {
   label: string;
@@ -9,6 +9,8 @@ export interface FdBreadcrumbItem {
 @Component({
   selector: 'fd-breadcrumb',
   templateUrl: './breadcrumb.html',
+  styleUrl: './breadcrumb.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { class: 'fd-breadcrumb' },
 })
 export class FdBreadcrumb {

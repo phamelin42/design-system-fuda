@@ -3,11 +3,12 @@ import {
   ApplicationRef,
   Component,
   ComponentRef,
-  EnvironmentInjector,
-  Injectable,
   createComponent,
+  EnvironmentInjector,
   inject,
+  Injectable,
   signal,
+  ViewEncapsulation,
 } from '@angular/core';
 import { FdTone, TONE_ICONS } from '../alert/alert';
 import { FdIconButton } from '../button/icon-button';
@@ -85,6 +86,8 @@ export class FdToastService {
   selector: 'fd-toast-region',
   imports: [FdIcon, FdIconButton, FdLink],
   templateUrl: './toast-region.html',
+  styleUrl: './toast-region.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { class: 'fd-toast-region', 'aria-live': 'polite' },
 })
 export class FdToastRegion {

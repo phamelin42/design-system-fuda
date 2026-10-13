@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ViewEncapsulation } from '@angular/core';
 
 let nextId = 0;
 
@@ -6,6 +6,8 @@ let nextId = 0;
 @Component({
   selector: 'fd-progress',
   templateUrl: './progress.html',
+  styleUrl: './progress.scss',
+  encapsulation: ViewEncapsulation.None,
   host: { class: 'fd-progress', '[class.fd-progress--tokiwa]': 'tone() === "tokiwa"' },
 })
 export class FdProgress {

@@ -1,9 +1,11 @@
-import { booleanAttribute, Component, input } from '@angular/core';
+import { booleanAttribute, Component, input, ViewEncapsulation } from '@angular/core';
 
 /** Séparateur : un filet discret, ou une bande de brume (`kasumi`) pour un vrai changement de chapitre, une fois par vue au plus. */
 @Component({
   selector: 'fd-divider',
   template: '',
+  styleUrl: './divider.scss',
+  encapsulation: ViewEncapsulation.None,
   host: {
     class: 'fd-divider',
     '[class.fd-divider--kasumi]': 'kasumi()',
