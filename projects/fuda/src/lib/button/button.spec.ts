@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { FdButton } from './button';
+import { FdButton, FdButtonVariant } from './button';
 import { FdIcon } from '../icon/icon';
 import { FdIconButton } from './icon-button';
 
@@ -9,7 +9,7 @@ import { FdIconButton } from './icon-button';
   template: `
     <button
       fdButton
-      variant="primary"
+      [variant]="variant()"
       size="lg"
       [loading]="loading()"
       (click)="clicks.update((n) => n + 1)"
@@ -20,6 +20,7 @@ import { FdIconButton } from './icon-button';
   `,
 })
 class Host {
+  variant = signal<FdButtonVariant>('primary');
   loading = signal(false);
   clicks = signal(0);
 }
@@ -39,6 +40,14 @@ describe('FdButton', () => {
       'fd-button--lg',
       'fd-button--primary',
     ]);
+  });
+
+  it('applique la variante success', async () => {
+    const { fixture, button } = await setup();
+    fixture.componentInstance.variant.set('success');
+    await fixture.whenStable();
+    expect(button.classList.contains('fd-button--success')).toBe(true);
+    expect(button.classList.contains('fd-button--primary')).toBe(false);
   });
 
   it('laisse passer les clics au repos', async () => {

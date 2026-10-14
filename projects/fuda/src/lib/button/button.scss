@@ -51,6 +51,11 @@
   --_fg: var(--on-enji);
   --_bg-hover: var(--enji-press);
 }
+.fd-button--success {
+  --_bg: var(--tokiwa);
+  --_fg: var(--on-tokiwa);
+  --_bg-hover: var(--tokiwa-press);
+}
 .fd-button--ghost {
   --_bd: transparent;
   --_bg: transparent;

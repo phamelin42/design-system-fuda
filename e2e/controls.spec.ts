@@ -10,7 +10,7 @@ test('button: controls change the label and the loading state of every variant',
   await open(page, 'actions-button--default', 'label:Delete;loading:!true');
   const buttons = page.getByRole('button', { name: 'Delete' });
 
-  await expect(buttons).toHaveCount(12); // 4 variants x 3 sizes
+  await expect(buttons).toHaveCount(15); // 5 variants x 3 sizes
   for (const button of await buttons.all()) {
     await expect(button).toHaveAttribute('aria-busy', 'true');
   }
@@ -18,11 +18,11 @@ test('button: controls change the label and the loading state of every variant',
 
 test('button: the story shows every variant and size', async ({ page }) => {
   await open(page, 'actions-button--default', '');
-  for (const variant of ['primary', 'danger', 'ghost']) {
+  for (const variant of ['primary', 'danger', 'ghost', 'success']) {
     await expect(page.locator(`.fd-button--${variant}`)).toHaveCount(3);
   }
-  await expect(page.locator('.fd-button--sm')).toHaveCount(4);
-  await expect(page.locator('.fd-button--lg')).toHaveCount(4);
+  await expect(page.locator('.fd-button--sm')).toHaveCount(5);
+  await expect(page.locator('.fd-button--lg')).toHaveCount(5);
 });
 
 test('badge: the story shows every tone, solid and soft', async ({ page }) => {
