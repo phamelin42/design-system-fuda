@@ -1,6 +1,22 @@
 {
-  "name": "fuda-workspace",
+  "name": "fuda",
   "version": "0.0.0",
+  "description": "Fuda, design system inspiré du hanafuda, en composants Angular.",
+  "license": "MIT",
+  "module": "dist/fuda/fesm2022/fuda.mjs",
+  "typings": "dist/fuda/types/fuda.d.ts",
+  "sideEffects": false,
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/fuda/types/fuda.d.ts",
+      "default": "./dist/fuda/fesm2022/fuda.mjs"
+    },
+    "./styles/*": "./dist/fuda/styles/*"
+  },
+  "files": [
+    "dist/fuda"
+  ],
   "scripts": {
     "ng": "ng",
     "build": "npm run tokens && ng build fuda",
@@ -10,7 +26,8 @@
     "lint": "ng lint",
     "storybook": "ng run fuda:storybook",
     "build-storybook": "ng run fuda:build-storybook",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "prepare": "npm run build"
   },
   "private": true,
   "packageManager": "npm@10.9.4",

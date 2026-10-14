@@ -8,9 +8,13 @@ Bibliothèque Angular du design system **Fuda** (札, « la carte »), inspiré 
 
 ## Installation
 
+Fuda n'est pas publiée sur npm (le paquet `fuda` du registre est un autre projet). On l'installe depuis git : le script `prepare` construit la bibliothèque (`dist/fuda`) à l'installation, ce qui demande Node ≥ 22.22.3.
+
 ```bash
-npm install fuda @angular/cdk @fontsource/dela-gothic-one @fontsource/zen-maru-gothic
+npm install github:phamelin42/design-system-fuda @angular/cdk @fontsource/dela-gothic-one @fontsource/zen-maru-gothic
 ```
+
+Pour viser une branche ou un tag : `github:phamelin42/design-system-fuda#<branche-ou-tag>`.
 
 Dans `angular.json` (ou dans votre feuille de styles globale) :
 
