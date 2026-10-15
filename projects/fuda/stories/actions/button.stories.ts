@@ -2,7 +2,7 @@ import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular-vit
 import { FdButton, FdIcon } from '../../src/public-api';
 import { all, bool, pick, text } from '../controls';
 
-const VARIANTS = ['primary', 'secondary', 'ghost', 'danger'] as const;
+const VARIANTS = ['primary', 'secondary', 'ghost', 'danger', 'success'] as const;
 const SIZES = ['sm', 'md', 'lg'] as const;
 
 const meta: Meta = {

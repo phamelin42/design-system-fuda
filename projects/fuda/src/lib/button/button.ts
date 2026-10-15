@@ -10,12 +10,13 @@ import {
 } from '@angular/core';
 import { FdSpinner } from '../spinner/spinner';
 
-export type FdButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+export type FdButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'success';
 export type FdButtonSize = 'sm' | 'md' | 'lg';
 
 /**
  * Bouton ou lien d'action : `<button fdButton variant="primary">Enregistrer</button>`.
- * Un seul `primary` par vue ; `danger` seulement pour confirmer une suppression.
+ * Un seul `primary` par vue ; `danger` seulement pour confirmer une suppression ;
+ * `success` pour signaler une action ou un choix réussi (vert), jamais comme action principale.
  */
 @Component({
   // Composant posé sur un élément natif (sémantique HTML conservée) : le sélecteur n'est pas un élément fd-.

@@ -68,6 +68,7 @@ Une tâche est terminée quand `lint`, `typecheck`, `test` et `build` sont verts
 
 - **Palette plus claire et plus rose** (demande explicite) : la couleur principale est `sakura` (rose cerisier, texte `on-sakura` foncé) à la place de `shu`, qui ne reste qu'un accent d'illustration des emblèmes. `ink`, `rim`, `kon` et les neutres sont éclaircis, les surfaces tirent vers le rose. `sakura-press` (survol), `sakura-deep` (texte rose, bords, indicateur d'onglet) et `mizu` (bleu clair de la progression) sont nouveaux.
 - **Sélection** (case, radio, interrupteur, chip actif) : fond `sakura`, bord `sakura-deep`, au lieu d'un remplissage `ink`. L'interrupteur éteint est une piste claire cernée de `line-strong`.
+- **Bouton `success`** : variante verte (`tokiwa`, texte `on-tokiwa`, survol `tokiwa-press`, nouveau token) pour signaler un choix réussi, par exemple la bonne réponse d'un quiz. Les planches n'ont que `primary`, `secondary`, `ghost` et `danger`.
 - **Badge et indicateur d'onglet** : pilule arrondie à la place du tanzaku (parallélogramme).
 - **Progression** : barre `mizu` cernée d'`asagi` (3:1 avec la piste), plus de rouge qui ressemble à une erreur.
 - **Accordéon** : chevron vers la droite fermé, vers le bas ouvert.
