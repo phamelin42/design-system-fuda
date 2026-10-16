@@ -17,6 +17,8 @@ Node ≥ 22.22.3 (exigé par Angular 22).
 
 Une tâche est terminée quand `lint`, `typecheck`, `test` et `build` sont verts (et `e2e` si l'apparence ou le clavier change).
 
+**Toute modification de code finit par une PR** : on commit, on pousse la branche de travail, puis on ouvre la PR vers `main` sans attendre qu'on la demande (après vérification qu'il n'en existe pas déjà une ouverte pour cette branche). Une PR déjà fusionnée ne suit plus la branche : le travail suivant repart de `main` et ouvre une nouvelle PR.
+
 ## Structure
 
 - `projects/fuda/tokens/tokens.json` : tokens. Parti de la source de vérité, il en **diverge** désormais (palette, voir plus bas) : ne pas l'écraser en resynchronisant. Ne jamais éditer `tokens.css` à la main.
