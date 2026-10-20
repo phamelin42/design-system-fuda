@@ -8,30 +8,50 @@ Bibliothèque Angular du design system **Fuda** (札, « la carte »), inspiré 
 
 ## Installation
 
-Fuda n'est pas publiée sur npm (le paquet `fuda` du registre est un autre projet). On l'installe depuis git : le script `prepare` construit la bibliothèque (`dist/fuda`) à l'installation, ce qui demande Node ≥ 22.22.3.
+Fuda est publiée sur npm sous le nom `@phamelin/fuda` (le paquet `fuda` du registre est un autre projet).
 
 ```bash
-npm install github:phamelin42/design-system-fuda @angular/cdk @fontsource/dela-gothic-one @fontsource/zen-maru-gothic
+npm install @phamelin/fuda @angular/cdk @fontsource/dela-gothic-one @fontsource/zen-maru-gothic
 ```
-
-Pour viser une branche ou un tag : `github:phamelin42/design-system-fuda#<branche-ou-tag>`.
 
 Dans `angular.json` (ou dans votre feuille de styles globale) :
 
 ```json
 "styles": [
-  "node_modules/fuda/styles/fuda.css",
-  "node_modules/fuda/styles/fonts.css"
+  "node_modules/@phamelin/fuda/styles/fuda.css",
+  "node_modules/@phamelin/fuda/styles/fonts.css"
 ]
 ```
 
 `fuda.css` contient les tokens et les fondations ; le style de chaque composant (`.scss`) est embarqué avec lui. `fonts.css` charge Dela Gothic One et Zen Maru Gothic (sous-ensembles latin et japonais) via @fontsource ; on peut le remplacer par Google Fonts.
 
+### Garder l'import `from 'fuda'`
+
+Un projet qui importe déjà `fuda` (installation depuis git) peut migrer sans toucher au code, avec un alias npm :
+
+```bash
+npm install fuda@npm:@phamelin/fuda
+```
+
+### Depuis git (version non publiée)
+
+Le script `prepare` construit la bibliothèque (`dist/fuda`) à l'installation, ce qui demande Node ≥ 22.22.3 :
+
+```bash
+npm install github:phamelin42/design-system-fuda#<branche-ou-tag>
+```
+
+Le paquet s'appelle alors `fuda` (import `from 'fuda'`, styles dans `node_modules/fuda/styles/`).
+
+### Publier une version
+
+Monter `version` dans `projects/fuda/package.json`, puis pousser le tag correspondant (`git tag v0.1.0 && git push origin v0.1.0`). Le workflow `.github/workflows/release.yml` construit, nomme le paquet `@phamelin/fuda` et le publie avec provenance. Il lit le secret de dépôt `NPM_TOKEN`.
+
 ## Utilisation
 
 ```ts
 import { Component, inject, signal } from '@angular/core';
-import { FdButton, FdIcon, FdTextField, FdToastService } from 'fuda';
+import { FdButton, FdIcon, FdTextField, FdToastService } from '@phamelin/fuda';
 
 @Component({
   selector: 'app-nouveau-carnet',
