@@ -1,8 +1,31 @@
 {
-  "name": "fuda",
+  "name": "@phamelin/fuda",
   "version": "0.1.0",
   "description": "Fuda, design system inspiré du hanafuda, en composants Angular.",
   "license": "MIT",
+  "author": "Philippe Hamelin",
+  "homepage": "https://fuda.phamelin.fr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phamelin42/design-system-fuda.git",
+    "directory": "projects/fuda"
+  },
+  "bugs": {
+    "url": "https://github.com/phamelin42/design-system-fuda/issues"
+  },
+  "keywords": [
+    "angular",
+    "design-system",
+    "components",
+    "hanafuda",
+    "signals",
+    "storybook",
+    "wcag"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "peerDependencies": {
     "@angular/cdk": "^22.2.0",
     "@angular/common": "^22.2.0",
