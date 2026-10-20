@@ -1,0 +1,42 @@
+name: Publier sur npm
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # provenance npm
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      # Le build garde le nom "fuda" (fichiers générés, installation via git).
+      # Le paquet est publié sous le scope @phamelin, le nom "fuda" étant pris sur npm.
+      - name: Nommer le paquet @phamelin/fuda
+        working-directory: dist/fuda
+        run: npm pkg set name=@phamelin/fuda
+      - name: Vérifier que la version correspond au tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: test "v$(jq -r .version dist/fuda/package.json)" = "$GITHUB_REF_NAME"
+      - name: Contenu du paquet
+        working-directory: dist/fuda
+        run: npm pack --dry-run
+      - name: Publier
+        working-directory: dist/fuda
+        run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
