@@ -1,6 +1,6 @@
 {
   "name": "@phamelin/fuda",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "Fuda, design system inspiré du hanafuda, en composants Angular.",
   "license": "MIT",
   "author": "Philippe Hamelin",
