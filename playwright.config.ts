@@ -15,9 +15,7 @@ export default defineConfig({
       args: ['--font-render-hinting=none'],
     },
   },
-  // 0,2 % : la CI et un poste ne lissent pas le texte tout à fait pareil. Avec un texte presque noir,
-  // les pages denses dépassaient 0,1 % (633 à 694 px sur 614) sans aucun changement visible.
-  expect: { toHaveScreenshot: { maxDiffPixelRatio: 0.002, animations: 'disabled' } },
+  expect: { toHaveScreenshot: { maxDiffPixelRatio: 0.001, animations: 'disabled' } },
   webServer: {
     command: 'npx http-server storybook-static -p 6006 -s',
     url: 'http://localhost:6006',
