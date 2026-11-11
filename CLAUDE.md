@@ -1,5 +1,7 @@
 # Fuda : bibliothèque Angular
 
+Règles communes à tous les projets de Phil (copie de `phamelin42/claude-context`, ne pas la modifier ici ; ce fichier l'emporte en cas de désaccord) : @.claude/CLAUDE.commun.md
+
 Implémentation Angular de **Fuda**, le design system inspiré du hanafuda. Source de vérité : https://claude.ai/artifact/J8FezpFLFeajXXYPZzqrHB (`project/README.md`, `motion.md`, `tokens.json`, et par composant `README.md` + `preview.html`). Les libellés, la documentation et les messages de commit sont en français.
 
 ## Commandes
